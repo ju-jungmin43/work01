@@ -202,8 +202,8 @@
                 <div class="main_visual_slider" id="slider">
 
                     <div class="visual_item">
-                        <div class="visual_item_pc" style="background-image:url(images/main/visual/visual_pc_01.jpg)"></div>
-                        <div class="visual_item_mo" style="background: url(images/main/visual/visual_mo_01.jpg)"></div>
+                        <div class="visual_item_img"><img src="images/main/visual/visual_pc_01.jpg"></div>
+                        <!-- <div class="visual_item_mo" style="background: url(images/main/visual/visual_mo_01.jpg)"></div> -->
                         <div class="wrap">
                             <div class="main_visual_content">
                                 <div class="visual_content_cell">
@@ -220,8 +220,8 @@
                     </div><!-- visual_item -->
 
                     <div class="visual_item">
-                        <div class="visual_item_pc" style="background-image: url(images/main/visual/visual_pc_02.jpg)"></div>
-                        <div class="visual_item_mo" style="background: url(images/main/visual/visual_mo_02.jpg)"></div>
+                            <div class="visual_item_img"><img src="images/main/visual/visual_pc_02.jpg"></div>
+                        <!-- <div class="visual_item_mo" style="background: url(images/main/visual/visual_mo_02.jpg)"></div> -->
                         <div class="wrap">
                             <div class="main_visual_content">
                                 <div class="visual_content_cell">
@@ -238,8 +238,8 @@
                     </div><!-- visual_item -->
 
                     <div class="visual_item">
-                        <div class="visual_item_pc" style="background-image: url(images/main/visual/visual_pc_03.jpg)"></div>
-                        <div class="visual_item_mo" style="background: url(images/main/visual/visual_mo_03.jpg)"></div>
+                        <div class="visual_item_img"><img src="images/main/visual/visual_pc_03.jpg"></div>
+                        <!-- <div class="visual_item_mo" style="background: url(images/main/visual/visual_mo_03.jpg)"></div> -->
                         <div class="wrap">
                             <div class="main_visual_content">
                                 <div class="visual_content_cell">
@@ -256,8 +256,8 @@
                     </div><!-- visual_item -->
 
                     <div class="visual_item">
-                        <div class="visual_item_pc" style="background-image: url(images/main/visual/visual_pc_04.jpg)"></div>
-                        <div class="visual_item_mo" style="background: url(images/main/visual/visual_mo_04.jpg)"></div>
+                        <div class="visual_item_img"><img src="images/main/visual/visual_pc_04.jpg"></div>
+                        <!-- <div class="visual_item_mo" style="background: url(images/main/visual/visual_mo_04.jpg)"></div> -->
                         <div class="wrap">
                             <div class="main_visual_content">
                                 <div class="visual_content_cell">
@@ -274,8 +274,8 @@
                     </div><!-- visual_item -->
                     
                     <div class="visual_item">
-                        <div class="visual_item_pc" style="background-image: url(images/main/visual/visual_pc_05.jpg)"></div>
-                        <div class="visual_item_mo" style="background: url(images/main/visual/visual_mo_05.jpg)"></div>
+                        <div class="visual_item_img"><img src="images/main/visual/visual_pc_05.jpg"></div>
+                        <!-- <div class="visual_item_mo" style="background: url(images/main/visual/visual_mo_05.jpg)"></div> -->
                         <div class="wrap">
                             <div class="main_visual_content">
                                 <div class="visual_content_cell">
@@ -868,15 +868,28 @@
 
 <script>
 (function($){
+    
+
     $(window).resize(function(){
         // 이미지 높이에 맞게 리사이즈
         var wW = $(window).innerWidth();
         var _windowHeight = $(window).height() - 100;
-
-        $('#slider').css('height', _windowHeight);
-
+        var imgMoW = $('.visual_item_mo').width();
+        var imgMoH = $('.visual_item_mo').height();
         
-
+        $('#slider').css('height', _windowHeight);
+        
+        $('.visual_item_img img').each(function(index, item){
+            console.log($(this).index());
+            if(wW <= 1024){
+                    $(this).attr('src', $(this).attr('src').replace('pc', 'mo')).addClass('moImg').removeClass('pcImg');
+            }else{
+                $(this).attr('src', $(this).attr('src').replace('mo', 'pc')).addClass('pcImg').removeClass('moImg');
+                
+            }
+        });
+        
+        
         var autoGallery = function(){
             var slider = $('#slider');
             var item = $('.visual_item');
@@ -885,9 +898,7 @@
             // console.log(slider.find(item).eq(0));
             item.eq(0).addClass('active');            
 
-            slider.each(function(i){
-                // console.log($(this).find(item).eq(i));
-            })
+            
             
         }
         autoGallery();
@@ -905,3 +916,38 @@ $('.gallery_item').height();
 </body>
 </html>
 
+<!--
+    Global- k Wedding Fair 초청되다!
+    "고객지향형 가치 브랜드"
+    2018 소비자가 뽑은 올해의 브랜드 대상
+    랑벨의 철학에 어울리는 뷰티 전문 편...
+    3월의 어느 멋진 날에- (랑스 아카데..)
+    세계 최대 이태리 볼로냐 코스모프로..
+    랑벨, 다시 태어나다!(사명 변경)
+    2018 랑벨러 여러분께 선물을 드립..
+    랑벨 x 맥심 x 디브릿지 콜라보레이션...
+    랑벨 유럽 현지 업체와 mou 체결
+
+    랑벨, '2018 대한민국 브랜드'
+    랑벨, 소비자가
+    랑벨
+    주식회사 탐라타마누, 주식회사
+    랑벨 유럽 버블
+    랑벨, 유럽 현지 기업과 mou 체결
+    탐라타마누, 랑벨 '유럽
+    랑벨 유럽
+    고객
+    2018 제 6회 대한민국 브랜드
+-->
+<!--
+1   랑벨 랑바이오 오일 LANBIO OIL
+2   랑벨 클렌징 오일 CLEANSING OIL
+3   랑벨 클렌징 젤 CLEANSING GEL
+4   랑벨 클리어 토너 CLEAR TONER
+5   랑벨 안티-링클 아이크림 ANTI-WRINKLE EYE CREAM
+6   랑벨 이지에프 + 에프지에프 앰플 EGF + FGF AMPULE
+7   랑벨 랑스타마누 크림 LAN'S TAMANU CREAM
+8   랑벨 하이드라이팅 듀오 세럼 HYDRATING DUO SERUM
+9   랑벨 이지에프 듀오 모이스처라이저 EGF DUO MOISTURIZER
+10  랑벨 비타민셀 크림 VITAMIN CELL CREAM
+-->
