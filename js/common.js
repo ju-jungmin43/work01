@@ -1,30 +1,50 @@
 $(document).ready(function(){
 
-
      $(window).on('resize', function(){
         var wTop = $(window).scrollTop(); // window scrollTop
-        
+        var wW = $(this).width();
         var wH = $(this).height();
         var containerH = $('.container').css('padding-top').replace(/[^-\d\.]/g, '');;
         
         /* main_page */
         $('.--full_height').css({ height: (wH - containerH)});
-
-      
-     })
+        
+        resizeMenu(wW);
+    });
      $(window).trigger('resize');
 
-    //  $('.main_menu_list').hover(function(){
-    //      $(this).find('.sub_menu').css({ display: 'block'})
-    //     }, function(){
-    //         $('.sub_menu').css({ display: 'none'})
-    //  });
-
-    //  $('.sub_menu_commu_01').hover(function(){
-    //     $(this).find('.sub_menu_list').css({ display: 'block'})
-    // }, function(){
-    //     $(this).find('.sub_menu_list').css({ display: 'none'})
-    //  });
+    function resizeMenu(val){
+        if( val > 1023 ){
+            pcMenu(val);
+        } else {
+            moMenu(val);
+        }
+    }
+    
+    function pcMenu(val){
+        console.log('pcmenu')
+        $('.mo_menu_list').off('click');
+        $('.main_menu_list').off('mouseenter');
+        $('.main_menu_list').off('mouseleave');
+        $('.main_menu_list').on({
+             mouseenter : function(){
+                $(this, 'a').find('.sub_menu').css({ display: 'block'});
+            }, 
+            mouseleave : function(){
+                $('.sub_menu').css({ display: 'none'})
+            }
+        });
+    
+         $('.sub_menu_commu_01').on({
+            mouseenter : function(){
+                $(this, 'a').find('.sub_menu_list').css({ display: 'block'})
+            }, 
+            mouseleave : function(){
+            $(this, 'a').find('.sub_menu_list').css({ display: 'none'})
+            }
+        });
+        return false;
+     }
 
      $('.lang_select').on('click', function(){
         if($('.lang_list').hasClass('on')){
@@ -36,66 +56,62 @@ $(document).ready(function(){
         };
          return false;
      });
-     var closeTimer = 0;
-     var $navMoMenu = $('.nav_mo_menu');
-     var $navMoClose = $('.nav_mo_close');
-     var $navMoDim = $('.nav_mo_dim');
 
-     $('.nav_mo_btn').on('click', function(){
-        $navMoMenu.css({ visibility: 'visible', right : '0px'});
-        closeTimer = setTimeout(function(){
-            $navMoClose.css({ visibility: 'visible', right: '240px'});
-        }, 200);
-        $navMoDim.css({ opacity: 1, visibility : 'visible'})
-        return false;
-     });
+     function moMenu(val){
+         console.log('momenu')
+         var closeTimer = 0;
+         var $navMoMenu = $('.nav_mo_menu');
+         var $navMoClose = $('.nav_mo_close');
+         var $navMoDim = $('.nav_mo_dim');
+    
+         $('.nav_mo_btn').on('click', function(){
+            $navMoMenu.css({ visibility: 'visible', right : '0px'});
+            closeTimer = setTimeout(function(){
+                $navMoClose.css({ visibility: 'visible', right: '240px'});
+            }, 200);
+            $navMoDim.css({ opacity: 1, visibility : 'visible'})
+            return false;
+         });
+    
+         $('.nav_mo_close, .nav_mo_dim').on('click', function(){
+            clearTimeout(closeTimer);
+            $navMoClose.css({ visibility: 'hidden' , right: '-50px' });
+            $navMoMenu.css({ 
+                right : '-240px',
+                WebkitTransition : 'all 0.4s',
+                MsTranstion : 'all 0.4s',
+                MozTranstion : 'all 0.4s',
+                transtion : 'all 0.4s'
+            });
+            $navMoDim.css({ opacity: 0, visibility : 'hidden' });
+            return false;
+         });
 
-     $('.nav_mo_close, .nav_mo_dim').on('click', function(){
-        clearTimeout(closeTimer);
-        $navMoClose.css({ visibility: 'hidden' , right: '-50px' });
-        $navMoMenu.css({ 
-            right : '-240px',
-            WebkitTransition : 'all 0.4s',
-            MsTranstion : 'all 0.4s',
-            MozTranstion : 'all 0.4s',
-            transtion : 'all 0.4s'
+        // mo_menu_list
+        $('.mo_menu_list').off('click');
+        $('.main_menu_list').off('mouseenter');
+        $('.main_menu_list').off('mouseleave');
+
+        $('.mo_menu_list').on('click', function(){
+            if($(this).is('.commu') === false){
+                if($(this).next().is('.on') === false){ 
+                    $('.sub_menu').removeClass('on').slideUp(500);
+                    $('.sub_menu_list').removeClass('on').slideUp();
+                    $(this).next().addClass('on').slideDown(500);
+                } else {
+                    $(this).next().removeClass('on').slideUp(500);
+                }
+            } else { 
+                if($(this).next().is('.on') === false){
+                    $('.sub_menu_list').addClass('on').slideDown();
+                } else {
+                    $('.sub_menu_list').removeClass('on').slideUp();
+                }
+            }
+            return false;
         });
-        $navMoDim.css({ opacity: 0, visibility : 'hidden' });
-        return false;
-     });
+    }
 
-
-     // mo_menu_list
-    $('.mo_menu_list').on('click', function(){
-    //     var $subMenu = $('.sub_menu');
-    //     var $nextSubMenu = $(this).next();
-
-    //     if($(this).is('.commu') == false){
-
-    //         if($(this).next().is('.on') == false){ 
-    //             $('.sub_menu').removeClass('on').slideUp(500);
-    //             $('.sub_menu_list').removeClass('on').slideUp();
-    //             $(this).next().addClass('on').slideDown(500);
-    //         } else {
-    //             $(this).next().removeClass('on').slideUp(500);
-    //         }
-
-    //     } else { 
-            
-    //         if($(this).next().is('.on') == false){
-    //             $('.sub_menu_list').addClass('on').slideDown();
-    //         } else {
-    //             $('.sub_menu_list').removeClass('on').slideUp();
-    //         }
-    //     }
-    //     return false;
-    
-    
-    // console.log($(this).closest('ul') + '\n' + $(this).closest('li'))
-    
-
-
-    });
     /* search_pop form */
     var $searchForm = $('.search_form');
     var $searchInput = $('#searchInput');
@@ -136,61 +152,3 @@ $(document).ready(function(){
     // 추가로 넣기! > 햄버거메뉴시에 product 메뉴에 all 
     // $('.sub_menu_product').prepend('<li><a href="#">ALL</a></li>')
 }); // end
-
-
-// 2depth menu 분석하기
-// function small_screen_nav_toggle(){
-
-// 	// menu top level link
-// 	$('#menu li.menu-item-has-children a').on('click',function(e){
-
-//         if( is_screen(1023) ) {
-
-//             var $parent = $(this).closest('ul');
-//             var $li = $(this).closest('li');
-
-//             if($li.find('> ul').length > 0) { // child가 있으면 실행
-
-//                 e.preventDefault();
-
-//                 if( !$parent.hasClass('sub-menu') ) { // 2depth
-
-//                     $('#menu > li.active > ul > li').removeClass('active').find('> ul').stop().slideUp(); // 3depth close
-
-//                     if($(this).closest('li').hasClass('active')) { // 열려있는 menu 클릭시 닫기
-
-//                         $(this).closest('li').removeClass('active').find('> ul').stop().slideUp();
-
-//                     } else {
-
-//                         $('#menu > li').removeClass('active').find('> ul').stop().slideUp();
-
-//                         $li.addClass('active');
-//                         $li.find('> ul').stop().slideDown();
-
-//                     }
-
-//                 } else { // 3depth
-
-//                     if($(this).closest('li').hasClass('active')) { // 열려있는 menu 클릭시 닫기
-
-//                         $(this).closest('li').removeClass('active').find('> ul').stop().slideUp();
-
-//                     } else {
-
-//                         $('#menu > li.active > ul > li').removeClass('active').find('> ul').stop().slideUp();
-
-//                         $li.addClass('active');
-//                         $li.find('> ul').stop().slideDown();
-
-//                     }
-
-//                 }
-
-//             } // endif
-
-//         }
-
-// 	});
-
-// }
