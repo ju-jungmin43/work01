@@ -34,8 +34,9 @@ $(document).ready(function(){
                 $('.sub_menu').css({ display: 'none'})
             }
         });
-    
-         $('.sub_menu_commu_01').on({
+        $('.sub_menu_commu_01').off('mouseenter')
+        $('.sub_menu_commu_01').off('mouseleave')
+        $('.sub_menu_commu_01').on({
             mouseenter : function(){
                 $(this, 'a').find('.sub_menu_list').css({ display: 'block'})
             }, 
