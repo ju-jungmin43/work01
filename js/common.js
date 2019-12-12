@@ -1,5 +1,6 @@
 $(document).ready(function(){
     // $('#wrapper').load('layout.html'); // load
+    console.log('common')
     scrollHeader();
     scrollTop();
     fullHeight();
