@@ -57,7 +57,7 @@ a { font-family: 'Gotham', sans-serif; color: #222; font-weight: 400; text-decor
 .nav_mo_btn { display: none; }
 .header_wrap { padding: 0 80px; height: 100%; /* overflow: unset; */ background-color: rgba(255,255,255,0.9); }
 .nav { position: relative; width: 100%; height: 100%; }
-.nav .logo { position: absolute; bottom: 25px; left: 0; }
+.nav .logo { position: absolute; bottom: 25px; left: 0; z-index: 1; }
 .nav .logo .logo_svg { display: block; width: 100%; height: 100%; }
 #header a { transition: color 0.3s; -webkit-transition: color 0.3s; -ms-transition: color 0.3s; -moz-transition: color 0.3s; }
 
