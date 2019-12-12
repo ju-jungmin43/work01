@@ -27,8 +27,19 @@
         <script src="js/main.js"></script>
         <script>
             $(function(){
-                $('html, body').load('layout.html');
-            })
+                includeLayout();
+            });
+            function includeLayout(){
+                var includeArea = $('[data-include]');
+                var self, url;
+                $.each(includeArea, function(){
+                    self = $(this);
+                    url = self.data('include');
+                    self.load(url, function(){
+                        self.removeAttr('data-include')
+                    });
+                });
+            };
         </script>
     </head>
     <body class="main">
@@ -36,7 +47,8 @@
             <a href="index.html">본문바로가기</a>
         </div>
         <div id="wrapper" class="cf">
-        <!--
+            <div data-load="layout.html"></div>
+            <!--
             <header id="header">
                 <div class="wrap header_wrap">
                     <div class="nav_mo_btn">
@@ -988,9 +1000,9 @@
                 <!-- section main_board -->
             </div>
             <!-- #container -->
-
+            <!--
             <footer id="footer">
-                <!-- <div class="wrap"> <div class="inner"> <div class="footer_head cf"> <ul
+                 <div class="wrap"> <div class="inner"> <div class="footer_head cf"> <ul
                 class="footer_sns cf"> <li><a href="" target="_blank"><i class="fab
                 fa-facebook-f"></i></a></li> <li><a href="" target="_blank"><i class="fab
                 fa-instagram"></i></a></li> </ul> <div class="footer_menu"><a href="#"
@@ -1004,12 +1016,10 @@
                 href="mailto:realskincare@lanbelle.com">realskincare@lanbelle.com</a></span></p>
                 <p><span>© 2017 LNABELLE.ALL RIGHTS RESERVED.</span></p> </div> </div> </div>
                 </div> <div class="scroll_top"><i class="fas fa-long-arrow-alt-up" style="color:
-                #fff;"></i><span>TOP</span></div> -->
+                #fff;"></i><span>TOP</span></div> 
             </footer>
-
+            -->
         </div>
-        <script>
-            // https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-        </script>
+            <!-- https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file -->
     </body>
 </html>
