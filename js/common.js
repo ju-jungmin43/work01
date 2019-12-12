@@ -1,22 +1,63 @@
 $(document).ready(function(){
-    console.log('common')
-    $(window).on({
-        resize : function(){
-            var wW = $(window).width();
-            var wH = $(window).height();
-            var containerH = $('.container').css('padding-top').replace(/[^-\d\.]/g, '');;
-            
-            /* main_page */
-            $('.--full_height').css({ height: (wH - containerH)});
-            
-            resizeMenu(wW);
-            // console.log(wW)
-        },
-        scroll : function(){
-            var wTop = $(window).scrollTop(); 
-        }
+    $('#wrppaer').load('layout.html'); // load
+    scrollHeader();
+    scrollTop();
+    fullHeight();
+    
+    $(window).on('resize', function(){
+        fullHeight();
     });
-     $(window).trigger('resize');
+    // $(window).trigger('resize');
+    
+    function scrollHeader(){
+        var $header = $('#header');
+        var $window = $(window);
+        $window.on('scroll', function(){
+            var wTop = $window.scrollTop();
+            if( wTop > $header.height() ){
+                $header.addClass('fixed');
+            } else {
+                $header.removeClass('fixed');
+            }
+        });
+    }
+    
+    function scrollTop(){
+        var $window = $(window);
+        var $document = $(document);
+        var $footer = $('#footer');
+        var $scrollTop = $('.scroll_top');
+        
+        $scrollTop.on('click', function(){
+            $('html, body').stop().animate({scrollTop : 0}, 600);
+        });
+        
+        $window.on('scroll', function(){
+            var wTop = $window.scrollTop(); 
+            if( wTop < $document.height() - $window.height() - $footer.height() - ($scrollTop.height()*2) ){
+                $scrollTop.addClass('fixed');
+            } else {
+                $scrollTop.removeClass('fixed');
+            }
+            if( wTop < $window.height() ) {
+                $scrollTop.addClass('hide');
+            } else {
+                $scrollTop.removeClass('hide')
+            }
+        });
+    }
+    
+    function fullHeight(){
+        var wW = $(window).width();
+        var wH = $(window).height();
+        var containerH = $('.container').css('padding-top').replace(/[^-\d\.]/g, '');;
+        
+        /* main_page */
+        $('.--full_height').css({ height: (wH - containerH)});
+        
+        resizeMenu(wW);
+
+    }
 
     function resizeMenu(wW){
         if( wW > 1023 ){ pcMenu(); } else { moMenu(); }
