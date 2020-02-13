@@ -6,7 +6,7 @@ $(document).ready(function(){
     $(window).on('load resize', function(){
         fullHeight();
     });
-    // $(window).trigger('resize');
+    $(window).trigger('resize');
     
     function scrollHeader(){
         var $header = $('#header');
