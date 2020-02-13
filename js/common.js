@@ -3,9 +3,9 @@ $(document).ready(function(){
     scrollHeader();
     scrollTop();
     fullHeight();
-    $(window).on('resize', function(){
+    $(window).on('load resize', function(){
         fullHeight();
-    }).resize();
+    });
     // $(window).trigger('resize');
     
     function scrollHeader(){
