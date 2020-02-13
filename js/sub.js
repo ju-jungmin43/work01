@@ -8,6 +8,7 @@ $(document).ready(function(){
     var $scrollDown = $('.sub1 .scroll_down a');
     var target;
     var targetIdx = 0;
+    var speed = 1000;
     var $philoSection = $('.philo_section')
 
     $philoBtn.eq(0).addClass('active');
@@ -32,7 +33,7 @@ $(document).ready(function(){
                 console.log('up')
                 sectionTop = $(sectionIdx).prev().offset().top;
             }
-            $('body, html').stop().animate({scrollTop: sectionTop + '%'}, 1300)
+            $('body, html').stop().animate({scrollTop: sectionTop + '%'}, speed)
         });
     });
 
@@ -40,7 +41,7 @@ $(document).ready(function(){
         sectionIdx = $(this).parent().index();
         $philoBtn.removeClass('active').eq(sectionIdx).addClass('active');
         page = $('#section0' + (sectionIdx + 1));
-        $('body,html').animate({scrollTop: $(page).offset().top}, 1300);
+        $('body,html').animate({scrollTop: $(page).offset().top}, speed);
         return false;
     });
     $scrollDown.on('click', function(){
@@ -48,10 +49,9 @@ $(document).ready(function(){
             target = $(this).closest('.philo_section').next();
             targetIdx = target.index();
             $philoBtn.removeClass('active').eq(targetIdx).addClass('active');
-            $('body,html').animate({scrollTop: $(target).offset().top}, 1300);
+            $('body,html').animate({scrollTop: $(target).offset().top}, speed);
             return false;
-        }
-        
+        } 
     })
     
     /* sub2.html */
@@ -67,16 +67,6 @@ $(document).ready(function(){
                 });
             }
     }      
-
-
-    //     load : function(){
-    //         if(skroll != null){
-    //              skroll.refresh();
-    //         }
-    //     }
-    // });
-
-
 });
 
 

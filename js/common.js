@@ -1,10 +1,8 @@
 $(document).ready(function(){
-    // $('#wrapper').load('layout.html'); // load
-    console.log('common')
+    console.log('LOAD_header.html')
     scrollHeader();
     scrollTop();
     fullHeight();
-    
     $(window).on('resize', function(){
         fullHeight();
     });
@@ -51,7 +49,7 @@ $(document).ready(function(){
     function fullHeight(){
         var wW = $(window).width();
         var wH = $(window).height();
-        var containerH = $('.container').css('padding-top').replace(/[^-\d\.]/g, '');;
+        var containerH = $('.container').css('padding-top').replace(/[^-\d\.]/g, '');
         
         /* main_page */
         $('.--full_height').css({ height: (wH - containerH)});
