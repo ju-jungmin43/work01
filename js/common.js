@@ -64,7 +64,7 @@ $(document).ready(function(){
 
 
     function pcMenu(){
-        $('.main_menu_list').off().on({
+        $('.main_menu_list').on({
              mouseenter : function(){
                 $(this, 'a').find('.sub_menu').css({ display: 'block'});
             }, 
