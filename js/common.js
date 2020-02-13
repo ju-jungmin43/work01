@@ -64,14 +64,19 @@ $(document).ready(function(){
 
 
     function pcMenu(){
-        $('.main_menu_list').off().on({
-             mouseenter : function(){
-                $(this, 'a').find('.sub_menu').css({ display: 'block'});
-            }, 
-            mouseleave : function(){
-                $('.sub_menu').css({ display: 'none'})
-            }
-        });
+        // $('.main_menu_list').off().on({
+        //      mouseenter : function(){
+        //         $(this, 'a').find('.sub_menu').css({ display: 'block'});
+        //     }, 
+        //     mouseleave : function(){
+        //         $('.sub_menu').css({ display: 'none'})
+        //     }
+        // });
+        $('.main_menu_list').hover(function() {
+            $(this).css({ display : 'block'})
+        }, function() {
+            $(this).css({ display : 'none' })
+        })
         
         $('.sub_menu_commu_01').off();
         $('.sub_menu_commu_01').on({
