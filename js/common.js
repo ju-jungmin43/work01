@@ -5,7 +5,7 @@ $(document).ready(function(){
     fullHeight();
     $(window).on('resize', function(){
         fullHeight();
-    });
+    }).resize();
     // $(window).trigger('resize');
     
     function scrollHeader(){
