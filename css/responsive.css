@@ -49,25 +49,25 @@ footer
     .round_nav a.comm_next { right: -2%; }
     
     
-    /*main_philosophy*/
  } /* (max-width: 1440px) */
 
 @media (max-width: 1280px){
     .inner { margin: 0 40px; max-width: 100%; }
     
+    
     /* main_board */
     .board_content { padding: 25px 0; }
 }  /*(max-width: 1280px) */
 
- @media (max-width: 1200px){
-
-
+@media (max-width: 1200px){
+    
+    
     /* main_products */
     .round_nav a.comm_prev { left: 0; }
     .round_nav a.comm_next { right: 0; }
-
-
-
+    
+    
+    
 }/* (max-width: 1200px) */
 
 
@@ -87,20 +87,24 @@ footer
     .section { padding: 126px 0 120px; }
     .main_head { padding-bottom: 64px; }
     .round_nav a { width: 50px; height: 50px; line-height: 50px; }
-
+    
     /* search_popup */
     .search_inner { width: 90%; }
-
+    
     /* main_visual */
     .visual_nav { width: 180px; line-height: 75px; }
-    .philo_slide_content { width: 580px; height: 520px; }
-    .philo_slide img { float: right; max-width: 80%;}
-    .philo_slide_long img { float: left; max-width: 60%; }
-
+    
     /* main_philosophy */
+    .main_philosophy .main_head { padding-bottom: 120px; }
     .philo_inner { margin: 0; }
-
-
+    .philo_logo { top: -40px; }
+    .philo_gallery { padding: 230px 0 50px; }
+    .philo_logo img { width: auto; height: 170px; }
+    .philo_slide img { max-width: 80%; }
+    .philo_wrap_inner { margin: 0; margin-left: calc(100% - 887px); }
+    .philo_slide_content { width: 580px; height: 520px; }
+    
+    
     /* main_message */
     .message_wrap .message_ceo img { max-width: 85%; }
     .message_wrap .message_ceo .ceo_img { right: 0; }
@@ -133,7 +137,7 @@ footer
     #wrapper { padding: 0 30px; }
     .inner { margin: 0 3%; }
     #header { height: 70px; }
-    .fixed#header { height: 60px; }
+    .fixed#header { height: 60px; background-color: rgba(255,255,255,0.9); }
     .container { padding-top: 70px; }
     .section { padding: 110px 0 135px; }
     .header_wrap { padding: 0 30px; }
@@ -145,13 +149,13 @@ footer
     .nav_mo_btn > a > span { position: absolute; right: 0; display: block; width: 25px; height: 2px; background-color: #222; }
     .nav_mo_btn > a > span:nth-child(2) { top: 7px; }
     .nav_mo_btn > a > span:nth-child(3) { bottom: 0; }
-    #header .nav_mo_close { display: block; visibility: hidden; width: 50px; height: 50px; background-color: #f6f6f6; position: fixed; top: 0; right: -50px; z-index: 99; transition: all 0.4s; -webkit-transition: all 0.4s; -ms-transition: all 0.4s; -moz-transition: all 0.4s; }
+    #header .nav_mo_close { display: block; visibility: hidden; width: 50px; height: 50px; background-color: #f6f6f6; position: fixed; top: 0; right: -50px; z-index: 99; -webkit-transition: all 0.4s; -moz-transition: all 0.4s; -o-transition: all 0.4s; transition: all 0.4s;  }
     .nav_mo_close:before,
     .nav_mo_close:after { position: absolute; top: 0; left: 0; bottom: 0; right: 0; display: block; content: ''; width: 30px; height: 2px; background-color: #222; margin: auto; }
-    .nav_mo_close:before { transform: rotate(45deg); -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); -moz-transform: rotate(45deg); }
-    .nav_mo_close:after { transform: rotate(-45deg); -webkit-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -moz-transform: rotate(-45deg); }
+    .nav_mo_close:before { -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); }
+    .nav_mo_close:after { -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); transform: rotate(-45deg); }
     
-    .nav_mo_menu { position: fixed; top: 0; right: -240px; z-index: 99; bottom: 0; width: 240px; height: 100%; background-color: rgba(255,255,255,1); visibility: hidden; transition: all 0.4s; -webkit-transition: all 0.4s; -ms-transition: all 0.4s; -moz-transition: all 0.4s; }
+    .nav_mo_menu { position: fixed; top: 0; right: -240px; z-index: 99; bottom: 0; width: 240px; height: 100%; background-color: rgba(255,255,255,1); visibility: hidden; -webkit-transition: right 0.4s; -moz-transition: right 0.4s; -o-transition: right 0.4s; transition: right 0.4s; }
     
     .main_menu { position: relative; top: 50px; bottom: 0; width: 100%; height: 100%; overflow-y: scroll; text-align: left; }
     .main_menu > ul > li { width: 100%; }
@@ -160,13 +164,13 @@ footer
     .main_menu > ul > li:hover > a { color: #222; }
     .sub_menu,
     .sub_menu_list { display: none; width: 100%; position: relative; top: 0; left: 0; margin: 0; }
-    .sub_menu_product_all { display: block; }
     .sub_menu > li,
     .sub_menu_list > li { width: 100%; line-height: unset; }
     .sub_menu > li > a,
     .sub_menu_list > li > a { padding: 18px 18px; }
     .sub_menu > li:hover > a { color: #888; }
     .sub_menu_commu i { right: -35%; }
+    .sub_menu_product_mo { display: block; }
     .global .lang { float: right; }
     .global .search { margin: 17px; }
     .lang_select { right: 10px; top: 10px; border-bottom: 1px solid #ddd; }
@@ -180,22 +184,23 @@ footer
     .search_content { font-size: 22px; }
     #header .search_popup_close { top: 15px; right: 15px; }
     label[name="search_label"].active { font-size: 18px; }
-    #header .search_popup_close:hover { width: 45px; transition: none; }
+    #header .search_popup_close:hover { width: 45px; -webkit-transition: none; -moz-transition: none; -o-transition: none; transition: none; }
     .search_close_text { display: none; }
     
     /* main_visual */
     .main_visual h2 { font-size: 42px; text-align: center; }
     .visual_slide .visual_slide_content .visual_content_cell { text-align: center; }
-    .philo_slide_content li .philo_content_cell { padding: 0 90px 0 60px; }
     
     /* main_philosophy */
     .main_philosophy { padding-bottom: 0; }
     .philo_inner { margin: 0; }
     .comm_nav { width: 120px; }
-    .philo_logo { top: 148px; right: 0; left: 0; }
+    .main_philosophy .main_head { padding-bottom: 64px; }
+    .philo_logo { top: 148px; right: 0; width: 84%; }
     .philo_gallery { padding: 356px 0 0; }
     .philo_slide_content { width: 540px; height: 490px; margin: 0; float: right; }
     .philo_slide_square { display: none; }
+    .philo_slide_content li .philo_content_cell { padding: 0 90px; }
     .square_more_under { margin-top: 2%; }
 
     /* main_message */
@@ -254,7 +259,7 @@ footer
 
 }
 @media (max-width: 767px){
-    .main_head { padding-bottom: 6%; }
+    .main_head { padding-bottom: 6% !important; }
     .square_more { font-size: 11px; padding: 16px 20px; }
     .square_more_under { padding: 14px 0; font-size: 11px; }
     .square_more_under > span::after,
@@ -283,20 +288,21 @@ footer
     .main_philosophy { background: none; background-color: #eceee1; }
     .main_visual h2 { font-size: 34px; }
     .visual_slide .visual_slide_content { padding: 6% 0 5%; }
-    .philosophy_logo { display: none; }
-    .philosophy_slide_right { display: none; }
     .main_visual .visual_content_cell p { font-size: 14px; }
     .scroll_down { display: none; }
-
+    
     /* main_philosophy */
     .comm_nav { bottom: 5%; }
     .comm_nav i { font-size: 15px; }
-    .philo_gallery  { padding: 57% 0 0; }
+    .philo_wrap_inner { margin: 0; height: 100%; }
     .philo_logo { display: none; }
-    .philo_slide_content { width: 100%; height: 350px; background-color: rgba(255,255,255,0.85); }
+    .philo_gallery  { padding: 57% 0 0; overflow: hidden; }
+    .philo_slide_long{ float: none; }
+    .philo_slide_long li { width: 100%; }
+    .philo_slide_content { width: 100%; height: 350px; background-color: rgba(255,255,255,0.85); float: none; }
     .philo_slide_content h3 { padding-bottom: 4%; }
     .philo_slide_content p { padding-top: 2%; }
-    .philo_slide_content li .philo_content_cell { padding: 0; text-align: center; }
+    .philo_slide_content li .philo_content_cell { width: 100%; height: 100%; padding: 0; text-align: center; }
     .philo_slide img { max-width: 100%; width: 100%; }
     .philo_slide_content .square_more_under { margin-top: 3%; }
 
@@ -320,8 +326,8 @@ footer
     .sellers_gallery { height: 720px; }
     .sellers_slide_img { width: 100%; height: 50%; }
     .sellers_slide_content { width: 100%; height: 50%; bottom: 0; top: auto; }
-    .sellers_content_txt h3 { line-height: 0; padding-bottom: 3%; font-size: 20px; }
-    .sellers_content_txt b { padding-bottom: 3%; }
+    .sellers_content_cell h3 { line-height: 0; padding-bottom: 3%; font-size: 20px; }
+    .sellers_content_cell b { padding-bottom: 3%; }
 
 
     /* main_meeting */
@@ -377,8 +383,9 @@ footer
     .main_visual .visual_content_cell p { font-size: 12px; }
     
     /* main_philosophy */
-    .philo_gallery { padding: 2%; }
-    .philo_slide_content { height: 400px; background-color: rgb(236, 238, 225, 0.7); }
+    .philo_gallery { padding: 2%; height: 400px; }
+
+    .philo_slide_content { height: 100%; background-color: rgb(236, 238, 225, 0.7); }
     
     .philo_nav { display: none; }
     .main_philosophy .square_more_under > span::after { background-color: #222; }

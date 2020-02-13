@@ -21,22 +21,22 @@
 -------------------------------------------------------------------*/
 
 /* square_more */
-.square_more { display: inline-block; border-radius: 5px; border: 2px solid #ccc; font-size: 12px; font-weight: 600; padding: 20px 33px; margin-top: 7%; transition: all 0.5s; -webkit-transition: all 0.5s; -ms-transition: all 0.5s; -moz-transition: all 0.5s; }
+.square_more { display: inline-block; border-radius: 5px; border: 2px solid #ccc; font-size: 12px; font-weight: 600; padding: 20px 33px; margin-top: 7%; -webkit-transition: all 0.5s; -moz-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
 .square_more:hover { border: 2px solid #c0c79c; background-color: #c0c79c; color: #fff; }
 
 /* square_more_under */
-.square_more_under { display: inline-block; min-width: 140px; font-size: 12px; font-weight: 600; padding: 17px 0; position: relative; text-align: center; margin-top: 4%; }
+.square_more_under { display: inline-block; min-width: 140px; font-size: 12px; font-weight: 600; padding: 17px 0; position: relative; z-index: 9; text-align: center; margin-top: 4%; }
 .square_more_under > span::after,
-.square_more_under > span::before { display: block; content: ''; position: absolute; bottom: 0; height: 4px; transition: width 0.4s; -webkit-transition: width 0.4s; -ms-transition: width 0.4s; -ms-transition: width 0.4s; }
-.square_more_under > span::after { width: 100%; background-color: #ddd; right: 0; transition-delay: 0.3s; -webkit-transition-delay: 0.3s; -ms-transition-delay: 0.3s; -moz-transition-delay: 0.3s; }
+.square_more_under > span::before { display: block; content: ''; position: absolute; bottom: 0; height: 4px; -webkit-transition: width 0.4s; -moz-transition: width 0.4s; -o-transition: width 0.4s; transition: width 0.4s;}
+.square_more_under > span::after { width: 100%; background-color: #ddd; right: 0; -webkit-transition-delay: 0.3s; -moz-transition-delay: 0.3s; -o-transition-delay: 0.3s; transition-delay: 0.3s;}
 .square_more_under > span::before { width: 0; background-color: #c0c79c; left: 0; }
-.square_more_under:hover > span::after { width: 0; transition-delay: 0s; -webkit-transition-delay: 0s; -ms-transition-delay: 0s; -moz-transition-delay: 0s; }
-.square_more_under:hover > span::before { width: 100%; transition-delay: 0.3s; -webkit-transition-delay: 0.3s; -ms-transition-delay: 0.3s; -moz-transition-delay: 0.3s; }
+.square_more_under:hover > span::after { width: 0; -webkit-transition-delay: 0s; -moz-transition-delay: 0s; -o-transition-delay: 0s; transition-delay: 0s; }
+.square_more_under:hover > span::before { width: 100%; -webkit-transition-delay: 0.3s; -moz-transition-delay: 0.3s; -o-transition-delay: 0.3s; transition-delay: 0.3s; }
 
 /* comm_nav */
 .comm_nav { position: absolute; right: 15px; bottom: 30px; display: block; width: 180px; line-height: 40px; background-color: transparent; }
-.comm_nav_arrow { display: table; width: 100%; height: 100%; position: relative; }
-.comm_nav_arrow > a { display: table-cell; width: 50%; height: 100%; text-align: center; vertical-align: middle; font-size: 18px; color: #222; transition: all 0.3s; -webkit-transition: all 0.3s; -ms-transition: all 0.3s; -moz-transition: all 0.3s; }
+.comm_nav_arrow { display: table; width: 100%; height: 100%; position: relative; z-index: 3; }
+.comm_nav_arrow > a { display: table-cell; width: 50%; height: 100%; text-align: center; vertical-align: middle; font-size: 18px; color: #222; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; -o-transition: all 0.3s; transition: all 0.3s; }
 .comm_nav_arrow > a:hover { color: #c0c79c; }
 .comm_nav::before { display: block; content: ''; position: absolute; top: 23%; left: 50%; width: 1px; height: 20px; background-color: #ccc; }
 .main_scroll { width: 100%; position: absolute; bottom: 0; }
@@ -63,16 +63,16 @@
 /*-------------------------------------------------------------------
     ## main_visual
 -------------------------------------------------------------------*/
-.container .main_visual { position: relative; width: 100%; /* height: calc(100vh - 100px); */ padding: 0; }
-.main_visual a { transition: all 0.5s; -webkit-transition: all 0.5s; -ms-transition: all 0.5s; -moz-transition: all 0.5s; }
+.container .main_visual { position: relative; width: 100%; height: -webkit-calc(100vh - 100px); height: -moz-calc(100% - 100px); height: calc(100vh - 100px); padding: 0; }
+.main_visual a { -webkit-transition: all 0.5s; -moz-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
 .main_visual h2 { font-size: 50px; font-weight: 300; text-align: left; }
 .main_visual .visual_content_cell p { padding: 30px 0; font-size: 15px; color: #444; } 
-.visual_gallery { position: relative; width: 100%; height: 100%; }
+.visual_gallery { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
 .visual_gallery .visual_slide { position: absolute; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; }
 .main_visual .visual_slide_03 h2 { color: #fff; }
 .main_visual .visual_slide_03 p { color: #fff; }
 .main_visual .visual_slide_03 .square_more { color: #fff; }
-.visual_slide .visual_slide_item { width: 100%; height: 100%; background-position: center; background-size: cover; background-repeat: no-repeat; transform: scale(1.05); -webkit-transform: scale(1.05); -ms-transform: scale(1.05); -moz-transform: scale(1.05); }
+.visual_slide .visual_slide_item { width: 100%; height: 100%; background-position: center; background-size: cover; background-repeat: no-repeat; -webkit-transform: scale(1.05); -moz-transform: scale(1.05); -ms-transform: scale(1.05); transform: scale(1.05); }
 .visual_slide .visual_slide_content { display:table; width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
 .visual_slide .visual_slide_content .visual_content_cell { display: table-cell; text-align: left; vertical-align: middle; }
 .main_visual .square_more { margin: 0; }
@@ -94,25 +94,27 @@
 -------------------------------------------------------------------*/
 .philo_inner { margin: 0 auto; }
 .main_philosophy { position: relative; top: 0; }
+.main_philosophy .main_head { padding-bottom: 178px; }
 .philo_slide img { display: block; max-width: 100%; }
 .main_philosophy { width: 100%; /* height: 1481px; */ padding-bottom: 0;  background: url('../images/main/philosophy/philosophy_bg.jpg')center no-repeat; background-size: cover; }
-.philo_logo { position: absolute; top: 0; right: -90%; z-index: 5; }
+.philo_logo { position: absolute; top: 30px; right: -90%; z-index: 5; }
 .philo_logo img { display: block; max-width: 100%; }
-/* .main_philosophy .inner { overflow: hidden; } */
-.philo_gallery { position: relative; top: 0; left: 0; box-sizing: content-box; padding: 490px 0 170px; overflow: hidden; }
-.philo_slide_long { float: left; }
-.philo_slide_long li { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-.philo_slide_content { position: relative; display: block; width: 636px; height: 546px; margin-left: 180px; background-color: #fff;  }
+.philo_gallery { position: relative; top: 0; left: 0; box-sizing: content-box; padding: 390px 0 170px; }
+.philo_slide_long { float: left; width: auto; }
+.philo_slide_long li { position: absolute; top: 0; left: 0; }
+ 
+.philo_wrap_inner { position: relative; top: 0; left: 0; margin-left: 180px; margin-left: calc(100% - 1020px); }
+.philo_slide_content { position: relative; display: block; width: 636px; height: 546px; background-color: #fff;  }
 .philo_slide_content li { position: absolute; display: table; width: 100%; height: 100%; }
-.philo_slide_content li .philo_content_cell { display: table-cell; text-align: left; vertical-align: middle; padding: 120px 60px 0 80px; }
+.philo_slide_content li .philo_content_cell { display: table-cell; text-align: left; vertical-align: middle; padding: 0 100px; }
 .philo_slide_content li:nth-child(1) { visibility: hidden;}
 .philo_slide_content h3 { padding-bottom: 30px; }
 .philo_slide_content b { line-height: 1.5em; }
 .philo_slide_content p { padding-top: 18px; }
 .philo_slide_content li:first-child p { padding: 18px 0; }
-.philo_slide_square { float: right; }
-.philo_slide_square li { position: absolute; bottom: 0; right: 0; }
-
+.philo_slide_square { position: absolute; bottom: 220px; right: 0; width: 384px; }
+.philo_slide_square li { position: absolute; left: 0; }
+.philo_slide_square li img { float: right; }
 /*
  * 지정된 넓이와 높이 일 때 ==> background-image :: 중요한 이미지가 아닐때 사용
  * 이미지 그대로의 넓이와 높이 쓰고 싶을 때 ==> <img src=""> :: 중요이미지일떄 사용
@@ -124,8 +126,8 @@
 .main_message { width: 100%; height: 100%; background-color: #f6f6f6; }
 .message_wrap { border: 2px solid #ddd; padding: 7%; }
 .message_wrap .message_ceo { float: right; }
+.message_wrap .message_ceo .ceo_img { position: absolute; right: 150px; bottom: -2px; width: auto; }
 .message_wrap .message_ceo img { max-width: 100%; width: 100%; display: block; }
-.message_wrap .message_ceo .ceo_img { position: absolute; right: 150px; bottom: -2px; }
 .message_wrap .message_ceo .ceo_sign { position: absolute; right: 90px; bottom: 90px; }
 .message_wrap .message_ceo .ceo_sign span { display: block; text-align: center; font-size: 15px; color: #222; }
 .message_content h3 { line-height: 1.7em; padding-bottom: 2%; letter-spacing: 0.05em; }
@@ -136,15 +138,19 @@
 -------------------------------------------------------------------*/
 .container .main_sellers { padding-bottom: 0; }
 .sellers_gallery { position: relative; width: 100%; height: 550px; overflow: hidden; }
+.sellers_gallery .sellers_slide { position: relative; top: 0; left: 0; width: 100%; height: 100%; }
+.sellers_gallery .sellers_slide .sellers_slide_list { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 .sellers_slide_img { position: absolute; top: 0; left: 0; width: 50%; height: 100%; }
-.sellers_img_item { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; }
+.sellers_img_item { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; opacity: 0; visibility: hidden;  -webkit-transition: all 1s; -o-transition: all 1s; transition: all 1s; }
+.sellers_img_item.sellers{ opacity: 1; visibility: visible; }
 .sellers_slide_content { position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: url('../images/main/sellers/sellers_bg.jpg')center no-repeat; background-size: cover; padding: 15px; }
-.sellers_slide_content .sellers_content_cell { width: 100%; height: 100%; background-color: #fff; }
-.sellers_content_txt { position: absolute; top: 50%; left: 50%; text-align: center; width: 100%; padding: 0 4%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); }
-.sellers_content_txt h3 { font-size: 22px; font-weight: 500; line-height: 1.7em; padding-bottom: 2%; }
-.sellers_content_txt b { padding-bottom: 4%; }
-.sellers_content_txt p { padding-bottom: 1%; }
-
+.sellers_slide_content .sellers_content_cell { display: table; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 1); }
+.sellers_cell_txt { display: table-cell; text-align: center; vertical-align: middle; }
+.sellers_cell_txt h3 { font-size: 22px; font-weight: 500; line-height: 1.7em; padding-bottom: 2%; }
+.sellers_cell_txt b { padding-bottom: 4%; }
+.sellers_cell_txt p { padding-bottom: 1%; }
+.sellers_cell_txt > * { position: relative; z-index: 1; opacity: 0; visibility: hidden; -webkit-transform: translate(0,25%); -moz-transform: translate(0,25%); -o-transform: translate(0,25%); -ms-transform: translate(0,25%); transform: translate(0,25%); }
+.sellers_cell_txt >.sellers { opacity: 1; visibility: visible; -wekbit-transform: translate(0,0%); -moz-transform: translate(0,0%); -o-transform: translate(0,0%); -ms-transform: translate(0,0%); transform: translate(0,0%); -webkit-transition: all 2s; -o-transition: all 2s; transition: all 2s; }
 /*-------------------------------------------------------------------
     ## main_products
 -------------------------------------------------------------------*/
@@ -152,7 +158,7 @@
 .products_gallery { width: 100%; height: 100%; overflow: hidden; }
 .products_slide { position: relative; top: 0; left: 0; width: 250%; height: 100%; }
 .products_slide_list { float: left; width: 10%; overflow: hidden; text-align: center; }
-.products_slide_list > a {  display: inline-block; transition: color 0.3s; -webkit-transition: color 0.3s; -ms-transition: color 0.3s; -moz-transition: color 0.3s; }
+.products_slide_list > a {  display: inline-block; transition: color 0.3s; -webkit-transition: color 0.3s; -moz-transition: color 0.3s; }
 .products_slide_list > a:hover { color: #c0c79c; }
 .products_slide_list b { padding: 12% 0 7%; }
 .products_list_content p { line-height: 25px; }
@@ -175,12 +181,12 @@
 .main_meeting .meeting_wrap { position: relative; width: 100%; height: 0; }
 .meeting_wrap .meeting_list { float: left; margin-right: 5%; position: relative; box-shadow: 10px 10px 20px rgba(0,0,0,0.5); overflow: hidden; width: 30%; }
 .meeting_wrap .meeting_list:last-child { margin-right: 0; }
-.meeting_list .meeting_list_img { transform: scale(1); -webkit-transform: scale(1); -ms-transform: scale(1); -moz-transform: scale(1); transition: transform 2s; -webkit-transition: transform 2s; -ms-transition: transform 2s; -moz-transition: transform 2s; }
-.meeting_list:hover .meeting_list_img { transition: transform 2s; -webkit-transition: transform 2s; -ms-transition: transform 2s; -moz-transition: transform 2s; transform: scale(1.03); -webkit-transform: scale(1.03); -ms-transform: scale(1.03); -moz-transform: scale(1.03); }
+.meeting_list .meeting_list_img { -webkit-transform: scale(1); -moz-transform: scale(1); -ms-transform: scale(1); transform: scale(1); -webkit-transition: transform 2s; -moz-transition: transform 2s; -o-transition: transform 2s; -webkit-transition: -webkit-transform 2s; -moz-transition: -moz-transform 2s; -o-transition: -o-transform 2s; transition: transform 2s; }
+.meeting_list:hover .meeting_list_img { -webkit-transition: transform 2s; -moz-transition: transform 2s; -o-transition: transform 2s; transition: transform 2s; -webkit-transform: scale(1.03); -moz-transform: scale(1.03); -ms-transform: scale(1.03);  transform: scale(1.03); }
 .meeting_list .meeting_list_img > img { display: block; max-width: 100%; width: 100%; background-size: cover; }
 .meeting_list .meeting_list_content { position: absolute; bottom: 10%; left: 10%; }
 .main_meeting h3 {font-size: 20px; font-weight: 600; color: #fff; }
-.meeting_list_content h3::before { display: block; content: ''; position: absolute; bottom: -7px; width: 100%; height: 2px; background-color: #fff; opacity: 0; transition: all 0.7s; -webkit-transition: all 0.7s; -ms-transition: all 0.7s; -moz-transition: all 0.7s; }
+.meeting_list_content h3::before { display: block; content: ''; position: absolute; bottom: -7px; width: 100%; height: 2px; background-color: #fff; opacity: 0; -webkit-transition: all 0.7s; -moz-transition: all 0.7s; -o-transition: all 0.7s; transition: all 0.7s; }
 .meeting_list:hover h3::before { opacity: 1; bottom: 0; }
 
 /*-------------------------------------------------------------------
@@ -188,9 +194,9 @@
 -------------------------------------------------------------------*/
 .container .main_info { position: relative; width: 100%; height: 100%; overflow: hidden; padding: 0; }
 .info_list { float: left; width: 50%; height: 100%; position: relative; padding: 106px 0; cursor: pointer; }
-.info_list .info_img { position: absolute; top: 0; right: 0; bottom: 0; left: 0; transform: scale(1); -webkit-transform: scale(1); -ms-transform: scale(1); -moz-transform: scale(1); transition: transform 2s; -webkit-transition: transform 2s; -ms-transition: transform 2s; -moz-transition: transform 2s; }
+.info_list .info_img { position: absolute; top: 0; right: 0; bottom: 0; left: 0; -webkit-transform: scale(1); -moz-transform: scale(1); -ms-transform: scale(1); transform: scale(1); -webkit-transition: transform 2s; -moz-transition: transform 2s; -o-transition: transform 2s; transition: transform 2s; }
 
-.info_list:hover .info_img { transition: transform 2s; -webkit-transition: transform 2s; -ms-transition: transform 2s; -moz-transition: transform 2s; transform: scale(1.05); -webkit-transform: scale(1.05); -ms-transform: scale(1.05); -moz-transform: scale(1.05); }
+.info_list:hover .info_img { -webkit-transition: transform 2s; -moz-transition: transform 2s; -o-transition: transform 2s; transition: transform 2s; -webkit-transform: scale(1.05); -moz-transform: scale(1.05); -ms-transform: scale(1.05); transform: scale(1.05); }
 .info_list .info_img_base { background: url('../images/main/info/info_base.jpg')center no-repeat; background-size: cover; }
 .info_list .info_img_innovate { background: url('../images/main/info/info_innovate.jpg')center no-repeat; background-size: cover; }
 .info_list .info_content { position: relative; display: table; width: 100%; height: 100%; }
@@ -206,7 +212,7 @@
 .recommend_slide { position: relative; top: 0; left: 0; width: 100%; }
 .recommend_slide_list { float: left; width: 33.33%; padding: 0 10px; overflow: hidden; }
 .recommend_slide_list > a { display: block; width: 100%; height: 100%; position: relative; }
-.recommend_slide_list > a::before { display: block; content: ''; border: 2px solid #c0c79c; position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: 0; transition: all 0.6s; -webkit-transition: all 0.6s; -ms-transition: all 0.6s; -moz-transition: all 0.6s; }
+.recommend_slide_list > a::before { display: block; content: ''; border: 2px solid #c0c79c; position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: 0; -webkit-transition: all 0.6s; -moz-transition: all 0.6s; -o-transition: all 0.6s; transition: all 0.6s; }
 .recommend_slide_list:hover > a::before { border-width: 6px; opacity: 1; }
 .recommend_slide_list:last-child { margin-right: 0; }
 .recommend_list_img > img { max-width: 100%; width: 100%; vertical-align: top; }
@@ -242,6 +248,3 @@
 main responsive css 여기에 넣기!
 */
 
-/*-------------------------------------------------------------------
-    ** responsive
--------------------------------------------------------------------*/
