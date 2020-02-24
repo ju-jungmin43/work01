@@ -7,6 +7,8 @@ $(document).ready(function(){
     fullHeight();
     
     $(window).on('resize', function(){
+        var wW = $(window).width();
+        var wH = $(window).height();
         fullHeight();
     });
     $(window).trigger('resize');
@@ -50,8 +52,8 @@ $(document).ready(function(){
     }
     
     function fullHeight(){
-        var wW = $(window).width();
-        var wH = $(window).height();
+        wW = $(window).width();
+        wH = $(window).height();
         var containerH = $('.container').css('padding-top').replace(/[^-\d\.]/g, '');
         
         /* main_page */
@@ -64,7 +66,6 @@ $(document).ready(function(){
     function resizeMenu(wW){
         if( wW > 1023 ){ pcMenu(); } else { moMenu(); }
     }
-    resizeMenu();
 
 
     function pcMenu(){
