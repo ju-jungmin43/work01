@@ -1,63 +1,136 @@
+    // 공통으로 쓰일 변수
     var currentIdx; // 현재 인덱스
     var total; // slide 총 수
     var timer = ''; // setInterval 
     var speed = 0;
-    var wW = $(window).width();
+    var wW; // window.width()
+
 
 $(document).ready(function(){
-    console.log('main');
-    philoSlide();
-    sellersSlide();
-
     /* PHILOSOPHY */
-    function philoSlide() {
-        var $philosophy = $('.main_philosophy');
-        var $philoSlide = $('.philo_slide');
-        var $philoSlideImgW = $philoSlide.find('img').width();
-        var $philoSlideImgH = $philoSlide.find('img').height();
-    
-        // resize 필요
-        var $philoLong = $('.philo_slide_long')
-        var $philoLongSlide = $philoLong.find('li');
-
-        var $philoCont = $('.philo_slide_content');
-        var $philoContSlide = $philoCont.find('li');
-        
-        // 1023 사라짐
-        var $philoSquare = $('.philo_slide_square');
-        var $philoSquareSlide = $philoSquare.find('li');
-        
-        var $philoBtn = $philosophy.find('.comm_nav_arrow');
-        
-        // console.log($philoSlideLiW);
-        
-        currentIdx = 0;
-        var total = $philoLongSlide.length; // total 3
-        
-        var $this;
-        var $thisW;
-        var $thisH;
-        $(window).on('resize', function() {
-            $philoSlide.each(function(){
-                $this = $(this).find('li');
-                $thisW = Math.floor($this.width());
-                $thisH = Math.floor($this.height());
-
-                $(this).css({ width: $thisW , height: $thisH})
-            });
-        });
-        $(window).trigger('resize')
-        
-    }
-    
-    
-    
+    philoSlide();
+    /* BEST SELLERS */
+    sellersSlide();
+    /* RECOMMEND PRODUCTS */
+    productsSlide();
     
 }); // END
 
+    function philoSlide() {
+        
+        var $philoSlide = $('.philo_slide');
+        var $philoSlideLi = $philoSlide.find('li');
+        
+        var $philoLongLi = $('.philo_slide_long').find('li');
+        var $philoSquareLi = $('.philo_slide_square').find('li');
+        var $philoContLi = $('.philo_slide_content').find('li');
 
+        total = 2;
+        currentIdx = 0;
+        
+        $(window).on('resize', function(){
+            philoResetImg();
+        }); // resizeEND
+        
+        function philoResetImg(eachSlide) { 
+            $philoSlide.each(function() {
+                if( !$(this).hasClass('philo_slide_content') ) {
+                    $(this).find('li').each(function(index, item){
+                        var eachSlide = $(this);
+                        var philoSlideLiW = eachSlide.width();
+                        if(index == currentIdx) {
+                            $(item).eq(currentIdx).css({left: 0})
+                        } else {
+                            $(item).eq(currentIdx).css({left: -philoSlideLiW})
+                        }
+                    });
+                } else {
+                    $(this).children('li').removeClass('PHILO').eq(0).addClass('PHILO')
+                }
+            });
+        } // philoResetImgEND
+
+
+        
+
+        function philoSlideNext(){
+            
+        }
+        philoSlideNext();
+        $('.comm_next').on('click', function(){
+            // philoSlideNext();
+        });
+
+        
+              
+
+    } // philoSlide() END
+    
+
+
+
+/* RECOMMEND PRODUTS */
+function productsSlide() {
+    var $proSlide = $('.products_slide');
+    var $proSlideList = $proSlide.find('.products_slide_list');
+    var proSlideListW;
+    var $proBtn = $('.products_nav');
+
+    speed = 800;
+    
+    $(window).on('resize', function(){
+        proSlideListW = Math.floor($('.products_slide_list').width()); // resize 필요
+    }); // resize
+    
+    $proBtn.on('click', 'a', function() {
+        if($(this).hasClass('comm_next')) {
+            proNextSlide();
+        } else {
+            proPrevSlide();
+        }
+    });
+    
+    function proNextSlide() {
+        $proSlide.animate({left: -proSlideListW + 'px'}, speed, function() {
+            $(this).append($(this).find('.products_slide_list').first());
+            $(this).css({left :0})
+        });
+    }
+    
+    function proPrevSlide() {
+        $proSlide.css({left: -proSlideListW + 'px'});
+        $proSlide.prepend($('.products_slide_list').last());
+        $proSlide.stop().animate({left: 0 }, speed);
+        
+        // jQuery를 사용해서 disabled 속성 변경 및 상태가져오기 (disabled, readonly 찾아보기!)
+        // HTML form 작성방법, jQuery로 제어하는 방법
+        // $('.prodcuts_nav .comm_prev').attr('disabled', true); // 설정
+        // $proSlide.css({left: -proSlideListW});
+        // $proSlide.prepend($('.products_slide_list').last());
+        // $proSlide.stop().animate({left: 0}, speed, function(){
+            //     $('.prodcuts_nav .comm_prev').attr('disabled', false); // 해체
+            // })
+        }
+        function proAutoSlide() {
+            timer = setInterval(function(){
+                proNextSlide();
+            }, 5000);
+        }
+
+        function proStopSlide() {
+            clearInterval(timer);
+        }
+        
+        $('.products_slide_list, .products_nav a').on({
+            'mouseenter' : proStopSlide,
+            'mouseleave' : proAutoSlide
+        })
+        
+} // produtsSlide() END   
+
+
+/* BEST SELLERS */
 function sellersSlide() {
-    /* BEST SELLERS */
     var $bestSellers = $('.main_sellers');
     var $sellersImg = $('.sellers_img_item');
     var $sellersCont = $('.sellers_cell_txt');
@@ -80,7 +153,7 @@ function sellersSlide() {
         }).stop();
     });
 
-        currentIdx = index;
+    currentIdx = index;
         //[참고::delay after addClass in each loop] https://stackoverflow.com/questions/40450246/jquery-delay-after-addclass-in-each-loop
     }
 
@@ -97,20 +170,19 @@ function sellersSlide() {
         return false;
     });
 
-    function srartSellersSlide() {
+    function sellersAutoSlide() {
         timer = setInterval(function(){
             nextIdx = (currentIdx + 1) % total;
             gotoSlide(nextIdx);
-        }, 6300);
+        }, 5000);
     };
-    srartSellersSlide();
 
-    function stopSellersSlide() {
+    function sellersStopSlide() {
         clearInterval(timer)
     }
     $bestSellers.on({
-        mouseenter : stopSellersSlide,
-        mouseleave : srartSellersSlide
+        mouseenter : sellersStopSlide,
+        mouseleave : sellersAutoSlide
     });
 
 } // sellersSlide() END

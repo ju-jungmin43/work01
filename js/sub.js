@@ -2,57 +2,77 @@ $(document).ready(function(){
     console.log('sub')
 
     /* sub1.html */
-    var sectionIdx; // 버튼 순서
-    var page; // section01 ~ section04
-    var $philoBtn = $('.philo_nav_btn a');
-    var $scrollDown = $('.sub1 .scroll_down a');
-    var target;
-    var targetIdx = 0;
-    var speed = 1000;
     var $philoSection = $('.philo_section')
+    var philoTotal = $philoSection.length;
+    var $scrollDown = $('.philo_container .scroll_down > a');
+    var $philoBtn = $('.philo_nav_btn'); // li
+    var philoIdx = 0; // 버튼 순서
+    var wH;
+    var containerH;
+    var philoT; // 높이지정
+    var speed = 500;
+    var flag = false;
 
-    $philoBtn.eq(0).addClass('active');
-    $('.philo_container').scrollTop(0);
+    $(window).on('resize', function() {
+        philoResetInit();
+    }); // resize;
+
+    philoResetInit();
+    philoBtnClick();
+    piloScrollMove();
+
+
+    function philoResetInit() {
+        wH = $(window).height();
+        containerH = $('.container').css('padding-top').replace(/[^-\d\.]/g, '');
+        philoT = (-1) * philoIdx * wH;
+        $('.--full_height').css({ height: (wH - containerH) , top: philoT });
+        $philoBtn.removeClass('philobtn').eq(philoIdx).addClass('philobtn');
+        // $philoSection.css({width: $(window).width(), height: $(window).height()})
+    }
     
-    $philoSection.each(function(index){
-        $(this).on('mousewheel DOMMouseScroll', function(e){
-            e.preventDefault();
-            var delta = 0;
-            // For IE
-            if(!e) e = window.event;
-            if(e.wheelDelta) delta = e.wheelDelta / 120; // IE/FireFox/Opera
-            else if(e.detail) delta = -e.detail / 3 // Mozilla case
-
-            var sectionTop = $(window).scrollTop();
-            var sectionIdx = $($philoSection).eq(index);
-            if(delta < 0){
-                console.log(sectionTop)
-                if($(sectionIdx).next().offset().top == undefined) return false;
-                sectionTop = $(sectionIdx).next().offset().top;
-            }else {
-                console.log('up')
-                sectionTop = $(sectionIdx).prev().offset().top;
-            }
-            $('body, html').stop().animate({scrollTop: sectionTop + '%'}, speed)
-        });
-    });
-
-    $philoBtn.on('click', function(){
-        sectionIdx = $(this).parent().index();
-        $philoBtn.removeClass('active').eq(sectionIdx).addClass('active');
-        page = $('#section0' + (sectionIdx + 1));
-        $('body,html').animate({scrollTop: $(page).offset().top}, speed);
-        return false;
-    });
-    $scrollDown.on('click', function(){
-        if($('.sub1').length > 0){
-            target = $(this).closest('.philo_section').next();
-            targetIdx = target.index();
-            $philoBtn.removeClass('active').eq(targetIdx).addClass('active');
-            $('body,html').animate({scrollTop: $(target).offset().top}, speed);
+    function philoBtnClick() {
+        $philoBtn.on('click', 'a', function() {
+            philoIdx = $(this).parent('li').index();
+            $philoBtn.removeClass('philobtn').eq(philoIdx).addClass('philobtn');
+            philoT = (-1) * philoIdx * wH;
+            $philoSection.animate({ top: philoT }, speed);
             return false;
-        } 
-    })
+        });
+    
+        $scrollDown.on('click', function() {
+            philoIdx++;
+            philoT = (-1) * philoIdx * wH;
+            $philoSection.animate({ top: philoT}, speed);
+            $philoBtn.removeClass('philobtn').eq(philoIdx).addClass('philobtn');
+        });    
+    }
+
+    function piloScrollMove() {
+        $('html .sub1').on('mousewheel DOMMouseScroll', function(e) {
+            if(flag === false) {
+                flag = true;
+                var offsetTop = $philoSection.offset().top;
+                if(e.originalEvent.WheelDelta > 0 || e.originalEvent.detail < 0) {
+                    console.log('up')
+                    if(philoIdx > 0) {
+                        philoIdx--;
+                        offsetTop = offsetTop + wH;
+                    }
+                } else if(e.originalEvent.WheelDelta < 0 || e.originalEvent.detail > 0) {
+                    console.log('down')
+                    if(philoIdx < (philoTotal-1)) { // 4
+                        philoIdx++;
+                        offsetTop = offsetTop - wH;
+                    }
+                }
+            }
+            $philoSection.animate({ top: offsetTop}, speed, function() {
+                flag = false;
+            })
+            $philoBtn.removeClass('philobtn').eq(philoIdx).addClass('philobtn');
+        })
+    }
     
     /* sub2.html */
     $('.sub2').on('resize', Sub2skroll);
@@ -67,6 +87,6 @@ $(document).ready(function(){
                 });
             }
     }      
-});
+}); // END
 
 

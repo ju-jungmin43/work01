@@ -1,9 +1,12 @@
 $(document).ready(function(){
-    console.log('LOAD_header.html')
+    
+    console.log('common.js');
+
     scrollHeader();
     scrollTop();
     fullHeight();
-    $(window).on('load resize', function(){
+    
+    $(window).on('resize', function(){
         fullHeight();
     });
     $(window).trigger('resize');
@@ -64,7 +67,7 @@ $(document).ready(function(){
 
 
     function pcMenu(){
-        $('.main_menu_list').on({
+        $('.main_menu_list').off().on({
              mouseenter : function(){
                 $(this, 'a').find('.sub_menu').css({ display: 'block'});
             }, 
@@ -72,7 +75,6 @@ $(document).ready(function(){
                 $('.sub_menu').css({ display: 'none'})
             }
         });
-       
         
         $('.sub_menu_commu_01').off();
         $('.sub_menu_commu_01').on({
@@ -132,7 +134,7 @@ $(document).ready(function(){
 
 
   
-        $('.main_menu_list').off().on('click', 'a', function(){
+        $('.main_menu_list').on('click', 'a', function(){
             console.log($(this).next())
             if($(this).next().is('.on') === false){
                 $('.sub_menu').removeClass('on').slideUp();
@@ -142,7 +144,7 @@ $(document).ready(function(){
             }
             return false;
         });
-        $('.sub_menu_commu_01').off().on('click', 'a', function(){
+        $('.sub_menu_commu_01').on('click', 'a', function(){
             if($(this).next().is('.on') === false){
                 $('.sub_menu_list').removeClass('on').slideUp();
                 $(this).next().addClass('on').slideDown();
