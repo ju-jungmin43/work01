@@ -48,9 +48,10 @@
 .philo_nav ul li { text-indent: -9999px; margin-bottom: 30px; }
 .philo_nav ul li:last-child { margin-bottom: 0; }
 .philo_nav ul li a { display: block; width: 10px; height: 10px; border-radius: 50%; background-color: #ccc; position: relative; z-index: 9; }
+
 /* script_active */
 .philo_nav_btn a::before { opacity: 0; display: block; content: ''; width: 10px; height: 10px; border-radius: 50%; background-color:rgba(192,199,156,0.45); position: absolute; top: 0; left: 0; z-index: 8; transition: transform 0.4s; -webkit-transition: transform 0.4s; -ms-transition: transform 0.4s; -moz-transition: transform 0.4s; }
-.philo_nav_btn a.active::before { opacity: 1; transform: scale(2); -webit-transform: scale(2); -ms-transform: scale(2); -moz-transform: scale(2); }
+.philo_nav_btn.philobtn a::before { opacity: 1; transform: scale(2); -webit-transform: scale(2); -ms-transform: scale(2); -moz-transform: scale(2); }
 
 
 /*-------------------------------------------------------------------

@@ -100,8 +100,8 @@
 .philo_logo { position: absolute; top: 30px; right: -90%; z-index: 5; }
 .philo_logo img { display: block; max-width: 100%; }
 .philo_gallery { position: relative; top: 0; left: 0; box-sizing: content-box; padding: 390px 0 170px; }
-.philo_slide_long { float: left; width: auto; }
-.philo_slide_long li { position: absolute; top: 0; left: 0; }
+.philo_slide_long { position: absolute; top: 0; width: 714px; height: 908px; overflow: hidden; }
+.philo_slide_long li { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; }
  
 .philo_wrap_inner { position: relative; top: 0; left: 0; margin-left: 180px; margin-left: calc(100% - 1020px); }
 .philo_slide_content { position: relative; display: block; width: 636px; height: 546px; background-color: #fff;  }
@@ -112,9 +112,9 @@
 .philo_slide_content b { line-height: 1.5em; }
 .philo_slide_content p { padding-top: 18px; }
 .philo_slide_content li:first-child p { padding: 18px 0; }
-.philo_slide_square { position: absolute; bottom: 220px; right: 0; width: 384px; }
-.philo_slide_square li { position: absolute; left: 0; }
-.philo_slide_square li img { float: right; }
+.philo_slide_square { position: absolute; bottom: -170px; right: 0; width: 384px; height: 397px; overflow: hidden; }
+.philo_slide_square li { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; }
+/* .philo_slide_square li img { float: right; } */
 /*
  * 지정된 넓이와 높이 일 때 ==> background-image :: 중요한 이미지가 아닐때 사용
  * 이미지 그대로의 넓이와 높이 쓰고 싶을 때 ==> <img src=""> :: 중요이미지일떄 사용
