@@ -64,6 +64,7 @@ $(document).ready(function(){
     function resizeMenu(wW){
         if( wW > 1023 ){ pcMenu(); } else { moMenu(); }
     }
+    resizeMenu();
 
 
     function pcMenu(){
