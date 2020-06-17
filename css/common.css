@@ -30,7 +30,7 @@ a:active { text-decoration: none; }
 :-ms-input-placeholder {font-family: 'NotoSansKR', sans-serif;font-size: 15px;color: #666;} */
 
 /* skipNav */
-#skipNav { width: 100%; background-color: #c0c79c; position: relative; top: -50px; display: none; text-align: center; line-height: 50px; }
+#skipNav { width: 100%; background-color: #c0c79c; position: absolute; top: -50px; z-index: 999; text-align: center; line-height: 50px; }
 #skipNav a { display: block; color: #fff; }
 
 /*-------------------------------------------------------------------
@@ -62,36 +62,37 @@ a { font-family: 'Gotham', sans-serif; color: #222; font-weight: 400; text-decor
 
 
 .main_menu { position: absolute; text-align: center; width: 100%; bottom: 0; }
-.main_menu > ul { font-size: 0; }
-.main_menu > ul > li { position: relative; top: 0; left: 0; display: inline-block; }
+.main_menu > ul > li { position: relative; top: 0; left: 0; display: inline-block; margin-left: -4px; }
 .main_menu > ul > li > a { display: block; font-size: 14px; font-weight: 600; text-transform: uppercase; padding: 25px 22px; }
 .main_menu > ul > li:hover > a { color: #c0c79c; }
+.main_menu > ul > li > a.navFocus { color: #c0c79c; }
 .sub_menu { position: absolute; top: 50px; left: 50%; margin-left: -118px; display: none; }
 .sub_menu > li { position: relative; width: 236px; line-height: 49px; }
 .sub_menu > li > a { display: block; font-size: 13px; color: #888; font-weight: 500; text-transform: uppercase; background-color: #000; border-bottom: 1px solid #222;}
 .sub_menu > li:hover > a { color: #fff; }
+.sub_menu > li > a:focus { color: #fff; }
 
 /* script */
 .sub_menu > li > a.active { color: #fff; background-color: #c0c79c; }
 
 .sub_menu_product { width: 472px; margin-left: -236px; }
 .sub_menu_product > li { float: left; } 
-.sub_menu_product > li:nth-child(odd) a { border-right: 1px solid #222; }
+.sub_menu_product > li:nth-child(even) a { border-right: 1px solid #222; }
 .sub_menu_product_mo { display: none; }
-.sub_menu_commu i { position: relative; right: -15%; color: #888; }
+.main_menu_list i { position: relative; right: -15%; color: #888; }
 .sub_menu_list {position: absolute; top: 0; left: 50%; margin-left: 50%; display: none; }
 .sub_menu_list > li { position: relative; width: 236px; line-height: 49px; background-color: #333; border-bottom: 1px solid #444; }
 .sub_menu_list > li > a { display: block; font-size: 13px; font-weight: 500; text-transform: uppercase; color: #ccc; }
 .sub_menu_list > li:hover > a { color: #fff; }
 
-.global { position: absolute; bottom: 25px; right: 0; }
+.global { position: absolute; bottom: 25px; right: 0; z-index: 9; background-color: #fff; }
 .global > div { float: left; }
 .lang_select { position: relative; top: 0; width: 94px; border-bottom: 2px solid #ddd; }
 .lang .lang_select a { color: #222; }
-.lang .lang_select .fa-chevron-down { position: absolute; right: 10px; transform: rotate(0deg); -webkit-ransition: transform 0.3s; -moz-ransition: transform 0.3s; -o-ransition: transform 0.3s; transition: transform 0.3s;} 
-
+.lang .lang_select .fa-chevron-down { position: absolute; right: 10px; transform: rotate(0deg); -webkit-ransition: transform 0.3s; -moz-ransition: transform 0.3s; -o-ransition: transform 0.3s; transition: transform 0.3s; } 
+.lang_select .fa-chevron-down.langOn { transform: rotate(-180deg); }
 .lang_list { position: absolute; opacity: 0; visibility: hidden; }
-.lang_list.on { opacity: 1; visibility: visible; -webkit-transition: opacity 0.5s; -moz-transition: opacity 0.5s; -o-transition: opacity 0.5s; transition: opacity 0.5s; }
+.lang_list.langOn { opacity: 1; visibility: visible; -webkit-transition: opacity 0.5s; -moz-transition: opacity 0.5s; -o-transition: opacity 0.5s; transition: opacity 0.5s; }
 .lang_list li { display: block; width: 94px; background-color: #000; border-bottom: 1px solid #222; }
 .lang a { display: block; padding: 8px; font-size: 10px; font-weight: 600; color: #888; }
 .lang li:hover a { color: #fff; }
