@@ -1,4 +1,15 @@
+// const
+var wW, wH;
+
+
 $(document).ready(function(){
+    console.log('common.js');
+
+    var $header = $('#header');
+    var $document = $(document);
+    var $window = $(window);
+    var $footer = $('#footer');
+    var $scrollTop = $('.scroll_top');
 
     // 본문바로가기
     $('#skipNav').focusin(function() {
@@ -7,171 +18,171 @@ $(document).ready(function(){
         $(this).css({top: '-50px', display: 'none'});
     });
 
-    // focusin focusout
-    // $('.main_menu_list').focusin(function() {
-    //     $(this).find('> ul').css({display: 'block'});
-    //     $(this).find('.mo_menu_list').css({color: '#c0c79c'})
-    // });
-    // $('.main_menu_list ul li:last-child').focusout(function() {
-    //     $('.mo_menu_list').css({color: '#222'});
-    //     $(this).parent().css({display: 'none'})
-    // })
 
-
-    console.log('common.js');
-
-    scrollHeader();
-    scrollTop();
-    
-    $(window).on('resize', function(){
-        var wW = $(window).width();
-        var wH = $(window).height();
-        fullHeight();
-
-        if(wW > 1023) {
-            pcMenu();
-        } else {
-            moMenu();
-        }
-    }).trigger('resize');
-    
-    function scrollHeader(){
-        var $header = $('#header');
-        var $window = $(window);
-        $window.on('scroll', function(){
-            var wTop = $window.scrollTop();
-            if( wTop > $header.height() ){
-                $header.addClass('fixed');
-            } else {
-                $header.removeClass('fixed');
-            }
-        });
-    }
-    function scrollTop() {
-        var $window = $(window);
-        var $document = $(document);
-        var $footer = $('#footer');
-        var $scrollTop = $('.scroll_top');
-        
-        $scrollTop.on('click', function(){
-            $('html, body').stop().animate({scrollTop : 0}, 'slow');
-        });
-        
-        $window.on('scroll', function() {
-            var wTop = $window.scrollTop(); 
-            if( wTop < $document.height() - $window.height() - $footer.height() - ($scrollTop.height()*2) ){
-                $scrollTop.addClass('fixed');
-            } else {
-                $scrollTop.removeClass('fixed');
-            }
-            if( wTop < $window.height() ) {
-                $scrollTop.addClass('hide');
-            } else {
-                $scrollTop.removeClass('hide')
-            }
-        }).trigger('scroll');
-    }
-    
-    function fullHeight(){
+    $window.on('resize', function(){
         wW = $(window).width();
         wH = $(window).height();
-        var containerH = $('.container').css('padding-top').replace(/[^-\d\.]/g, '');
+        fullHeight();
+        navMenu();
+    }).trigger('resize');
+
+
+
+    $scrollTop.on('click', function(){
+        $('html, body').stop().animate({scrollTop : 0}, 'slow');
+    });
+
+    $window.on('scroll', function(){
+        var wTop = $window.scrollTop();
+
+        if(wTop > $header.height()) {
+            $header.addClass('headerFixed');
+        } else {
+            $header.removeClass('headerFixed');
+        }
+
+        if( wTop < $document.height() - $window.height() - $footer.height() - ($scrollTop.height()*2) ){
+            $scrollTop.addClass('scrollTopFixed');
+        } else {
+            $scrollTop.removeClass('scrollTopFixed');
+        }
+
+        if(wTop < $window.height()) {
+            $scrollTop.addClass('scrollTopHide');
+        } else {
+            $scrollTop.removeClass('scrollTopHide');
+        }
+
+    }).trigger('scroll');;
+    
         
+     
+        
+    function fullHeight(){
+        console.log('full', wW)
+        var containerH = $('.container').css('padding-top').replace(/[^-\d\.]/g, '');
         /* main_page */
         $('.--full_height').css({ height: (wH - containerH)});
-        
-        // resizeMenu(wW);
-        
+    }
+    
+function navMenu() {
+    console.log('navMenu',wW)
+    var $mainMenu = $('.main_menu');
+    var $mainMenuList = $mainMenu.find('.main_menu_list');
+    var $navMoBtn = $('.nav_mo_btn');
+    var $navMoMenu = $('.nav_mo_menu');
+    var $navMoClose = $('.nav_mo_close');
+    var $navMoDim = $('.nav_mo_dim');
+    var $langSelect = $('.lang_select');
+    var $langList = $langSelect.next('.lang_list');
+
+    
+    function navInit(moMenu) {
+        $navMoMenu.css({ right: '-240px', visibility: moMenu});
+        $navMoClose.css({left: '0', visibility: 'hidden'})
+        $navMoDim.css({display: 'none'});
+        $mainMenuList.find('ul').css({display: 'none'});
     }
     
     
-    function pcMenu(){
+    if(wW > 1023) {
+        // PcMenu
+        console.log('pc')
         
+        // PcMenu event init
+        $mainMenu.find('a').off('click');
+        $mainMenuList.off('mouseenter mouseleave');
+        navInit('visible');
         
-        $('.main_menu_list').off('mouseenter mouseleave');
 
-        $('.main_menu_list').on({
+        $mainMenuList.on({
             'mouseenter focusin': function() {
                 $(this).find('> ul').css({display: 'block'});
                 $(this).find('> a').addClass('navFocus');
             },
-            mouseleave: function() {
+            'mouseleave': function() {
                 $(this).find('> ul').css({display: 'none'});
-                $(this).find('> a').removeClass('navFocus');
+                $mainMenuList.find('> a').removeClass('navFocus');
             }
         });
+
         
-     
-        
-        $('.main_menu a').off('click');
-
-
-        // moMenu() init
-        $('.nav_mo_menu').css({ right: '-240px', visibility: 'visible'});
-        $('.nav_mo_close').css({left: '0', visibility: 'hidden'})
-        $('.main_menu_list ul').css({ display: 'none'});
-        $('.nav_mo_dim').css({display: 'none'});
-       
-
-
-        $('.main_menu_list ul > li:last-child').focusout(function() {
+        $mainMenuList.find('ul').find('li:last-child').focusout(function() {
             $('.mo_menu_list').removeClass('navFocus');
             $(this).parent().css({display: 'none'});
-        })
+        });
 
-     } // pcMenu()
- 
-     $('.lang_select').on('click', function() {
-         if($(this).next('ul').hasClass('langOn')){
-            $(this).find('i').removeClass('langOn')
-            $('.lang_list.langOn').removeClass('langOn')
-            // $('.lang_list').removeClass('langOn');
-        } else {
-            $(this).find('i').addClass('langOn')
-            $(this).next('ul').addClass('langOn');
-        }
-         return false;
-     }).focus(function(e) {
-         console.log(e.type)
-         $('.lang_list').addClass('langOn');
-     });;
-    
-    function moMenu(){
-        $('.main_menu a').off('click');
+    } else {
+        // MobileMenu
+        console.log('mobile');
 
-        $('.nav_mo_btn').on('click', 'a', function() {
-            console.log('click')
-            $('.nav_mo_menu').css({ right: 0, visibility: 'visible'});
-            $('.nav_mo_close').css({ left: '-50px', visibility: 'visible'});
-            $('.nav_mo_dim').css({display: 'block'}).animate({opacity: 1}, 600)
+        // MobileMenu event init
+        $navMoBtn.off('click');
+        $mainMenu.find('a').off('click');
+        $mainMenuList.off('mouseenter focusin mouseleave');
+        $('.nav_mo_close, .nav_mo_dim').off('click'); 
+
+        $('.nav_mo_close, .nav_mo_dim').on('mousedown', function() {
+            navInit('hidden');
+        });
+
+
+        $navMoBtn.on('click', 'a', function() {
+            $navMoMenu.css({ right: 0, visibility: 'visible'});
+            $navMoClose.css({ left: '-50px', visibility: 'visible'});
+            $navMoDim.css({display: 'block'}).animate({opacity: 1}, 600)
         });
         
-        $('.nav_mo_close, .nav_mo_dim').on('click', function() {
-            $('.nav_mo_menu').css({ right: '-240px', visibility: 'hidden'});
-            $('.nav_mo_close').css({left: '0', visibility: 'hidden' })
-            $('.nav_mo_dim').css({display: 'none'});
-  
-        });
-        
-        
-        $('.main_menu a').on('click', function() {
-            var $thisNext = $(this).next();
-            if($thisNext.is('ul') && ($thisNext.is(':visible'))) {
-                console.log('up')
-                $(this).next().slideUp();
-                return false;
+
+        $mainMenu.find('a').on('click', function() {
+            var _mainMenuNext = $(this).next();
+            if(_mainMenuNext.is('ul') && (_mainMenuNext.is(':visible'))) {
+                // console.log('up')
+                _mainMenuNext.slideUp();
             }
-            if($thisNext.is('ul') && !($thisNext.is(':visible'))) {
-                console.log('down');
-                $('.main_menu ul').not($(this).next().parentsUntil('.main_menu')).slideUp();
-                $(this).next().slideDown();
+            if(_mainMenuNext.is('ul') && !(_mainMenuNext.is(':visible'))) {
+                // console.log('down');
+                $mainMenu.find('ul').not(_mainMenuNext.parentsUntil('.main_menu')).slideUp();
+                _mainMenuNext.slideDown();
             }
             return false;
-        })
-        $('.main_menu_list').off('mouseenter mouseleave');
+        });
+    }
+
+    
+    $langSelect.on('mousedown', function() {
+        var _langNext = $(this).next('ul');
+        if(_langNext.hasClass('langOn')){
+            $(this).find('i').removeClass('langOn');
+            $('.lang_list.langOn').removeClass('langOn');
+        } else {
+            $(this).find('i').addClass('langOn');
+            _langNext.addClass('langOn');
+        }
+     
+        return false;
+    })
+    .focusin(function() {
+        $langList.addClass('langOn');
+    });
+    $('.lang_list.langOn').removeClass('langOn');
+
+    $langList.find('li:last-child').focusout(function() {
+        $(this).parent().removeClass('langOn');
+    });
+
+    // mousedown 해준 이유.
+    // click, focusin event bubbling으로 인해 addClass & removeClass가 같이 적용된다.
+    /*
+    https://stackoverflow.com/questions/8735764/prevent-firing-focus-event-when-clicking-on-div
+            focusin() click() bubbling
+    */
 
 
-    } // moMenu()
+} // navVarEND()
+
+
+
 
     /* search_pop form */
     var $searchForm = $('.search_form');
@@ -209,4 +220,5 @@ $(document).ready(function(){
     
     $searchInput.val('');
 
-}); // END
+
+}); // END   

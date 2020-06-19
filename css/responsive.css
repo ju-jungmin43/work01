@@ -80,7 +80,7 @@ footer
     #wrapper { padding: 0 40px; }
     .inner { margin: 0 40px; }
     #header { height: 90px; }
-    .fixed#header { height: 70px; }
+    .headerFixed#header { height: 70px; }
     .container { padding-top: 90px; }
     .nav .logo { width: 170px; }
     .header_wrap { padding: 0 40px; }
@@ -139,7 +139,7 @@ footer
     #wrapper { padding: 0 30px; }
     .inner { margin: 0 3%; }
     #header { height: 70px; }
-    .fixed#header { height: 60px; background-color: rgba(255,255,255,0.9); }
+    .headerFixed#header { height: 60px; background-color: rgba(255,255,255,0.8); }
     .container { padding-top: 70px; }
     .section { padding: 110px 0 135px; }
     .header_wrap { padding: 0 30px; }

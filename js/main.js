@@ -1,4 +1,4 @@
-    // 공통으로 쓰일 변수
+    // 공통으로 쓰일 변수 const
     var currentIdx; // 현재 인덱스
     var total; // slide 총 수
     var timer = ''; // setInterval 
