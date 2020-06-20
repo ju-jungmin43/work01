@@ -20,8 +20,10 @@ $(document).ready(function(){
 
 
     $window.on('resize', function(){
-        wW = $(window).width();
-        wH = $(window).height();
+        wW = $window.width();
+        wH = $window.height();
+
+
         fullHeight();
         navMenu();
     }).trigger('resize');
@@ -59,129 +61,129 @@ $(document).ready(function(){
      
         
     function fullHeight(){
-        console.log('full', wW)
         var containerH = $('.container').css('padding-top').replace(/[^-\d\.]/g, '');
-        /* main_page */
         $('.--full_height').css({ height: (wH - containerH)});
     }
     
-function navMenu() {
-    console.log('navMenu',wW)
-    var $mainMenu = $('.main_menu');
-    var $mainMenuList = $mainMenu.find('.main_menu_list');
-    var $navMoBtn = $('.nav_mo_btn');
-    var $navMoMenu = $('.nav_mo_menu');
-    var $navMoClose = $('.nav_mo_close');
-    var $navMoDim = $('.nav_mo_dim');
-    var $langSelect = $('.lang_select');
-    var $langList = $langSelect.next('.lang_list');
-
-    
-    function navInit(moMenu) {
-        $navMoMenu.css({ right: '-240px', visibility: moMenu});
-        $navMoClose.css({left: '0', visibility: 'hidden'})
-        $navMoDim.css({display: 'none'});
-        $mainMenuList.find('ul').css({display: 'none'});
-    }
-    
-    
-    if(wW > 1023) {
-        // PcMenu
-        console.log('pc')
-        
-        // PcMenu event init
-        $mainMenu.find('a').off('click');
-        $mainMenuList.off('mouseenter mouseleave');
-        navInit('visible');
-        
-
-        $mainMenuList.on({
-            'mouseenter focusin': function() {
-                $(this).find('> ul').css({display: 'block'});
-                $(this).find('> a').addClass('navFocus');
-            },
-            'mouseleave': function() {
-                $(this).find('> ul').css({display: 'none'});
-                $mainMenuList.find('> a').removeClass('navFocus');
-            }
-        });
+    function navMenu() {
+        var $mainMenu = $('.main_menu');
+        var $mainMenuList = $mainMenu.find('.main_menu_list');
+        var $navMoBtn = $('.nav_mo_btn');
+        var $navMoMenu = $('.nav_mo_menu');
+        var $navMoClose = $('.nav_mo_close');
+        var $navMoDim = $('.nav_mo_dim');
+        var $langSelect = $('.lang_select');
+        var $langList = $langSelect.next('.lang_list');
 
         
-        $mainMenuList.find('ul').find('li:last-child').focusout(function() {
-            $('.mo_menu_list').removeClass('navFocus');
-            $(this).parent().css({display: 'none'});
-        });
-
-    } else {
-        // MobileMenu
-        console.log('mobile');
-
-        // MobileMenu event init
-        $navMoBtn.off('click');
-        $mainMenu.find('a').off('click');
-        $mainMenuList.off('mouseenter focusin mouseleave');
-        $('.nav_mo_close, .nav_mo_dim').off('click'); 
-
-        $('.nav_mo_close, .nav_mo_dim').on('mousedown', function() {
-            navInit('hidden');
-        });
-
-
-        $navMoBtn.on('click', 'a', function() {
-            $navMoMenu.css({ right: 0, visibility: 'visible'});
-            $navMoClose.css({ left: '-50px', visibility: 'visible'});
-            $navMoDim.css({display: 'block'}).animate({opacity: 1}, 600)
-        });
-        
-
-        $mainMenu.find('a').on('click', function() {
-            var _mainMenuNext = $(this).next();
-            if(_mainMenuNext.is('ul') && (_mainMenuNext.is(':visible'))) {
-                // console.log('up')
-                _mainMenuNext.slideUp();
-            }
-            if(_mainMenuNext.is('ul') && !(_mainMenuNext.is(':visible'))) {
-                // console.log('down');
-                $mainMenu.find('ul').not(_mainMenuNext.parentsUntil('.main_menu')).slideUp();
-                _mainMenuNext.slideDown();
-            }
-            return false;
-        });
-    }
-
-    
-    $langSelect.on('mousedown', function() {
-        var _langNext = $(this).next('ul');
-        if(_langNext.hasClass('langOn')){
-            $(this).find('i').removeClass('langOn');
-            $('.lang_list.langOn').removeClass('langOn');
-        } else {
-            $(this).find('i').addClass('langOn');
-            _langNext.addClass('langOn');
+        function navInit(moMenu) {
+            $navMoMenu.css({ right: '-240px', visibility: moMenu});
+            $navMoClose.css({left: '0', visibility: 'hidden'})
+            $navMoDim.css({display: 'none'});
+            $mainMenuList.find('ul').css({display: 'none'});
         }
-     
-        return false;
-    })
-    .focusin(function() {
-        $langList.addClass('langOn');
-    });
-    $('.lang_list.langOn').removeClass('langOn');
+        
+        
+        if(wW > 1023) {
+            // PcMenu
+            // console.log('pc')
+            
+            // PcMenu event init
+            $mainMenu.find('a').off('click');
+            $mainMenuList.off('mouseenter focusin mouseleave');
+            navInit('visible');
+            
 
-    $langList.find('li:last-child').focusout(function() {
-        $(this).parent().removeClass('langOn');
-    });
+            $mainMenuList.on({
+                'mouseenter focusin': function() {
+                    $(this).find('> ul').css({display: 'block'});
+                    $(this).find('> a').addClass('navFocus');
+                },
+                'mouseleave': function() {
+                    $(this).find('> ul').css({display: 'none'});
+                    $mainMenuList.find('> a').removeClass('navFocus');
+                }
+            });
 
-    // mousedown 해준 이유.
-    // click, focusin event bubbling으로 인해 addClass & removeClass가 같이 적용된다.
-    /*
-    https://stackoverflow.com/questions/8735764/prevent-firing-focus-event-when-clicking-on-div
-            focusin() click() bubbling
-    */
+            
+            $mainMenuList.find('ul').find('li:last-child').focusout(function() {
+                $('.mo_menu_list').removeClass('navFocus');
+                $(this).parent().css({display: 'none'});
+            });
+
+        } else {
+            // MobileMenu
+            // console.log('mobile');
+
+            // MobileMenu event init
+            $navMoBtn.off('click');
+            $mainMenu.find('a').off('click');
+            $mainMenuList.off('mouseenter focusin mouseleave');
+            $('.nav_mo_close, .nav_mo_dim').off('click'); 
+
+            $('.nav_mo_close, .nav_mo_dim').on('click', function() {
+                navInit('hidden');
+            });
 
 
-} // navVarEND()
+            $navMoBtn.on('click', 'a', function() {
+                $navMoMenu.css({ right: 0, visibility: 'visible'});
+                $navMoClose.css({ left: '-50px', visibility: 'visible'});
+                $navMoDim.css({display: 'block'}).animate({opacity: 1}, 600)
+            });
+            
+
+            $mainMenu.find('a').on('click', function() {
+                var _mainMenuNext = $(this).next();
+                if(_mainMenuNext.is('ul') && (_mainMenuNext.is(':visible'))) {
+                    // console.log('up')
+                    _mainMenuNext.slideUp();
+                }
+                if(_mainMenuNext.is('ul') && !(_mainMenuNext.is(':visible'))) {
+                    // console.log('down');
+                    $mainMenu.find('ul').not(_mainMenuNext.parentsUntil('.main_menu')).slideUp();
+                    _mainMenuNext.slideDown();
+                }
+
+                _mainMenuNext.find('li:last-child').focusout(function() {
+                    $(this).closest('ul').slideUp();
+                });
+
+                return false;
+            });
+        } // else end
+
+        
+        $langSelect.on('mousedown', function() {
+            var _langNext = $(this).next('ul');
+            if(_langNext.hasClass('langOn')){
+                $(this).find('i').removeClass('langOn');
+                $('.lang_list.langOn').removeClass('langOn');
+            } else {
+                $(this).find('i').addClass('langOn');
+                _langNext.addClass('langOn');
+            }
+        
+            return false;
+        })
+        .focusin(function() {
+            $langList.addClass('langOn');
+        });
+        $('.lang_list.langOn').removeClass('langOn');
+
+        $langList.find('li:last-child').focusout(function() {
+            $(this).parent().removeClass('langOn');
+        });
+
+        // mousedown 해준 이유.
+        // click, focusin event bubbling으로 인해 addClass & removeClass가 같이 적용된다.
+        /*
+        https://stackoverflow.com/questions/8735764/prevent-firing-focus-event-when-clicking-on-div
+                focusin() click() bubbling
+        */
 
 
+    } // navVarEND()
 
 
     /* search_pop form */
@@ -194,6 +196,7 @@ function navMenu() {
     var $searchClose = $('.search_popup_close');
 
     $search.on('click', function(){
+        alert('click')
         $searchPopup.animate({ opacity : 1 }, 400).css({ display: 'block'});
     });
     $searchClose.on('click', function(){

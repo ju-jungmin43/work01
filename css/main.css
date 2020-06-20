@@ -63,6 +63,12 @@
 /*-------------------------------------------------------------------
     ## main_visual
 -------------------------------------------------------------------*/
+/* slick slider */
+.slick-arrow {position: absolute; top: 0; z-index: 9999; }
+.slick-next {right: 0; }
+.slick-active, .slick-current {position: absolute !important; left: 0 !important; }
+
+
 .container .main_visual { position: relative; width: 100%; height: -webkit-calc(100vh - 100px); height: -moz-calc(100% - 100px); height: calc(100vh - 100px); padding: 0; }
 .main_visual a { -webkit-transition: all 0.5s; -moz-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
 .main_visual h2 { font-size: 50px; font-weight: 300; text-align: left; }
@@ -76,10 +82,11 @@
 .visual_slide .visual_slide_content { display:table; width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
 .visual_slide .visual_slide_content .visual_content_cell { display: table-cell; text-align: left; vertical-align: middle; }
 .main_visual .square_more { margin: 0; }
+.visual_nav { display: block; width: 220px; line-height: 105px; height: 105px; background-color: #fff; position: absolute; bottom: 0; left: 0; z-index: 1000; }
 .visual_nav_page { position: absolute; width: 100%; text-align: center; }
 .visual_nav_page span { font-size: 12px; font-weight: 600; }
-.visual_nav { display: block; width: 220px; line-height: 105px; background-color: #fff; position: absolute; bottom: 0; left: 0; }
 .visual_nav .comm_nav_arrow > a { color: #ccc; }
+.visual_nav .comm_nav_arrow > a.comm_next { right: 0; }
 .visual_nav .comm_nav_arrow > a:hover { color: #222; }
 
 /* scroll_down

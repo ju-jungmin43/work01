@@ -1,71 +1,44 @@
-    // 공통으로 쓰일 변수 const
-    var currentIdx; // 현재 인덱스
-    var total; // slide 총 수
-    var timer = ''; // setInterval 
-    var speed = 0;
-    var wW; // window.width()
+// 공통으로 쓰일 변수 const
+var currentIdx; // 현재 인덱스
+var total; // slide 총 수
+var timer = ''; // setInterval 
+var speed = 0;
+var wW; // window.width()
 
+$('.slick-current, .slick-active').css({display: 'block', position: 'absolute', left: '0px'})
 
 $(document).ready(function(){
-    /* PHILOSOPHY */
-    philoSlide();
+
     /* BEST SELLERS */
     sellersSlide();
     /* RECOMMEND PRODUCTS */
     productsSlide();
     
+    // scroll_down
+    $('.scroll_down').on('click', function() {
+        var mainPhilosophyTop = $('.main_philosophy').offset().top;
+        $('html, body').animate({'scrollTop': mainPhilosophyTop}, 800);
+    });
+
+
+    /* PHILOSOPHT */
+
+  
+    $('.visual_gallery').slick({
+        fade: true,
+        speed: 1000,
+        arrows: true,
+        prevArrow: $('#visualPrev'),
+        nextArrow: $('#visualNext'),
+        autoplay: false,
+        autoplaySpeed: 3000,
+        dots: false,
+        infinite: true
+    }).on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+        console.log();
+    });
+
 }); // END
-
-    function philoSlide() {
-        
-        var $philoSlide = $('.philo_slide');
-        var $philoSlideLi = $philoSlide.find('li');
-        
-        var $philoLongLi = $('.philo_slide_long').find('li');
-        var $philoSquareLi = $('.philo_slide_square').find('li');
-        var $philoContLi = $('.philo_slide_content').find('li');
-
-        total = 2;
-        currentIdx = 0;
-        
-        $(window).on('resize', function(){
-            philoResetImg();
-        }); // resizeEND
-        
-        function philoResetImg(eachSlide) { 
-            $philoSlide.each(function() {
-                if( !$(this).hasClass('philo_slide_content') ) {
-                    $(this).find('li').each(function(index, item){
-                        var eachSlide = $(this);
-                        var philoSlideLiW = eachSlide.width();
-                        if(index == currentIdx) {
-                            $(item).eq(currentIdx).css({left: 0})
-                        } else {
-                            $(item).eq(currentIdx).css({left: -philoSlideLiW})
-                        }
-                    });
-                } else {
-                    $(this).children('li').removeClass('PHILO').eq(0).addClass('PHILO')
-                }
-            });
-        } // philoResetImgEND
-
-
-        
-
-        function philoSlideNext(){
-            
-        }
-        philoSlideNext();
-        $('.comm_next').on('click', function(){
-            // philoSlideNext();
-        });
-
-        
-              
-
-    } // philoSlide() END
-    
 
 
 

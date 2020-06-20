@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="css/fonts/all.css"/>
         <script src="js/jquery-3.1.0.min.js"></script>
         <script src="js/main.js"></script>
-        <!-- <script src="js/common.js"></script>업로드할때삭제 -->
+        <!-- <script src="js/common.js"></script> -->
         <script>
             $(function(){
                 includeLayout();
@@ -47,11 +47,9 @@
                     <div class="wrap">
                         <div class="visual_gallery">
                             <div class="visual_slide">
-                                <div
-                                    class="visual_slide_item slide_item_pc"
+                                <div class="visual_slide_item slide_item_pc"
                                     style="background-image: url('images/main/kevisual/visual_01_pc.jpg')"></div>
-                                <div
-                                    class="visual_slide_item slide_item_mo"
+                                <div class="visual_slide_item slide_item_mo"
                                     style="background-image: url('images/main/kevisual/visual_01_mo.jpg')"></div>
                                 <div class="visual_slide_content">
                                     <div class="visual_content_cell">
@@ -73,11 +71,9 @@
                                 </div>
                             </div>
                             <div class="visual_slide">
-                                <div
-                                    class="visual_slide_item slide_item_pc"
+                                <div class="visual_slide_item slide_item_pc"
                                     style="background-image: url('images/main/kevisual/visual_02_pc.jpg')"></div>
-                                <div
-                                    class="visual_slide_item slide_item_mo"
+                                <div class="visual_slide_item slide_item_mo"
                                     style="background-image: url('images/main/kevisual/visual_02_mo.jpg')"></div>
                                 <div class="visual_slide_content">
                                     <div class="visual_content_cell">
@@ -179,14 +175,14 @@
                         </div>
                         <!-- main_gallery -->
 
-                        <div class="visual_nav">
+                        <div class="visual_nav cf">
                             <div class="visual_nav_page">
                                 <span>1 / 5</span></div>
                             <div class="comm_nav_arrow">
-                                <a href="javascript:void(0)" class="comm_prev">
+                                <a id="visualPrev" href="javascript:void(0)" class="comm_prev">
                                     <i class="fas fa-long-arrow-alt-left"></i>
                                 </a>
-                                <a href="javascript:void(0)" class="comm_next">
+                                <a id="visualNext" href="javascript:void(0)" class="comm_next">
                                     <i class="fas fa-long-arrow-alt-right"></i>
                                 </a>
                             </div>
@@ -795,5 +791,6 @@
             <!-- container -->
             <footer data-include="include/footer.html"></footer>
         </div>
+    <script src="js/plugin/slick.min.js"></script>
     </body>
 </html>
