@@ -5,10 +5,10 @@ var timer = ''; // setInterval
 var speed = 0;
 var wW; // window.width()
 
-$('.slick-current, .slick-active').css({display: 'block', position: 'absolute', left: '0px'})
 
 $(document).ready(function(){
-
+    /* PHILOSOPHY */
+    philoGallery();
     /* BEST SELLERS */
     sellersSlide();
     /* RECOMMEND PRODUCTS */
@@ -17,29 +17,55 @@ $(document).ready(function(){
     // scroll_down
     $('.scroll_down').on('click', function() {
         var mainPhilosophyTop = $('.main_philosophy').offset().top;
-        $('html, body').animate({'scrollTop': mainPhilosophyTop}, 800);
+        $('html, body').animate({scrollTop: mainPhilosophyTop}, 'slow');
     });
 
-
-    /* PHILOSOPHT */
-
-  
-    $('.visual_gallery').slick({
-        fade: true,
-        speed: 1000,
-        arrows: true,
-        prevArrow: $('#visualPrev'),
-        nextArrow: $('#visualNext'),
-        autoplay: false,
-        autoplaySpeed: 3000,
-        dots: false,
-        infinite: true
-    }).on('beforeChange', function(event, slick, currentSlide, nextSlide) {
-        console.log();
-    });
 
 }); // END
 
+
+
+/* PHILOSOPHT */
+function philoGallery() {
+    var $visualSlide = $('.visual_slide');
+    var $visualSlideItem = $visualSlide.find('.visual_slide_item');
+    var $visualContentCell = $('.visual_content_cell');
+    var $visualContentCellTxt = $visualContentCell.find('.inner').children();
+ 
+    $('.visual_gallery').slick({
+        fade: true,
+        speed: 3500,
+        arrows: true,
+        prevArrow: $('#visualPrev'),
+        nextArrow: $('#visualNext'),
+        autoplay: true,
+        autoplaySpeed: 7500,
+        infinite: true
+    }).on('init reInit beforeChange', function(event, slick, currentSlide, nextSlide) {
+        $visualSlideItem.removeClass('visualOn');
+        $visualSlide.eq(nextSlide).find($visualSlideItem).addClass('visualOn');
+
+        $('.visual_content_cell > .inner > *.visualTxt').removeClass('visualTxt');
+        $visualSlide.eq(nextSlide).find($visualContentCellTxt).each(function(i) {
+            $(this).delay(i * 160).queue(function() {
+                $(this).addClass('visualTxt').dequeue();  
+            });
+        });
+        //currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
+        // var currentIdx = (currentSlide ? currentSlide : 0) + 1;
+        var $visualNavPage = $('.visual_nav_page').find('span');
+        var visualSlideTotal = $visualSlide.length;
+        if (nextSlide === 0) {
+            $visualNavPage.text(1 + ' / ' + visualSlideTotal)
+        } else {
+            $visualNavPage.text((nextSlide + 1) + ' / ' + visualSlideTotal)
+        }
+    }); // slick End
+
+    $visualSlide.eq(0).find($visualSlideItem).addClass('visualOn');
+    $visualSlide.eq(0).find($visualContentCellTxt).addClass('visualTxt');
+
+} // philoGallery() END
 
 
 /* RECOMMEND PRODUTS */

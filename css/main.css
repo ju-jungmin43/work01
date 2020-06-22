@@ -72,15 +72,19 @@
 .container .main_visual { position: relative; width: 100%; height: -webkit-calc(100vh - 100px); height: -moz-calc(100% - 100px); height: calc(100vh - 100px); padding: 0; }
 .main_visual a { -webkit-transition: all 0.5s; -moz-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
 .main_visual h2 { font-size: 50px; font-weight: 300; text-align: left; }
-.main_visual .visual_content_cell p { padding: 30px 0; font-size: 15px; color: #444; } 
+.main_visual .visual_content_cell p { margin: 30px 0; font-size: 15px; color: #444; } 
 .visual_gallery { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
 .visual_gallery .visual_slide { position: absolute; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; }
 .main_visual .visual_slide_03 h2 { color: #fff; }
 .main_visual .visual_slide_03 p { color: #fff; }
 .main_visual .visual_slide_03 .square_more { color: #fff; }
 .visual_slide .visual_slide_item { width: 100%; height: 100%; background-position: center; background-size: cover; background-repeat: no-repeat; -webkit-transform: scale(1.05); -moz-transform: scale(1.05); -ms-transform: scale(1.05); transform: scale(1.05); }
+.visual_slide_item.visualOn { -webkit-transform: scale(1.0); -moz-transform: scale(1.0); -ms-transform: scale(1.0); transform: scale(1.0); -webkit-transition: transform 5s; -moz-transition: transform 5s; -o-transition: transform 5s; transition: transform 5s; }
+
 .visual_slide .visual_slide_content { display:table; width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
 .visual_slide .visual_slide_content .visual_content_cell { display: table-cell; text-align: left; vertical-align: middle; }
+.visual_content_cell .inner > * { -webkit-transform: translate3d(0, 50px, 0); -moz-transform: translate3d(0, 30px, 0); -ms-transform: translate3d(0, 30px, 0); transform: translate3d(0, 30px, 0); opacity: 0;  }
+.visual_content_cell .inner > *.visualTxt { -webkit-transform: translate3d(0, 0px, 0); -moz-transform: translate3d(0, 0px, 0); -ms-transform: translate3d(0, 0px, 0); transform: translate3d(0, 0px, 0); opacity: 1; -webkit-transition: transform 1s, opacity 2s; -moz-transition: transform 1s, opacity 2s; -o-transition: transform 1s, opacity 2s; transition: transform 1s, opacity 2s; }
 .main_visual .square_more { margin: 0; }
 .visual_nav { display: block; width: 220px; line-height: 105px; height: 105px; background-color: #fff; position: absolute; bottom: 0; left: 0; z-index: 1000; }
 .visual_nav_page { position: absolute; width: 100%; text-align: center; }
@@ -93,7 +97,7 @@
 .scroll_down { position: absolute; bottom: 0; width: 100%; }
 .scroll_down > a  { display: block; margin: auto; text-align: center; width: 40px; height: 40px;  font-size: 22px; color: #222; } */
 
-/* script */
+
 .slide_item_mo { display: none; }
 
 /*-------------------------------------------------------------------
@@ -148,7 +152,7 @@
 .sellers_gallery .sellers_slide { position: relative; top: 0; left: 0; width: 100%; height: 100%; }
 .sellers_gallery .sellers_slide .sellers_slide_list { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 .sellers_slide_img { position: absolute; top: 0; left: 0; width: 50%; height: 100%; }
-.sellers_img_item { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; opacity: 0; visibility: hidden;  -webkit-transition: all 1s; -o-transition: all 1s; transition: all 1s; }
+.sellers_img_item { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; opacity: 0; visibility: hidden; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s; }
 .sellers_img_item.sellers{ opacity: 1; visibility: visible; }
 .sellers_slide_content { position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: url('../images/main/sellers/sellers_bg.jpg')center no-repeat; background-size: cover; padding: 15px; }
 .sellers_slide_content .sellers_content_cell { display: table; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 1); }
@@ -176,8 +180,8 @@
 -------------------------------------------------------------------*/
 
 .main_academy { position: relative; padding: 145px 0; background: #baab87 url('../images/main/academy/academy-bg-long.jpg') center no-repeat; background-attachment: fixed; }
-.main_academy .academy_content { display: table; width: 100%; height: 100%; padding: 70px 20px; background-color: rgba(255,255,255,0.9); }
-.main_academy .academy_content .academy_content_cell { display: table-cell; text-align: center; vertical-align: middle; }
+.main_academy .main_head { display: table; width: 100%; height: 100%; padding: 70px 20px; background-color: rgba(255,255,255,0.9); }
+.main_academy .main_head .main_head_wrap { display: table-cell; text-align: center; vertical-align: middle; }
 .main_academy h2 { font-size: 26px; color: #c3a37a; font-weight: 500; padding-bottom: 2.5%; }
 
 /*-------------------------------------------------------------------
@@ -200,7 +204,7 @@
     ## main_info
 -------------------------------------------------------------------*/
 .container .main_info { position: relative; width: 100%; height: 100%; overflow: hidden; padding: 0; }
-.info_list { float: left; width: 50%; height: 100%; position: relative; padding: 106px 0; cursor: pointer; }
+.info_list { float: left; width: 50%; height: 100%; position: relative; padding: 106px 0; overflow: hidden; cursor: pointer; }
 .info_list .info_img { position: absolute; top: 0; right: 0; bottom: 0; left: 0; -webkit-transform: scale(1); -moz-transform: scale(1); -ms-transform: scale(1); transform: scale(1); -webkit-transition: transform 2s; -moz-transition: transform 2s; -o-transition: transform 2s; transition: transform 2s; }
 
 .info_list:hover .info_img { -webkit-transition: transform 2s; -moz-transition: transform 2s; -o-transition: transform 2s; transition: transform 2s; -webkit-transform: scale(1.05); -moz-transform: scale(1.05); -ms-transform: scale(1.05); transform: scale(1.05); }

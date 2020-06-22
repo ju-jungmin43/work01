@@ -176,4 +176,4 @@ button[name="search_icon"] { border: none; background-color: transparent; positi
 
 /* scroll_down */
 .scroll_down { position: absolute; bottom: 5px; width: 100%; }
-.scroll_down > a  { display: block; margin: auto; text-align: center; width: 40px; height: 40px;  font-size: 22px; color: #222; }
+.scroll_down > a  { position: relative; z-index: 1000; display: block; margin: auto; text-align: center; width: 40px; height: 40px;  font-size: 22px; color: #222; }

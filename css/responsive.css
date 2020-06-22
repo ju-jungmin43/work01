@@ -237,8 +237,8 @@ footer
     /* main_products */
     .products_slide { width: 500%; }
 }
-@media (max-width: 768px){
-    #wrapper { padding: 0; }
+@media (max-width: 768px) and (orientation: portrait) {
+    #wrapper { padding: 0; } 
     #header { height: 60px; }
     .inner { margin: 0 20px; }
     .header_wrap { padding: 0 20px; }
@@ -255,7 +255,7 @@ footer
     .visual_nav { display: none; }
     .main_visual h2 { text-align: center; }
     .visual_slide .visual_slide_content .visual_content_cell { text-align: center; }
-    .main_visual .visual_content_cell p { padding: 3% 0; }
+    .main_visual .visual_content_cell p { margin: 3% 0; }
     .main_visual .visual_content_cell p br { display: none; }
     .main_visual .visual_slide_03 h2,
     .main_visual .visual_slide_03 p,
