@@ -5,10 +5,10 @@ var timer = ''; // setInterval
 var speed = 0;
 var wW; // window.width()
 
-
+console.log('main')
 $(document).ready(function(){
-    /* PHILOSOPHY */
-    philoGallery();
+    /* KEYVISUAL */
+    keyvisualGallery();
     /* BEST SELLERS */
     sellersSlide();
     /* RECOMMEND PRODUCTS */
@@ -21,12 +21,40 @@ $(document).ready(function(){
     });
 
 
+    /* PHILOSOPHY */
+    $('.philo_slide_long').slick({
+        prevArrow: $('.philo_nav .comm_prev'),
+        nextArrow: $('.philo_nav .comm_next'),
+        speed: 800,
+        infinite: true,
+        autoplay: false,
+        autoplaySpeed: 200,
+        asNavFor: '.philo_slide_long, .philo_slide_square'
+        // slide: $('.philo_slide_content')
+    })
+    $('.philo_slide_content').slick({
+        arrows: false,
+        speed: 800,
+        // infinite: true,
+        asNavFor: '.philo_slide_long, .philo_slide_square'
+        // slide: $('.philo_slide_content')
+    })
+    $('.philo_slide_square').slick({
+        arrows: false,
+        speed: 800,
+        // infinite: true,
+        asNavFor: '.philo_slide_long, .philo_slide_square'
+        // slide: $('.philo_slide_content')
+    })
+    
+
+
 }); // END
 
 
 
-/* PHILOSOPHT */
-function philoGallery() {
+/* KEYVISUAL */
+function keyvisualGallery() {
     var $visualSlide = $('.visual_slide');
     var $visualSlideItem = $visualSlide.find('.visual_slide_item');
     var $visualContentCell = $('.visual_content_cell');
@@ -34,14 +62,15 @@ function philoGallery() {
  
     $('.visual_gallery').slick({
         fade: true,
-        speed: 3500,
+        speed: 2500,
         arrows: true,
         prevArrow: $('#visualPrev'),
         nextArrow: $('#visualNext'),
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 7500,
         infinite: true
-    }).on('init reInit beforeChange', function(event, slick, currentSlide, nextSlide) {
+    })
+    .on('init reInit beforeChange', function(event, slick, currentSlide, nextSlide) {
         $visualSlideItem.removeClass('visualOn');
         $visualSlide.eq(nextSlide).find($visualSlideItem).addClass('visualOn');
 

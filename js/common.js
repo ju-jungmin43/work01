@@ -197,10 +197,10 @@ $(document).ready(function(){
 
     $search.on('click', function(){
         alert('click')
-        $searchPopup.animate({ opacity : 1 }, 400).css({ display: 'block'});
+        $searchPopup.animate({opacity : 1}, 400).css({display: 'block'});
     });
     $searchClose.on('click', function(){
-        $searchPopup.animate({ opacity: 0 }, 400).css({ display: 'none'});;
+        $searchPopup.animate({opacity: 0}, 400).css({display: 'none'});;
     })
 
     $searchInput.on('keyup',function(){
@@ -223,5 +223,8 @@ $(document).ready(function(){
     
     $searchInput.val('');
 
+    $(document).on('click', 'a[href=""]', function() {
+        return false;
+    })
 
-}); // END   
+}); // END
