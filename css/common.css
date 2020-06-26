@@ -13,10 +13,6 @@
     ## common
 -------------------------------------------------------------------*/
 
-
-/* :focus {border: 1px solid red; } */
-.inner {border: 1px solid red; }
-
 * { box-sizing: border-box; }
 .cf::before, .cf::after { content: ''; display: block; }
 .cf::after { clear: both; }

@@ -95,15 +95,23 @@ footer
     .visual_nav { width: 180px; height: 75px; line-height: 75px; }
     
     /* main_philosophy */
+    .main_philosophy { padding: 126px 0 0; }
     .main_philosophy .main_head { padding-bottom: 120px; }
     /* .philo_inner { margin: 0; } */
     .philo_logo { top: -40px; }
-    .philo_gallery { padding: 230px 0 50px; }
+    .philo_gallery { padding: 230px 0 170px; }
     .philo_logo img { width: auto; height: 170px; }
-    /* .philo_slide img { max-width: 80%; } */
+    .philo_slide_long { width: 540px; height: auto; }
+    .philo_slide_long img { width: 540px; }
+    .philo_content_wrap { margin-left: calc(100% - 880px); }
+    .philo_slide_content { width: 580px; height: 520px; }
+    .philo_slide img { max-width: 80%; }
+    .philo_slide_square { width: 300px; height: auto; }
+    .philo_slide_square img { width: 300px; }
+    .philo_nav { left: 400px; }
+    /* .philo_slide_square img { width: 80%; max-width: 100%; display: block; } */
     /* .philo_wrap_inner { margin: 0; margin-left: calc(100% - 887px); } */
     /* .philo_slide_long { width: 571px; height: 100%; }
-    .philo_slide_content { width: 580px; height: 520px; }
     .philo_slide_square { width: 307px; height: 100%; bottom: -272px; } */
     
     
@@ -199,13 +207,15 @@ footer
     .philo_inner { margin: 0; }
     .comm_nav { width: 120px; }
     .main_philosophy .main_head { padding-bottom: 64px; }
-    .philo_logo { top: 148px; right: 0; width: 84%; }
+    .philo_logo { top: 148px; right: 0; width: 90%; left: auto; right: 0; }
+    .philo_logo img { display: block; width: 100%; max-width: 100%; height: 100%; }
     .philo_gallery { padding: 356px 0 0; }
+    .philo_content_wrap { margin-left: 0; }
     .philo_slide_content { width: 540px; height: 490px; margin: 0; float: right; }
     .philo_slide_square { display: none; }
     .philo_slide_content li .philo_content_cell { padding: 0 90px; }
     .square_more_under { margin-top: 2%; }
-    
+    .philo_nav { left: auto; right: 10px; bottom: -480px; }
     /* main_message */
     .message_wrap .message_ceo .ceo_img { right: -63px; }
     .message_wrap .message_ceo .ceo_sign { right: 0; }
@@ -300,16 +310,16 @@ footer
     /* main_philosophy */
     .comm_nav { bottom: 5%; }
     .comm_nav i { font-size: 15px; }
-    /* .philo_wrap_inner { margin: 0; height: 100%; } */
     .philo_logo { display: none; }
-    .philo_gallery  { padding: 57% 0 0; overflow: hidden; }
-    .philo_slide_long { width: 100%; height: 100%; }
-    .philo_slide_long li { width: 100%; background-size: cover; }
-    .philo_slide_content { width: 100%; height: 350px; background-color: rgba(255,255,255,0.85); float: none; }
+    .philo_gallery  { padding: 0; overflow: hidden; }
+    .philo_slide_long {position: relative; width: 100%; height: 100%; }
+    .philo_slide_long img { width: 100%; }
+    .philo_content_wrap { position: absolute; width: 100%; top: auto; bottom: 0;  }
+    .philo_slide_content { width: 100%; height: auto; padding: 7% 8%; background-color: rgba(255,255,255,0.85); float: none; }
     .philo_slide_content h3 { padding-bottom: 4%; }
     .philo_slide_content p { padding-top: 2%; }
     .philo_slide_content li .philo_content_cell { width: 100%; height: 100%; padding: 0; text-align: center; }
-    .philo_slide img { max-width: 100%; width: 100%; }
+    /* .philo_slide img { max-width: 100%; width: 100%; } */
     .philo_slide_content .square_more_under { margin-top: 3%; }
 
 
@@ -390,7 +400,7 @@ footer
     
     /* main_philosophy */
     .philo_gallery { padding: 0; width: 100%; height: 400px; }
-    /* .philo_wrap_inner { padding: 2%; } */
+    .philo_content_wrap { height: 100%; padding: 2%; }
     .philo_slide_content { height: 100%; background-color: rgb(236, 238, 225, 0.7); }
     
     .philo_nav { display: none; }

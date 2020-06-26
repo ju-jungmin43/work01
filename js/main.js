@@ -9,6 +9,8 @@ console.log('main')
 $(document).ready(function(){
     /* KEYVISUAL */
     keyvisualGallery();
+    /* PHILOSOPHY */
+    philoGallery();
     /* BEST SELLERS */
     sellersSlide();
     /* RECOMMEND PRODUCTS */
@@ -20,35 +22,11 @@ $(document).ready(function(){
         $('html, body').animate({scrollTop: mainPhilosophyTop}, 'slow');
     });
 
-
-    /* PHILOSOPHY */
-    $('.philo_slide_long').slick({
-        prevArrow: $('.philo_nav .comm_prev'),
-        nextArrow: $('.philo_nav .comm_next'),
-        speed: 800,
-        infinite: true,
-        autoplay: false,
-        autoplaySpeed: 200,
-        asNavFor: '.philo_slide_long, .philo_slide_square'
-        // slide: $('.philo_slide_content')
-    })
-    $('.philo_slide_content').slick({
-        arrows: false,
-        speed: 800,
-        // infinite: true,
-        asNavFor: '.philo_slide_long, .philo_slide_square'
-        // slide: $('.philo_slide_content')
-    })
-    $('.philo_slide_square').slick({
-        arrows: false,
-        speed: 800,
-        // infinite: true,
-        asNavFor: '.philo_slide_long, .philo_slide_square'
-        // slide: $('.philo_slide_content')
-    })
-    
-
-
+    // scroll 할 때 opacity: 1
+    // 모든 .section { opacity: 0; }을 적용, 스크롤에 
+    $(window).on('scroll', function() {
+        // console.log($(this).scrollTop(), $(window).height(), $(document).height())
+    });
 }); // END
 
 
@@ -59,7 +37,7 @@ function keyvisualGallery() {
     var $visualSlideItem = $visualSlide.find('.visual_slide_item');
     var $visualContentCell = $('.visual_content_cell');
     var $visualContentCellTxt = $visualContentCell.find('.inner').children();
- 
+    
     $('.visual_gallery').slick({
         fade: true,
         speed: 2500,
@@ -73,7 +51,7 @@ function keyvisualGallery() {
     .on('init reInit beforeChange', function(event, slick, currentSlide, nextSlide) {
         $visualSlideItem.removeClass('visualOn');
         $visualSlide.eq(nextSlide).find($visualSlideItem).addClass('visualOn');
-
+        
         $('.visual_content_cell > .inner > *.visualTxt').removeClass('visualTxt');
         $visualSlide.eq(nextSlide).find($visualContentCellTxt).each(function(i) {
             $(this).delay(i * 160).queue(function() {
@@ -90,11 +68,121 @@ function keyvisualGallery() {
             $visualNavPage.text((nextSlide + 1) + ' / ' + visualSlideTotal)
         }
     }); // slick End
-
+    
     $visualSlide.eq(0).find($visualSlideItem).addClass('visualOn');
     $visualSlide.eq(0).find($visualContentCellTxt).addClass('visualTxt');
+    
+} // keyvisualGallery() END
 
-} // philoGallery() END
+
+/* PHILOSOPHY */
+function philoGallery() {
+    $('.philo_slide_long').slick({
+        prevArrow: $('.philo_nav .comm_prev'),
+        nextArrow: $('.philo_nav .comm_next'),
+        draggable: false,
+        speed: 800,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 6500,
+        asNavFor: '.philo_slide_content, .philo_slide_square',
+        responsive: [{
+            breakpoint: 540,
+            settings: {
+                draggable: true
+            }
+        }]
+    });
+
+    var $philoContent = $('.philo_slide_content');
+    var $philoContentCell = $philoContent.find('.philo_content_cell');
+    var $philoContentCellTxt = $philoContentCell.children();
+
+    $('.philo_slide_content').slick({
+        draggable: false,
+        fade: true,
+        arrows: false,
+        speed: 800,
+        infinite: true,
+        asNavFor: '.philo_slide_long, .philo_slide_square'
+    }).on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+        $('.philo_content_cell > *.philoTxt').removeClass('philoTxt');
+        $philoContent.find($philoContentCellTxt).each(function(i) {
+           $(this).delay(i * 160).queue(function() {
+                $(this).addClass('philoTxt').dequeue();
+            })
+       })
+    })
+
+    $('.philo_slide_square').slick({
+        draggable: false,
+        arrows: false,
+        speed: 800,
+        infinite: true,
+        asNavFor: '.philo_slide_long, .philo_slide_content'
+    })
+    
+    $philoContentCellTxt.addClass('philoTxt')
+} // philoGallery () END
+
+
+/* BEST SELLERS */
+function sellersSlide() {
+    var $bestSellers = $('.main_sellers');
+    var $sellersImg = $('.sellers_img_item');
+    var $sellersCont = $('.sellers_cell_txt');
+    var $sellersBtn = $bestSellers.find('.comm_nav_arrow');
+    
+    currentIdx = 0;
+    total = $sellersImg.length;
+    
+    // 초기 CSS 설정
+    $sellersImg.eq(currentIdx).addClass('sellers');
+    $sellersCont.eq(currentIdx).children().addClass('sellers');
+    
+    function gotoSlide(index) {
+        $sellersImg.removeClass('sellers').eq(index).addClass('sellers');
+        
+        $sellersCont.children().removeClass('sellers');
+        $sellersCont.eq(index).children().each(function(i){
+            $(this).delay(i * 200).queue(function(){
+                $(this).addClass('sellers').dequeue();
+            })
+        });
+        
+        currentIdx = index;
+        //[참고::delay after addClass in each loop] https://stackoverflow.com/questions/40450246/jquery-delay-after-addclass-in-each-loop
+    }
+    
+    var nextIdx;
+    var prevIdx;
+    $sellersBtn.on('click', 'a', function(){
+        nextIdx = (currentIdx + 1) % total;
+        prevIdx = (currentIdx + (total - 1)) % total;
+        if($(this).hasClass('comm_prev')) {
+            gotoSlide(prevIdx);
+        } else {
+            gotoSlide(nextIdx);
+        }
+        return false;
+    });
+    
+    function sellersAutoSlide() {
+        timer = setInterval(function(){
+            nextIdx = (currentIdx + 1) % total;
+            gotoSlide(nextIdx);
+        }, 5000);
+    };
+    
+    function sellersStopSlide() {
+        clearInterval(timer)
+    }
+    $bestSellers.on({
+        mouseenter : sellersStopSlide,
+        mouseleave : sellersAutoSlide
+    });
+    
+} // sellersSlide() END
 
 
 /* RECOMMEND PRODUTS */
@@ -108,8 +196,8 @@ function productsSlide() {
     
     $(window).on('resize', function(){
         proSlideListW = Math.floor($('.products_slide_list').width()); // resize 필요
-    }); // resize
-    
+    }).trigger('resize');
+
     $proBtn.on('click', 'a', function() {
         if($(this).hasClass('comm_next')) {
             proNextSlide();
@@ -155,62 +243,3 @@ function productsSlide() {
         })
         
 } // produtsSlide() END   
-
-
-/* BEST SELLERS */
-function sellersSlide() {
-    var $bestSellers = $('.main_sellers');
-    var $sellersImg = $('.sellers_img_item');
-    var $sellersCont = $('.sellers_cell_txt');
-    var $sellersBtn = $bestSellers.find('.comm_nav_arrow');
-
-    currentIdx = 0;
-    total = $sellersImg.length;
-
-    // 초기 CSS 설정
-    $sellersImg.eq(currentIdx).addClass('sellers');
-    $sellersCont.eq(currentIdx).children().addClass('sellers');
-
-    function gotoSlide(index) {
-        $sellersImg.removeClass('sellers').eq(index).addClass('sellers');
-
-    $sellersCont.children().removeClass('sellers');
-    $sellersCont.eq(index).children().each(function(i){
-        $(this).delay(i * 200).queue(function(){
-            $(this).addClass('sellers')
-        }).stop();
-    });
-
-    currentIdx = index;
-        //[참고::delay after addClass in each loop] https://stackoverflow.com/questions/40450246/jquery-delay-after-addclass-in-each-loop
-    }
-
-    var nextIdx;
-    var prevIdx;
-    $sellersBtn.on('click', 'a', function(){
-        nextIdx = (currentIdx + 1) % total;
-        prevIdx = (currentIdx + (total - 1)) % total;
-        if($(this).hasClass('comm_prev')) {
-            gotoSlide(prevIdx);
-        } else {
-            gotoSlide(nextIdx);
-        }
-        return false;
-    });
-
-    function sellersAutoSlide() {
-        timer = setInterval(function(){
-            nextIdx = (currentIdx + 1) % total;
-            gotoSlide(nextIdx);
-        }, 5000);
-    };
-
-    function sellersStopSlide() {
-        clearInterval(timer)
-    }
-    $bestSellers.on({
-        mouseenter : sellersStopSlide,
-        mouseleave : sellersAutoSlide
-    });
-
-} // sellersSlide() END
