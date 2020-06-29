@@ -1,19 +1,19 @@
-// 공통으로 쓰일 변수 const
-var currentIdx; // 현재 인덱스
-var total; // slide 총 수
-var timer = ''; // setInterval 
-var speed = 0;
-var wW; // window.width()
+// // 공통으로 쓰일 변수 const
+// var currentIdx; // 현재 인덱스
+// var total; // slide 총 수
+// var timer = ''; // setInterval 
+// var speed = 0;
+// var wW; // window.width()
 
 console.log('main')
 $(document).ready(function(){
-    /* KEYVISUAL */
+    /* main_visual */
     keyvisualGallery();
-    /* PHILOSOPHY */
+    /* main_philosophy */
     philoGallery();
-    /* BEST SELLERS */
+    /* main_sellers */
     sellersSlide();
-    /* RECOMMEND PRODUCTS */
+    /* main_products */
     productsSlide();
     
     // scroll_down
@@ -22,16 +22,30 @@ $(document).ready(function(){
         $('html, body').animate({scrollTop: mainPhilosophyTop}, 'slow');
     });
 
-    // scroll 할 때 opacity: 1
-    // 모든 .section { opacity: 0; }을 적용, 스크롤에 
+
     $(window).on('scroll', function() {
-        // console.log($(this).scrollTop(), $(window).height(), $(document).height())
-    });
+        var windowTop = parseInt($(window).scrollTop());
+        var windowH = parseInt($(window).innerHeight());
+        $('.section').each(function() {
+            var sectionTop = parseInt($(this).offset().top);
+            var sectionH = parseInt($(this).innerHeight());
+            // sectionTop >= 0 초기화할때 바로 mainOn해주기위해서!
+            if((sectionTop >= 0) && (sectionTop + (sectionH)/3) < (windowTop + windowH)) {
+                $(this).addClass('mainOn');
+            }
+        })
+    }).trigger('scroll');
+
+
+
+    /* main_board */
+    
+
 }); // END
 
 
 
-/* KEYVISUAL */
+/* main_visual */
 function keyvisualGallery() {
     var $visualSlide = $('.visual_slide');
     var $visualSlideItem = $visualSlide.find('.visual_slide_item');
@@ -75,7 +89,7 @@ function keyvisualGallery() {
 } // keyvisualGallery() END
 
 
-/* PHILOSOPHY */
+/* main_philosophy */
 function philoGallery() {
     $('.philo_slide_long').slick({
         prevArrow: $('.philo_nav .comm_prev'),
@@ -126,27 +140,28 @@ function philoGallery() {
 } // philoGallery () END
 
 
-/* BEST SELLERS */
+/* main_sellers */
 function sellersSlide() {
     var $bestSellers = $('.main_sellers');
     var $sellersImg = $('.sellers_img_item');
     var $sellersCont = $('.sellers_cell_txt');
     var $sellersBtn = $bestSellers.find('.comm_nav_arrow');
     
-    currentIdx = 0;
-    total = $sellersImg.length;
+    var currentIdx = 0;
+    var total = $sellersImg.length;
     
     // 초기 CSS 설정
     $sellersImg.eq(currentIdx).addClass('sellers');
     $sellersCont.eq(currentIdx).children().addClass('sellers');
     
     function gotoSlide(index) {
-        $sellersImg.removeClass('sellers').eq(index).addClass('sellers');
+        $('.sellers_img_item.sellers').removeClass('sellers');
+        $sellersImg.eq(index).addClass('sellers');
         
         $sellersCont.children().removeClass('sellers');
         $sellersCont.eq(index).children().each(function(i){
             $(this).delay(i * 200).queue(function(){
-                $(this).addClass('sellers').dequeue();
+                $(this).addClass('sellers').stop(true, false);
             })
         });
         
@@ -171,7 +186,7 @@ function sellersSlide() {
         timer = setInterval(function(){
             nextIdx = (currentIdx + 1) % total;
             gotoSlide(nextIdx);
-        }, 5000);
+        }, 6500);
     };
     
     function sellersStopSlide() {
@@ -185,14 +200,14 @@ function sellersSlide() {
 } // sellersSlide() END
 
 
-/* RECOMMEND PRODUTS */
+/* main_products */
 function productsSlide() {
     var $proSlide = $('.products_slide');
     var $proSlideList = $proSlide.find('.products_slide_list');
     var proSlideListW;
     var $proBtn = $('.products_nav');
 
-    speed = 800;
+    var speed = 800;
     
     $(window).on('resize', function(){
         proSlideListW = Math.floor($('.products_slide_list').width()); // resize 필요

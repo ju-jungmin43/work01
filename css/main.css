@@ -19,6 +19,9 @@
 /*-------------------------------------------------------------------
     ## common
 -------------------------------------------------------------------*/
+/* section */
+.section { opacity: 0; }
+.section.mainOn { opacity: 1; -webkit-transition: opacity .6s; -moz-transition: opacity .6s; -o-transition: opacity .6s; transition: opacity .6s; }
 
 /* square_more */
 .square_more { display: inline-block; border-radius: 5px; border: 2px solid #ccc; font-size: 12px; font-weight: 600; padding: 20px 33px; margin-top: 7%; -webkit-transition: all 0.5s; -moz-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
@@ -134,7 +137,7 @@
 
 .philo_slide_square { position: absolute; bottom: 0; right: 0; width: 384px; height: 397px; overflow: hidden; }
 .philo_slide_square li { float: left; width: 100%; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; }
-.philo_nav { right: 0; left: 450px; bottom: 15px; }
+.main_philo_nav { right: 0; left: 450px; bottom: 15px; }
 /* .philo_slide_square li img { float: right; } */
 /*
  * 지정된 넓이와 높이 일 때 ==> background-image :: 중요한 이미지가 아닐때 사용
@@ -162,16 +165,17 @@
 .sellers_gallery .sellers_slide { position: relative; top: 0; left: 0; width: 100%; height: 100%; }
 .sellers_gallery .sellers_slide .sellers_slide_list { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 .sellers_slide_img { position: absolute; top: 0; left: 0; width: 50%; height: 100%; }
-.sellers_img_item { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; opacity: 0; visibility: hidden; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s; }
-.sellers_img_item.sellers{ opacity: 1; visibility: visible; }
+.sellers_img_item { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; opacity: 0; visibility: hidden; }
+
+.sellers_img_item.sellers{ opacity: 1; visibility: visible; -webkit-transition: visible 0s, opacity 1s; -moz-transition: visible 0s, opacity 1s; -o-transition: visible 0s, opacity 1s; transition: visible 0s, opacity 1s;  }
 .sellers_slide_content { position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: url('../images/main/sellers/sellers_bg.jpg')center no-repeat; background-size: cover; padding: 15px; }
 .sellers_slide_content .sellers_content_cell { display: table; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 1); }
 .sellers_cell_txt { display: table-cell; text-align: center; vertical-align: middle; }
 .sellers_cell_txt h3 { font-size: 22px; font-weight: 500; line-height: 1.7em; padding-bottom: 2%; }
 .sellers_cell_txt b { padding-bottom: 4%; }
 .sellers_cell_txt p { padding-bottom: 1%; }
-.sellers_cell_txt > * { position: relative; z-index: 1; opacity: 0; visibility: hidden; -webkit-transform: translate(0,25%); -moz-transform: translate(0,25%); -o-transform: translate(0,25%); -ms-transform: translate(0,25%); transform: translate(0,25%); }
-.sellers_cell_txt >.sellers { opacity: 1; visibility: visible; -wekbit-transform: translate(0,0%); -moz-transform: translate(0,0%); -o-transform: translate(0,0%); -ms-transform: translate(0,0%); transform: translate(0,0%); -webkit-transition: all 2s; -o-transition: all 2s; transition: all 2s; }
+.sellers_cell_txt > * { position: relative; z-index: 1; opacity: 0; visibility: hidden; -webkit-transform: translate(0,30px); -moz-transform: translate(0,30px); -o-transform: translate(0,30px); -ms-transform: translate(0,30px); transform: translate(0,30px); }
+.sellers_cell_txt >.sellers { opacity: 1; visibility: visible; -wekbit-transform: translate(0,0); -moz-transform: translate(0,0); -o-transform: translate(0,0); -ms-transform: translate(0,0); transform: translate(0,0); -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s; }
 /*-------------------------------------------------------------------
     ## main_products
 -------------------------------------------------------------------*/
@@ -254,7 +258,6 @@
 .board_content_news::before { display: block; content: ''; height: 100%; width: 1px; background-color: #ddd; position: absolute; top: 0; right: 0; }
 
 .board_content .board_content_cell { position: relative; }
-
 .main_board .board_title { float: left; font-size: 18px; font-weight: 500; }
 
 .board_content_news .board_title { padding-right: 10%; }

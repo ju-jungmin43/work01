@@ -108,7 +108,7 @@ footer
     .philo_slide img { max-width: 80%; }
     .philo_slide_square { width: 300px; height: auto; }
     .philo_slide_square img { width: 300px; }
-    .philo_nav { left: 400px; }
+    .main_philo_nav { left: 400px; }
     /* .philo_slide_square img { width: 80%; max-width: 100%; display: block; } */
     /* .philo_wrap_inner { margin: 0; margin-left: calc(100% - 887px); } */
     /* .philo_slide_long { width: 571px; height: 100%; }
@@ -215,7 +215,7 @@ footer
     .philo_slide_square { display: none; }
     .philo_slide_content li .philo_content_cell { padding: 0 90px; }
     .square_more_under { margin-top: 2%; }
-    .philo_nav { left: auto; right: 10px; bottom: -480px; }
+    .main_philo_nav { left: auto; right: 10px; bottom: -480px; }
     /* main_message */
     .message_wrap .message_ceo .ceo_img { right: -63px; }
     .message_wrap .message_ceo .ceo_sign { right: 0; }

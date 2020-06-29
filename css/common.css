@@ -160,8 +160,10 @@ button[name="search_icon"] { border: none; background-color: transparent; positi
 .footer_info span { font-size: 13px; color: #666; letter-spacing: -0.025em; }
 .footer_info a:hover { color: #aaa; }
 
+/* #footer.footerFixed { position: fixed; width: 100%; right: 0; left: 0; } */
+
 /* scroll_top */
-.scroll_top { position: absolute; top: -80px; right: 15px; z-index: 9; width: 60px; height: 65px; background-color: #000; padding-top: 15px; text-align: center; cursor: pointer; -webkit-transition: background-color 0.4s; -moz-transition: background-color 0.4s; -o-transition: background-color 0.4s; transition: background-color 0.4s; }
+.scroll_top { position: absolute; top: -80px; right: 15px; z-index: 999; width: 60px; height: 65px; background-color: #000; padding-top: 15px; text-align: center; cursor: pointer; -webkit-transition: background-color 0.4s; -moz-transition: background-color 0.4s; -o-transition: background-color 0.4s; transition: background-color 0.4s; }
 .scroll_top.scrollTopFixed { position: fixed; bottom: 15px; right: 50px; top: auto; }
 .scroll_top.scrollTopHide { display: none; }
 .scroll_top > span { display: block; padding-top: 8px; font-size: 12px; font-weight: 600; color: #fff; letter-spacing: 0.25em; }
