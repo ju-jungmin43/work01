@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="css/fonts/font.css" />
     <link rel="stylesheet" href="css/fonts/all.css" />
     <script src="js/jquery-3.1.0.min.js"></script>
-    <script src="js/sub.js"></script>
-    <!-- <script src="js/common.js"></script> -->
     <script>
     $(function(){
         includeLayout();
@@ -40,7 +38,7 @@
 <div id="skipNav"><a href="/">본문바로가기</a></div>
 <div id="wrapper" class="cf">
     <header data-include="include/header.html"></header>
-    <div id="container" class="container philo_container">
+    <div id="container" class="container philo_container --full_height_scroll">
         <div class="wrap philo_wrap">
             <div id="section01" class="philo_section philo_section_01 --full_height">
                 <div class="philo_content">
@@ -120,8 +118,8 @@
 
     <footer data-include="include/footer.html"></footer>
 </div>
+<script src="js/sub.js"></script>
 <script>
-
 // $(function(){
 //     // $(window).on('beforeunload', function() {
 //     //     $(window).scrollTop(0); 

@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="css/fonts/font.css" />
     <link rel="stylesheet" href="css/fonts/all.css" />
     <script src="js/jquery-3.1.0.min.js"></script>
-    <!-- <script src="js/common.js"></script> -->
-    <script src="js/sub.js"></script>
     <script>
         $(function(){
             includeLayout();
@@ -124,46 +122,53 @@
                                     </div><!-- form_facebook -->
                                     <form class="form_section">
                                         <div class="form_row cf">
-                                            <p class="form_column">
+                                            <div class="form_column">
                                                 <label for="name01">Name</label>
                                                 <input type="text" id="name01" class="user_name user" value="" required />
-                                                <!-- <p class="required_box">required_box</p> -->
-                                            </p>
-                                            <p class="form_column">
+                                                <p class="required_box">The field is required.</p>
+                                            </div>
+                                            <div class="form_column">
                                                 <label for="mobile">Mobile</label>
                                                 <input type="tel" id="mobile" class="user_mobile user" value="" required />
-                                            </p>
+                                                <p class="required_box">The field is required.</p>
+                                            </div>
                                         </div><!-- form_row -->
                                         <div class="form_row">
-                                            <p class="form_column">
+                                            <div class="form_column">
                                                 <label for="email01">E-mail</label>
                                                 <input type="email" id="email01" class="user_email user" value="" />
-                                            </p>
-                                            <p class="form_column">
+                                                <p class="required_box">The field is required.</p>
+                                            </div>
+                                            <div class="form_column">
                                                 <label for="message01">Any messages?</label>
                                                 <input type="text" id="message01" class="user_message user" value="" />
-                                            </p>
+                                            </div>
                                         </div><!-- form_row -->
                                         <div class="form_row -address_form">
-                                            <p class="form_column">
+                                            <div class="form_column">
                                                 <label for="address01">Address (Free delivery is available only to South Korea)</label>
                                                 <input type="text" id="address01" class="address" value="" required />
                                                 <a class="check_btn_address check_btn" href="#">Postcode Search</a>
-                                            </p>
-                                            <p class="form_column">
+                                                <p class="required_box">The field is required.</p>
+                                            </div>
+                                            <div class="form_column">
                                                 <input type="text" class="address" value="" required />
+                                                <p class="required_box">The field is required.</p>
                                                 <input type="text" class="address" value="" required />
-                                            </p>
+                                                <p class="required_box">The field is required.</p>
+                                            </div>
                                         </div><!-- form_row -->
                                         <div class="all_check">
                                             <input type="checkbox" id="allcheck01" class="all_check_img" value="" required />
                                             <label for="allcheck01">
                                                 <span class="checkbox_img"></span>
                                                 <span>I agree with the <a href="#" target="_blank">privacy policy</a><span style="color: #f20000;"> (Essential)</span></span>
+                                                <p class="required_box">The field is required.</p>
                                             </label>
                                         </div><!-- all_check -->
                                         <div class="apply_btn">
                                             <button id="apply_post01" class="apply_post"><span>Apply</span></button>
+                                            <p class="required_box">One or more field have an error. Please check and try again.</p>
                                         </div><!-- apply_btn -->
                                     </form>
                                 </div><!-- form_kit_wrap -->
@@ -171,24 +176,27 @@
                                     <h3>Lan's Academy</h3>
                                     <form class="form_section">
                                         <div class="form_row">
-                                            <p class="form_column">
+                                            <div class="form_column">
                                                 <label for="name02">Name</label>
                                                 <input type="text" id="name02" class="user_name user" value="" required />
-                                            </p>
-                                            <p class="form_column">
+                                                <p class="required_box">The field is required.</p>
+                                            </div>
+                                            <div class="form_column">
                                                 <label for="mobile02">Mobile</label>
                                                 <input type="tel" id="mobile02" class="user_mobile user" value="" required />
-                                            </p>
+                                                <p class="required_box">The field is required.</p>
+                                            </div>
                                         </div><!-- form_row -->
                                         <div class="form_row">
-                                            <p class="form_column">
+                                            <div class="form_column">
                                                 <label for="email02">E-mail</label>
                                                 <input type="email" id="email02" class="user_email user" />
-                                            </p>
-                                            <p class="form_column">
+                                            </div>
+                                            <div class="form_column">
                                                 <label for="date02">When do you want to come?</label>
                                                 <input type="text" id="date02" class="user_date user" value="" required />
-                                            </p>
+                                                <p class="required_box">The field is required.</p>
+                                            </div>
                                         </div><!-- form_row -->
                                         <div class="form_row -age_form">
                                                 <fieldset>
@@ -208,22 +216,26 @@
                                                     <input type="radio" id="70s" class="age_radio" name="age" value="" required />
                                                     <label for="70s"><span class="radio_img"></span>70s or older</label>
                                                 </fieldset>
+                                                <p class="required_box">The field is required.</p>
                                         </div>
                                         <div class="form_row">
-                                            <p class="form_column">
+                                            <div class="form_column">
                                                 <label for="opinion">Feel free to tell us more about you. (your skin condition, expectation, languages you understand, nationality, opinions, and so on.)</label>
                                                 <textarea form="opinion" class="opinion_textarea" rows="5" required></textarea>
-                                            </p>
+                                            </div>
+                                            <p class="required_box">The field is required.</p>
                                         </div>
                                         <div class="all_check">
                                                 <input type="checkbox" id="allcheck02" class="all_check_img" value="" required />
                                                 <label for="allcheck02">
                                                     <span class="checkbox_img"></span>
                                                     <span>I agree with the <a href="#" trget="_blank">privacy policy</a><span style="color: #f20000;"> (Essential)</span></span>
+                                                    <p class="required_box">The field is required.</p>
                                                 </label>
                                             </div><!-- all_check -->
                                         <div class="apply_btn">
                                             <button id="apply_post02" class="apply_post"><span>Apply</span></button>
+                                            <p class="required_box">One or more field have an error. Please check and try again.</p>
                                         </div>
                                     </form>
                                 </div><!-- form_academy_wrap -->
@@ -236,6 +248,7 @@
     </div><!-- #container container community_container -->
     <footer data-include="include/footer.html"></footer>
 </div>
+<script src="js/sub.js"></script>
 </body>
 </html>
 
