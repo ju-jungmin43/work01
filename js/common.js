@@ -2,7 +2,7 @@
 var wW, wH;
 
 
-$(document).ready(function(){
+$(document).ready(function() {
     console.log('common.js');
 
     var $header = $('#header');
@@ -15,7 +15,7 @@ $(document).ready(function(){
     $('#skipNav').focusin(function() {
         $(this).animate({top: '0px'}).css({display: 'block'})
     }).focusout(function() {
-        $(this).css({top: '-50px', display: 'none'});
+        $('#skipNav').css({top: '-50px', display: 'none'});
     });
 
 
@@ -23,8 +23,6 @@ $(document).ready(function(){
         wW = $window.width();
         wH = $window.height();
 
-
-        fullHeight();
         navMenu();
     }).trigger('resize');
 
@@ -34,21 +32,20 @@ $(document).ready(function(){
         $('html, body').stop().animate({scrollTop : 0}, 'slow');
     });
 
-    $window.on('scroll', function(){
+    $window.on('scroll', function() {
         var wTop = $window.scrollTop();
-
         if(wTop > $header.height()) {
             $header.addClass('headerFixed');
         } else {
             $header.removeClass('headerFixed');
         }
 
+        // scroll_top
         if( wTop < $document.height() - $window.height() - $footer.height() - ($scrollTop.height()*2) ){
             $scrollTop.addClass('scrollTopFixed');
         } else {
             $scrollTop.removeClass('scrollTopFixed');
         }
-
         if(wTop < $window.height()) {
             $scrollTop.addClass('scrollTopHide');
         } else {
@@ -58,12 +55,7 @@ $(document).ready(function(){
     }).trigger('scroll');;
     
         
-     
-        
-    function fullHeight(){
-        var containerH = $('.container').css('padding-top').replace(/[^-\d\.]/g, '');
-        $('.--full_height').css({ height: (wH - containerH)});
-    }
+
     
     function navMenu() {
         var $mainMenu = $('.main_menu');

@@ -1,12 +1,13 @@
 // // 공통으로 쓰일 변수 const
 // var currentIdx; // 현재 인덱스
 // var total; // slide 총 수
-// var timer = ''; // setInterval 
-// var speed = 0;
+var timer = ''; // setInterval 
+var speed = 0;
 // var wW; // window.width()
 
-console.log('main')
 $(document).ready(function(){
+    console.log('main.js');
+    
     /* main_visual */
     keyvisualGallery();
     /* main_philosophy */
@@ -16,6 +17,16 @@ $(document).ready(function(){
     /* main_products */
     productsSlide();
     
+    $(window).on('resize', function() {
+        fullHeight();
+    }).trigger('resize');
+
+    function fullHeight(){
+        var wH = $(window).height();
+        var containerH = $('.container').css('padding-top').replace(/[^-\d\.]/g, '');
+        $('.--full_height').css({ height: (wH - containerH)});
+    }
+
     // scroll_down
     $('.scroll_down').on('click', function() {
         var mainPhilosophyTop = $('.main_philosophy').offset().top;
