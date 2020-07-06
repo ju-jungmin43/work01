@@ -103,8 +103,8 @@ function keyvisualGallery() {
 /* main_philosophy */
 function philoGallery() {
     $('.philo_slide_long').slick({
-        prevArrow: $('.philo_nav .comm_prev'),
-        nextArrow: $('.philo_nav .comm_next'),
+        prevArrow: $('#philoPrev'),
+        nextArrow: $('#philoNext'),
         draggable: false,
         speed: 800,
         infinite: true,

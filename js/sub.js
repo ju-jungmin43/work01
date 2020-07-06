@@ -6,7 +6,47 @@ $(document).ready(function(){
    
     philoWrap();
 
+    $('.form_kit_btn').addClass('commuTitle').find('a').addClass('commuTitle');
 
+    $('.form_btn').on('click', 'a', function() {
+        var commuFormTop = $('.community_form_title').offset().top - $('#header').height();
+        // $('html, body').animate({scrollTop : commuFormTop}, 'slow'); 
+        if($(this).parent().hasClass('form_kit_btn')) {
+            $('.form_kit_wrap').css({display: 'block'});
+            $('.form_academy_wrap').css({display: 'none'});
+        } else {
+            $('.form_academy_wrap').css({display: 'block'});
+            $('.form_kit_wrap').css({display: 'none'});
+        }
+        $('.form_btn a.commuTitle').removeClass('commuTitle');
+        $('.form_btn.commuTitle').removeClass('commuTitle')
+        $(this).addClass('commuTitle');
+        $(this).parent().addClass('commuTitle')
+        return false;
+    })
+        // [Kit]정규표현식
+        // name[required]
+        // mobile[required]
+        // email[required]
+        // messages
+        // address 3개 모두다[required]
+        // agree[required]
+        // apply 총확인
+
+        var inputVal = $('input').val();
+        if(inputVal == ''/* && 정규표현식에 맞지 않다*/ ) {
+            // required_box {display: block; }
+        }
+
+        // [Academy]정규표현식
+        // name[required]
+        // mobile[required]
+        // email
+        // date[required]
+        // age[required]
+        // text[required]
+        // agree[required]
+        // apply 총확인
 
 
 
@@ -54,7 +94,6 @@ function philoWrap() {
                         offsetTop += wH;
                     }
                 }
-                // $('#footer.footerFixed').removeClass('footerFixed');
             } else {
                 // console.log(philoIdx, 'down')
                 if(philoIdx < (philoTotal - 1)) { // 0 1 2 더이상스크롤방지
@@ -117,8 +156,3 @@ function Sub2skroll(){
 
 
 /* sub4.html */
-
-
-
-
-  
