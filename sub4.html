@@ -10,7 +10,7 @@
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Lanbelle" />
     <meta property="og:url" content="주소" />
-    <meta prpoerty="og:type" content="website" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="Lanbelle" />
     <meta property="og:description" content="프리미엄 천연화장품, 타마누, 기능성 화장품, 임산부용 화장품, 아기 화장품, 베이비용 화장품, 남성용 화장품, 기능성 화장품, 피부 트러블, 아토피, 여드름, 여드름자국, 건선" />
     <meta name="twitter:title" content="Lanbelle" />
@@ -18,7 +18,7 @@
     <link rel="icon" href="images/favicon/cropped-favicon-32x32.jpg" sizes="32x32" />
     <link rel="icon" href="images/favicon/cropped-favicon-192x192.jpg" sizes="192x192" />
     <link rel="apple-touch-icon-precomposed" href="images/favicon/cropped-favicon-180x180.jpg" />
-    <meta name="masapplication-TileImage" href="images/favicon/cropped-favicon-270x270.jpg" />
+    <meta name="masapplication-TileImage" content="images/favicon/cropped-favicon-270x270.jpg" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/common.css" />
     <!-- <link rel="stylesheet" href="css/main.css" /> -->
@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="css/fonts/font.css" />
     <link rel="stylesheet" href="css/fonts/all.css" />
     <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/common.js"></script>
     <script>
         $(function(){
             includeLayout();
@@ -50,10 +51,10 @@
     <header data-include="include/header.html"></header>
     <div id="container" class="container community_container">
         <div class="wrap community_wrap">
-            <div class="sub_head community_head">
+            <div class="sub_head">
                 <h2>LANS'S ACADEMY</h2>
             </div>
-            <div class="sub_body community_body">
+            <div class="sub_body">
                 <div class="community_body_bg">
                     <div class="inner">
                         <div class="community_content">
@@ -120,7 +121,7 @@
                                 </li>
                             </ul>
                             <div class="community_form_inner">
-                                <div class="form_kit_wrap">
+                                <div class="form_kit_wrap form_wrap">
                                     <h3>Lanbelle Skincare Kit</h3>
                                     <div class="form_facebook cf">
                                         <div class="form_facebook_content">
@@ -134,35 +135,35 @@
                                         <div class="form_row cf">
                                             <div class="form_column">
                                                 <label for="name01">Name</label>
-                                                <input type="text" id="name01" class="user_name user" value="" />
+                                                <input type="text" id="name01" class="user_name" value="" />
                                                 <p class="required_box">The field is required.</p>
                                             </div>
                                             <div class="form_column">
                                                 <label for="mobile">Mobile</label>
-                                                <input type="tel" id="mobile" class="user_mobile user" value="" />
+                                                <input type="tel" id="mobile" class="user_mobile" value="" />
                                                 <p class="required_box">The field is required.</p>
                                             </div>
                                         </div><!-- form_row -->
                                         <div class="form_row">
                                             <div class="form_column">
                                                 <label for="email01">E-mail</label>
-                                                <input type="email" id="email01" class="user_email user" value="" />
+                                                <input type="email" id="email01" class="user_email" value="" />
                                                 <p class="required_box">The field is required.</p>
                                             </div>
                                             <div class="form_column">
                                                 <label for="message01">Any messages?</label>
-                                                <input type="text" id="message01" class="user_message user" value="" />
+                                                <input type="text" id="message01" class="user_message" value="" />
                                             </div>
                                         </div><!-- form_row -->
                                         <div class="form_row -address_form">
                                             <div class="form_column">
                                                 <label for="postCode">Address (Free delivery is available only to South Korea)</label>
-                                                <input type="text" id="postCode" class="address" value="" />
+                                                <input type="text" id="postCode" class="address" value="" onclick="daumPostCode()" />
                                                 <a class="check_btn_address check_btn" href="javascript:void(0)" onclick="daumPostCode()">Postcode Search</a>
                                                 <div class="required_address"><p class="required_box">The field is required.</p></div>
                                             </div>
                                             <div class="form_column">
-                                                <input type="text" id="detailAddress" class="address" value="" />
+                                                <input type="text" id="detailAddress" class="address" value="" onclick="daumPostCode()" />
                                                 <p class="required_box">The field is required.</p>
                                                 <input type="text" id="extraAddress" class="address" value="" />
                                                 <p class="required_box">The field is required.</p>
@@ -173,57 +174,57 @@
                                             <label for="allcheck01">
                                                 <span class="checkbox_img"></span>
                                                 <span>I agree with the <a href="#" target="_blank">privacy policy</a><span style="color: #f20000;"> (Essential)</span></span>
-                                                <div class="required_check"><p class="required_box">The field is required.</p></div>
                                             </label>
+                                                <div class="required_check"><p class="required_box">The field is required.</p></div>
                                         </div><!-- all_check -->
                                         <div class="apply_btn">
-                                            <button id="apply_post01" class="apply_post"><span>Apply</span></button>
+                                            <button type="button" id="apply_post01" class="apply_post"><span>Apply</span></button>
                                             <p class="required_box required_box_apply">One or more field have an error. Please check and try again.</p>
                                         </div><!-- apply_btn -->
                                     </form>
                                 </div><!-- form_kit_wrap -->
-                                <div class="form_academy_wrap">
+                                <div class="form_academy_wrap form_wrap">
                                     <h3>Lan's Academy</h3>
                                     <form class="form_section">
                                         <div class="form_row">
                                             <div class="form_column">
                                                 <label for="name02">Name</label>
-                                                <input type="text" id="name02" class="user_name user" value="" required />
+                                                <input type="text" id="name02" class="user_name" value="" required />
                                                 <p class="required_box">The field is required.</p>
                                             </div>
                                             <div class="form_column">
                                                 <label for="mobile02">Mobile</label>
-                                                <input type="tel" id="mobile02" class="user_mobile user" value="" required />
+                                                <input type="tel" id="mobile02" class="user_mobile" value="" required />
                                                 <p class="required_box">The field is required.</p>
                                             </div>
                                         </div><!-- form_row -->
                                         <div class="form_row">
                                             <div class="form_column">
                                                 <label for="email02">E-mail</label>
-                                                <input type="email" id="email02" class="user_email user" />
+                                                <input type="email" id="email02" class="user_email" />
                                             </div>
                                             <div class="form_column">
                                                 <label for="date02">When do you want to come?</label>
-                                                <input type="text" id="date02" class="user_date user" value="" required />
+                                                <input type="text" id="date02" class="user_date" value="" required />
                                                 <p class="required_box">The field is required.</p>
                                             </div>
                                         </div><!-- form_row -->
                                         <div class="form_row -age_form">
                                                 <fieldset>
                                                     <legend>Age Group</legend>
-                                                    <input type="radio" id="10s" class="age_radio" name="age" value="" required />
+                                                    <input type="radio" id="10s" class="age_radio" name="age" value="" />
                                                     <label for="10s"><span class="radio_img"></span>10s</label>
-                                                    <input type="radio" id="20s" class="age_radio" name="age" value="" required />
+                                                    <input type="radio" id="20s" class="age_radio" name="age" value="" />
                                                     <label for="20s"><span class="radio_img"></span>20s</label>
-                                                    <input type="radio" id="30s" class="age_radio" name="age" value="" required />
+                                                    <input type="radio" id="30s" class="age_radio" name="age" value="" />
                                                     <label for="30s"><span class="radio_img"></span>30s</label>
-                                                    <input type="radio" id="40s" class="age_radio" name="age" value="" required />
+                                                    <input type="radio" id="40s" class="age_radio" name="age" value="" />
                                                     <label for="40s"><span class="radio_img"></span>40s</label>
-                                                    <input type="radio" id="50s" class="age_radio" name="age" value="" required />
+                                                    <input type="radio" id="50s" class="age_radio" name="age" value="" />
                                                     <label for="50s"><span class="radio_img"></span>50s</label>
-                                                    <input type="radio" id="60s" class="age_radio" name="age" value="" required />
+                                                    <input type="radio" id="60s" class="age_radio" name="age" value="" />
                                                     <label for="60s"><span class="radio_img"></span>60s</label>
-                                                    <input type="radio" id="70s" class="age_radio" name="age" value="" required />
+                                                    <input type="radio" id="70s" class="age_radio" name="age" value="" />
                                                     <label for="70s"><span class="radio_img"></span>70s or older</label>
                                                 </fieldset>
                                                 <p class="required_box">The field is required.</p>
@@ -231,22 +232,22 @@
                                         <div class="form_row">
                                             <div class="form_column">
                                                 <label for="opinion">Feel free to tell us more about you. (your skin condition, expectation, languages you understand, nationality, opinions, and so on.)</label>
-                                                <textarea form="opinion" class="opinion_textarea" rows="5" required></textarea>
+                                                <textarea id="opinion" class="opinion_textarea" rows="5" required></textarea>
                                             </div>
                                             <p class="required_box">The field is required.</p>
                                         </div>
                                         <div class="all_check">
-                                                <input type="checkbox" id="allcheck02" class="all_check_img" value="" required />
+                                                <input type="checkbox" id="allcheck02" class="all_check_img" value="" />
                                                 <label for="allcheck02">
                                                     <span class="checkbox_img"></span>
                                                     <span>I agree with the </span>
-                                                    <a href="#" trget="_blank">privacy policy</a>
+                                                    <a href="#" target="_blank">privacy policy</a>
                                                     <span style="color: #f20000;"> (Essential)</span>
-                                                    <div class="required_check"><p class="required_box">The field is required.</p></div>
                                                 </label>
+                                                <div class="required_check"><p class="required_box">The field is required.</p></div>
                                             </div><!-- all_check -->
                                         <div class="apply_btn">
-                                            <button id="apply_post02" class="apply_post"><span>Apply</span></button>
+                                            <button type="button" id="apply_post02" class="apply_post"><span>Apply</span></button>
                                             <p class="required_box required_box_apply">One or more field have an error. Please check and try again.</p>
                                         </div>
                                     </form>
