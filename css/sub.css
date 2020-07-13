@@ -170,8 +170,8 @@
 .community_form { position: relative; margin: -35px 30px; }
 .community_form_inner { max-width: 792px; margin: auto; padding: 108px 0 170px; }
 .community_form_title { background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-.community_form_title li a.commuTitle { color: #c0c79c; }
-.community_form_title li.commuTitle:after { width: 100%; }
+.community_form_title li a.formTitle { color: #c0c79c; }
+.community_form_title li.formTitle:after { width: 100%; }
 .community_form_title li:after { display: block; content: ''; width: 0%; height: 3px; background-color: #c0c79c; position: absolute; bottom: 0; }
 .community_form h3 { font-size: 24px; text-align: center; padding-bottom: 52px; }
 .community_form span { font-size: 14px; font-weight: 500; line-height: 1.7em; color: #666; }
@@ -203,7 +203,7 @@ label, legend { padding-bottom: 14px; font-size: 15px; font-weight: 600; color: 
 .form_column input:focus { border: 2px solid #c0c79c; }
 
 /* required_box */
-.required_box { display: block; width: 100%; background: #fff3b6; border-radius: 5px; padding: 10px 15px; font-size: 14px; font-weight: 400; color: #666; margin: 5px 0 0; }
+.required_box { display: none; width: 100%; background: #fff3b6; border-radius: 5px; padding: 10px 15px; font-size: 14px; font-weight: 400; color: #666; margin: 5px 0 0; }
 .required_address { width: 100%; float: left; }
 .required_address .required_box { width: 170px; }
 .-address_form .required_box { margin: 0 0 10px; }
@@ -238,7 +238,7 @@ button.apply_post:hover span { color: #fff; }
 
 
 /* form_academy_wrap */
-.form_academy_wrap { display: none; }
+.form_wrap { display: none; }
 input.user_date { padding: 0 50px 0 10px; position: relative;background: url('../images/sub/04_community/icon-datepicker.png')98% center no-repeat; }
 input[type="radio"] { visibility: hidden; opacity: 0; position: absolute; }
 input[type="radio"] + label .radio_img { border: none; background: url('../images/sub/04_community/checkbox.png') -134px 0; display: inline-block; width: 20px; height: 20px; vertical-align: -5px; margin-right: 3px; }
@@ -248,6 +248,7 @@ input.age_radio + label { float: left; padding-bottom: 0; margin-right: 25px; co
 textarea.opinion_textarea { width: 100%; height: 170px; border: 2px solid #ccc; border-radius: 5px; resize: none; padding: 10px; font-size: 15px; color: #666; font-family: 'Gotham', sans-serif; }
 textarea.opinion_textarea:focus { border: 2px solid #c0c79c; }
 
+.formOn { display: block; }
 
 /*-------------------------------------------------------------------
     05_shop
