@@ -1,12 +1,13 @@
 // const
 var wH; // window height
 
-$(document).ready(function(){
+$(document).ready(function() {
     console.log('sub.js')
    
     philoWrap();
 
-    $('.form_kit_wrap').addClass('formOn');
+    // $('.form_kit_wrap').addClass('formOn');
+    $('.form_academy_wrap').addClass('formOn');
     $('.form_kit_btn').addClass('formTitle').find('a').addClass('formTitle');
 
     $('.form_btn').on('click', 'a', function() {
@@ -28,114 +29,159 @@ $(document).ready(function(){
         return false;
     })
 
-  
-        // [Kit]정규표현식
+// form_kit_wrap, form_academy_wrap 공통 변수
+var $requiredBox = $('.formOn .required_box');
+var flag = false;
 
-        // apply 총확인
-        var inputVal = $('input').val();
-        var formApply = $('#apply_post01');
+    // form_kit_wrap name, mobile, e-mail 확인
+   function checkForm(user, regex) {
+        if(user.val() === '' || !regex.test(user.val())) {
+            user.next($requiredBox).addClass('requiredOk')
+            user.focus();
+            console.log(user.next())
+            return false;
+        } else {
+            user.next($requiredBox).removeClass('requiredOk');
+        }
+    }
+    // form_kit_wrap 주소 확인
+    function checkAddress(addr,regex) {
+        for(var i = 0; i < addr.length; i++) {
+            var allAddr = $(addr[i]);
+            if(allAddr.val() === '' || !regex.test(allAddr.val())) {
+                allAddr.next($requiredBox).addClass('requiredOk');
+                allAddr.next().next().find($requiredBox).addClass('requiredOk');
+                return false;
+            } else {
+                allAddr.next($requiredBox).removeClass('requiredOk');
+                allAddr.next().next().find($requiredBox).removeClass('requiredOk');
+            }
+        }
+    }
+    // checkbox 체크 확인
+    function checkedBox(userCheck) {
+        if(!$(userCheck).prop('checked')) {
+            $('.required_check').find($requiredBox).addClass('requiredOk');
+            return false;
+        } else {
+            $('.required_check').find($requiredBox).removeClass('requiredOk');
+        }
+    }
+    // submit button.required_box_apply 체크 확인
+    function submitCheck(requiredBoxApply) {
+        if($('.formOn .required_box').not('.required_box_apply').hasClass('requiredOk')) {
+            $(requiredBoxApply).css({display: 'block'});
+            return false;
+        } else {
+            $(requiredBoxApply).css({display: 'none'});
+        }
+    }
 
-        formApply.click(function() {
+
+        $('#apply_post01').click(function() {
+            console.log('#01')
             // name[required]
             var regexName = /^[가-힣]+$/; // ㄱㄴㄷ.. , 띄어쓰기 불가능.
-            var userName = $('#name01');
+            var $userName01 = $('#name01');
            
             // mobile[required]
             var regexMobile = /^[0-9]{2,3}[0-9]{3,4}[0-9]{4}$/; // 0000000000 만 받는다.
-            // var regexMobile = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/; // 000-000-0000 만 받는다.
+            // var replaceMobile = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/; // 000-000-0000 만 받는다.
             // var regexMobile = /^[0-9]+$/; // 숫자만 가능
-            var userMobile = $('#mobile');
-            
+            var $userMobile01 = $('#mobile');
+
             // email[required]
-            var regxpEmail = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/; // 
-            var userEmail01 = $('#email01');
+            var regexEmail = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/; // 
+            var $userEmail01 = $('#email01');
             // messages
             var userMessage01 = $('#message01');
             // address 3개 모두다[required]
-            var userAddress = $('.address');
+            var $userAddress = $('.address');
             var regexAddress = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|~!@\#$%<>^&*\()-=+_\s]+$/;
-            // ==> 빈공간이면 return false;
-            // agree[required]
-            var allCheck = $('.all_check_img');
-            
-            var flag = false;
 
-            function checkForm(user, regex) {
-                if(user.val() === '' || !regex.test(user.val())) {
-                    user.next('.required_box').css({display: 'block'});
-                    user.attr('value', '')
-                    user.focus();
-                } else {
-                    user.next('.required_box').css({display: 'none'});
-                    user.attr('value', 'Y')
-                }
+            if(!flag) {
+                checkAddress($userAddress, regexAddress);
                 flag = false;
             }
-            
-            function checkAddress(addr,regex) {
-                for(var i = 0; i < addr.length; i++) {
-                    var allAddr = $(addr[i]);
-                    if(allAddr.val() === '' || !regex.test(allAddr.val())) {
-                        allAddr.next('.required_box').css({display: 'block'});
-                        allAddr.next().next().find('.required_box').css({display: 'block'});
-                        allAddr.attr('value', '');
-                    } else {
-                        allAddr.next('.required_box').css({display: 'none'});
-                        allAddr.next().next().find('.required_box').css({display: 'none'});
-                        allAddr.attr('value', 'Y');
-                   }
-                }
+            if(!flag) {
+                checkForm($userEmail01,regexEmail)
                 flag = false;
             }
-
-            if(!flag) {
-                checkAddress(userAddress, regexAddress);
+           if(!flag) {
+               checkForm($userMobile01,regexMobile)
+               flag = false;
             }
             if(!flag) {
-                checkForm(userEmail01,regxpEmail)
+                checkForm($userName01,regexName)
+                flag = false;
             }
             if(!flag) {
-                checkForm(userMobile,regexMobile)
+                checkedBox('#allcheck01');
+                flag = false;
             }
-            if(!flag) {
-                checkForm(userName,regexName)
-            }
-
+            submitCheck('#required01');
             
-            if(!$('#allcheck01').prop('checked')) {
-                $('.required_check').find('.required_box').css({display: 'block'});
-                $('#allcheck01').attr('value', '')
-            } else {
-                $('.required_check').find('.required_box').css({display: 'none'});
-                $('#allcheck01').attr('value', 'Y');
-            }
-         
-            
-           $('.formOn .required_box').not('.required_box_apply').each(function() {
-               if($(this).css('display') === 'none') {
-                   $('.required_box_apply').css({display: 'none'})
-                } else {
-                    $('.required_box_apply').css({display: 'block'})
-               }
-           });
-           
+            return false;
         });
         
-
         
-        // [Academy]정규표현식
-        // name[required]
-        // mobile[required]
-        // email
-        var userEmail02 = $('#email02').val();
-        // date[required]
-        var userDate = $('#date02');
-        // age[required]
-        var userAge = $('.age_radio')
-        // text[required]
-        var userOpinion = $('#opinion').val();
-        // agree[required]
-        // apply 총확인
+        $('#apply_post02').on('click', function() {
+
+
+            console.log('#02')
+            // [Academy]정규표현식
+            // name[required]
+            var $userName02 = $('#name02');
+            var regexName = /^[가-힣]+$/; 
+            // mobile[required]
+            var $userMobile02 = $('#mobile02')
+            var regexMobile = /^[0-9]{2,3}[0-9]{3,4}[0-9]{4}$/;
+            // email
+            var $userEmail02 = $('#email02');
+            // date[required]
+            var $userDate = $('#date02');
+            // var regex = // 숫자만
+            // age[required]
+            var $userAge = $('input[name="age"]');
+            // text[required]
+            var $userOpinion = $('#opinion');
+            // var regexOpinion = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|~!@\#$%<>^&*\()-=+_\s]+$/;
+            // 한글 숫자 띄어쓰기
+            var regexOpinion = /^[0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣a-zA-Z\s]+$/;
+            // agree[required]
+            // apply 총확인
+
+
+            // textarea 엔터가 적용안됨.regexOpinion 특수문자 포함시키기
+           
+
+            if(!flag) {
+                checkForm($userOpinion, regexOpinion);
+                // var str = $('input[type="textarea"]').val();
+                // str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                // $('input[type="textarea"]').html(str);
+                // flag = false;
+            }
+            if(!flag) {
+                checkForm($userMobile02,regexMobile)
+            }
+            if(!flag) {
+                checkForm($userName02,regexName)
+            }
+            if(!flag) {
+                checkedBox('#allcheck02');
+                flag = false;
+            }
+            // radio
+            // if(!$userAge.is(':checked')) {
+            //     $userAge.parents().find($requiredBox).addClass('requiredOk');
+            //     return false;
+            // } else {
+            //     $userAge.parents().find($requiredBox).removeClass('requiredOk');
+            // }
+            submitCheck('#required02');
+            return false;
+        });
 
 
 
