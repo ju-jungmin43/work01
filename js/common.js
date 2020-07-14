@@ -95,7 +95,7 @@ $(document).ready(function() {
                     $(this).find('> ul').css({display: 'none'});
                     $mainMenuList.find('> a').removeClass('navFocus');
                 }
-            });
+            }).trigger('mousedown mouseleave');
 
             
             $mainMenuList.find('ul').find('li:last-child').focusout(function() {
