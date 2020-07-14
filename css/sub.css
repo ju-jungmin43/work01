@@ -210,6 +210,7 @@ label, legend { padding-bottom: 14px; font-size: 15px; font-weight: 600; color: 
 .required_check { margin-left: 30px; width: 220px; }
 .required_box_apply { background: #ffc5bd; margin: 35px 0 0; }
 
+.requiredOk { display: block; }
 
 /* all_check */
 .all_check { padding: 30px 0; }
@@ -239,14 +240,14 @@ button.apply_post:hover span { color: #fff; }
 
 /* form_academy_wrap */
 .form_wrap { display: none; }
-input.user_date { padding: 0 50px 0 10px; position: relative;background: url('../images/sub/04_community/icon-datepicker.png')98% center no-repeat; }
-input[type="radio"] { visibility: hidden; opacity: 0; position: absolute; }
-input[type="radio"] + label .radio_img { border: none; background: url('../images/sub/04_community/checkbox.png') -134px 0; display: inline-block; width: 20px; height: 20px; vertical-align: -5px; margin-right: 3px; }
-input.age_radio:checked + label .radio_img { background-position: -156px 0; }
-input.age_radio + label { float: left; padding-bottom: 0; margin-right: 25px; color: #666; }
+input.user_date { padding: 0 50px 0 10px; position: relative; background: url('../images/sub/04_community/icon-datepicker.png')98% center no-repeat; }
+fieldset > label { margin-right: 25px; position: relative; top: 0; left: 0; color: #666; }
+.form_academy_wrap .radio_img { display: inline-block; width: 20px; height: 20px; background-image: url('../images/sub/04_community/checkbox.png'); background-position: -134px -1px; vertical-align: middle; margin-right: 3px; }
 
-textarea.opinion_textarea { width: 100%; height: 170px; border: 2px solid #ccc; border-radius: 5px; resize: none; padding: 10px; font-size: 15px; color: #666; font-family: 'Gotham', sans-serif; }
-textarea.opinion_textarea:focus { border: 2px solid #c0c79c; }
+input[name="age"] { visibility: hidden; opacity: 0; position: absolute; top: 0; left: 0; margin: 0; }
+input[name="age"]:checked + .radio_img { background-position: -156px -1px; }
+input[type="textarea"].opinion_textarea { width: 100%; height: 170px; border: 2px solid #ccc; border-radius: 5px; resize: none; padding: 10px; font-size: 15px; color: #666; font-family: 'Gotham', sans-serif; }
+input[type="textarea"].opinion_textarea:focus { border: 2px solid #c0c79c; }
 
 .formOn { display: block; }
 
@@ -445,9 +446,10 @@ textarea.opinion_textarea:focus { border: 2px solid #c0c79c; }
     .community_form h3 { font-size: 20px; padding-bottom: 7%; }
     .community_form span { font-size: 13px; }
     label, legend { font-size: 14px; }
+    fieldset > label { margin-right: 3%; };
     .form_btn a { font-size: 13px; }
     .form_column input { font-size: 13px; }
-    textarea.opinion_textarea { font-size: 13px; }
+    input[type="textarea"].opinion_textarea { font-size: 13px; }
     .form_facebook { padding: 3% 4%; margin-bottom: 5%; }
     .community_form_inner { padding: 10% 0 16%; }
     .form_section .form_row { padding: 2% 0 3%; }
@@ -526,7 +528,7 @@ textarea.opinion_textarea:focus { border: 2px solid #c0c79c; }
     .community_form h3 { font-size: 18px; }
     .community_form span { font-size: 12px; }
     .form_column input { font-size: 12px; }
-    textarea.opinion_textarea { font-size: 12px; }
+    input[type="textarea"].opinion_textarea { font-size: 12px; }
     label, legend { font-size: 12px; padding-bottom: 10px; }
     .check_btn { font-size: 12px; }
     .form_column input { height: 40px; }

@@ -19,7 +19,7 @@
 ul, li, ol { list-style: none; }
 a:hover,
 a:active { text-decoration: none; }
-/* selection */
+/* selection :: mouse Drag */
 ::selection { background-color: #c0c79c; color: #fff; }
 ::-webkit-selection { background-color: #c0c79c; color: #fff; }
 ::-ms-selection { background-color: #c0c79c; color: #fff; }
