@@ -107,8 +107,8 @@
                                 <a href="javascript:avoid(0)"><i class="fas fa-play"></i></a>
                             </div>
                         </div>
-                    </div><!-- inner -->
-                </div><!-- community_body_bg -->
+                    </div>
+                </div>
 
                 <div class="community_body_form inner">
                         <div class="community_form">
@@ -179,22 +179,24 @@
                                         </div><!-- all_check -->
                                         <div class="apply_btn">
                                             <button type="button" id="apply_post01" class="apply_post"><span>Apply</span></button>
-                                            <p class="required_box required_box_apply">One or more field have an error. Please check and try again.</p>
+                                            <p id="required01" class="required_box required_box_apply">One or more field have an error. Please check and try again.</p>
                                         </div><!-- apply_btn -->
                                     </form>
-                                </div><!-- form_kit_wrap -->
+                                </div>
+                                <!-- form_kit_wrap -->
+
                                 <div class="form_academy_wrap form_wrap">
                                     <h3>Lan's Academy</h3>
                                     <form class="form_section">
                                         <div class="form_row">
                                             <div class="form_column">
                                                 <label for="name02">Name</label>
-                                                <input type="text" id="name02" class="user_name" value="" required />
+                                                <input type="text" id="name02" class="user_name" value="" />
                                                 <p class="required_box">The field is required.</p>
                                             </div>
                                             <div class="form_column">
                                                 <label for="mobile02">Mobile</label>
-                                                <input type="tel" id="mobile02" class="user_mobile" value="" required />
+                                                <input type="tel" id="mobile02" class="user_mobile" value="" />
                                                 <p class="required_box">The field is required.</p>
                                             </div>
                                         </div><!-- form_row -->
@@ -205,36 +207,50 @@
                                             </div>
                                             <div class="form_column">
                                                 <label for="date02">When do you want to come?</label>
-                                                <input type="text" id="date02" class="user_date" value="" required />
+                                                <input type="text" id="date02" class="user_date" value="" />
                                                 <p class="required_box">The field is required.</p>
                                             </div>
                                         </div><!-- form_row -->
                                         <div class="form_row -age_form">
                                                 <fieldset>
                                                     <legend>Age Group</legend>
-                                                    <input type="radio" id="10s" class="age_radio" name="age" value="" />
-                                                    <label for="10s"><span class="radio_img"></span>10s</label>
-                                                    <input type="radio" id="20s" class="age_radio" name="age" value="" />
-                                                    <label for="20s"><span class="radio_img"></span>20s</label>
-                                                    <input type="radio" id="30s" class="age_radio" name="age" value="" />
-                                                    <label for="30s"><span class="radio_img"></span>30s</label>
-                                                    <input type="radio" id="40s" class="age_radio" name="age" value="" />
-                                                    <label for="40s"><span class="radio_img"></span>40s</label>
-                                                    <input type="radio" id="50s" class="age_radio" name="age" value="" />
-                                                    <label for="50s"><span class="radio_img"></span>50s</label>
-                                                    <input type="radio" id="60s" class="age_radio" name="age" value="" />
-                                                    <label for="60s"><span class="radio_img"></span>60s</label>
-                                                    <input type="radio" id="70s" class="age_radio" name="age" value="" />
-                                                    <label for="70s"><span class="radio_img"></span>70s or older</label>
+                                                    <label for="10s">
+                                                        <input type="radio" id="10s" class="age_radio" name="age" value="" />
+                                                        <span class="radio_img"></span>10s
+                                                    </label>
+                                                    <label for="20s">
+                                                        <input type="radio" id="20s" class="age_radio" name="age" value="" />
+                                                        <span class="radio_img"></span>20s
+                                                    </label>
+                                                    <label for="30s">
+                                                        <input type="radio" id="30s" class="age_radio" name="age" value="" />
+                                                        <span class="radio_img"></span>30s
+                                                    </label>
+                                                    <label for="40s">
+                                                        <input type="radio" id="40s" class="age_radio" name="age" value="" />
+                                                        <span class="radio_img"></span>40s
+                                                    </label>
+                                                    <label for="50s">
+                                                        <input type="radio" id="50s" class="age_radio" name="age" value="" />
+                                                        <span class="radio_img"></span>50s
+                                                    </label>
+                                                    <label for="60s">
+                                                        <input type="radio" id="60s" class="age_radio" name="age" value="" />
+                                                        <span class="radio_img"></span>60s
+                                                    </label>
+                                                    <label for="70s">
+                                                        <input type="radio" id="70s" class="age_radio" name="age" value="" />
+                                                        <span class="radio_img"></span>70s or older
+                                                    </label>
                                                 </fieldset>
                                                 <p class="required_box">The field is required.</p>
                                         </div>
                                         <div class="form_row">
                                             <div class="form_column">
                                                 <label for="opinion">Feel free to tell us more about you. (your skin condition, expectation, languages you understand, nationality, opinions, and so on.)</label>
-                                                <textarea id="opinion" class="opinion_textarea" rows="5" required></textarea>
+                                                <input type="textarea" id="opinion" class="opinion_textarea" rows="5">
+                                                <p class="required_box">The field is required.</p>
                                             </div>
-                                            <p class="required_box">The field is required.</p>
                                         </div>
                                         <div class="all_check">
                                                 <input type="checkbox" id="allcheck02" class="all_check_img" value="" />
@@ -248,14 +264,14 @@
                                             </div><!-- all_check -->
                                         <div class="apply_btn">
                                             <button type="button" id="apply_post02" class="apply_post"><span>Apply</span></button>
-                                            <p class="required_box required_box_apply">One or more field have an error. Please check and try again.</p>
+                                            <p id="required02" class="required_box required_box_apply">One or more field have an error. Please check and try again.</p>
                                         </div>
                                     </form>
-                                </div><!-- form_academy_wrap -->
+                                </div>
+                                <!-- form_academy_wrap -->
                             </div><!-- community_form_inner -->
                         </div><!-- community_form -->
                 </div><!-- community_body_form -->
-                
             </div>
         </div>
     </div><!-- #container container community_container -->
