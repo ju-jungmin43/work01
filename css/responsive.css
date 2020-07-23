@@ -420,7 +420,7 @@ footer
     .main_board .board_title { font-size: 15px; }
     .board_list li a { font-size: 12px; }
     .board_inner { padding: 0 20px; margin: 0; }
-    .board_inner::before { display: block; content: ''; width: 100%; height: 1px; background-color: #ddd; position: absolute; top: 50%; left: 0; z-index: 1; }
+    .board_inner::before { display: block; content: ''; width: 100%; height: 1px; background-color: #ddd; position: absolute; top: 50%; left: 0; z-index: 2; }
     .board_content { float: none; width: 100%; }
     .board_content_pr .board_title { padding: 0; }
     .board_content_pr .board_list { padding: 0; }
