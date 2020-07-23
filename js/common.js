@@ -1,32 +1,28 @@
 // const
-var wW, wH;
-
+var wW;
+var wH;
 
 $(document).ready(function() {
     console.log('common.js');
-
     var $header = $('#header');
     var $document = $(document);
     var $window = $(window);
     var $footer = $('#footer');
     var $scrollTop = $('.scroll_top');
-
+    
     // 본문바로가기
     $('#skipNav').focusin(function() {
         $(this).animate({top: '0px'}).css({display: 'block'})
     }).focusout(function() {
         $('#skipNav').css({top: '-50px', display: 'none'});
     });
-
-
+    
     $window.on('resize', function(){
         wW = $window.width();
         wH = $window.height();
-
         navMenu();
-    }).trigger('resize');
-
-
+    });
+    
 
     $scrollTop.on('click', function(){
         $('html, body').stop().animate({scrollTop : 0}, 'slow');
@@ -39,7 +35,6 @@ $(document).ready(function() {
         } else {
             $header.removeClass('headerFixed');
         }
-
         // scroll_top
         if( wTop < $document.height() - $window.height() - $footer.height() - ($scrollTop.height()*2) ){
             $scrollTop.addClass('scrollTopFixed');
@@ -78,14 +73,14 @@ $(document).ready(function() {
         
         if(wW > 1023) {
             // PcMenu
-            // console.log('pc')
+            console.log('pc')
             
             // PcMenu event init
             $mainMenu.find('a').off('click');
             $mainMenuList.off('mouseenter focusin mouseleave');
             navInit('visible');
             
-
+            
             $mainMenuList.on({
                 'mouseenter focusin': function() {
                     $(this).find('> ul').css({display: 'block'});
@@ -95,8 +90,8 @@ $(document).ready(function() {
                     $(this).find('> ul').css({display: 'none'});
                     $mainMenuList.find('> a').removeClass('navFocus');
                 }
-            }).trigger('mousedown mouseleave');
-
+            });
+            
             
             $mainMenuList.find('ul').find('li:last-child').focusout(function() {
                 $('.mo_menu_list').removeClass('navFocus');
@@ -105,7 +100,7 @@ $(document).ready(function() {
 
         } else {
             // MobileMenu
-            // console.log('mobile');
+            console.log('mobile');
 
             // MobileMenu event init
             $navMoBtn.off('click');
@@ -143,26 +138,35 @@ $(document).ready(function() {
 
                 return false;
             });
+            $('.lang_list.langOn').removeClass('langOn');
         } // else end
 
-        
-        $langSelect.on('mousedown', function() {
-            var _langNext = $(this).next('ul');
-            if(_langNext.hasClass('langOn')){
-                $(this).find('i').removeClass('langOn');
-                $('.lang_list.langOn').removeClass('langOn');
-            } else {
-                $(this).find('i').addClass('langOn');
-                _langNext.addClass('langOn');
+        // var flag = false;
+        $langSelect.off().on('mousedown', 'a', function(e) {
+            console.log(e.type)
+            var flag = false;
+            if(!flag) {
+                if(!$langList.hasClass('langOn')){
+                    $(this).find('i').addClass('langOn');
+                    $(this).parent().next('ul').addClass('langOn');
+                    console.log('열린다')
+                    return false;
+                } else {
+                    $('.lang_select').find('i').removeClass('langOn');
+                    $('.lang_list.langOn').removeClass('langOn');
+                    console.log('닫힌다')
+                }
+                return false;
             }
-        
-            return false;
+        }).on('focusin', function(e) {
+            console.log(e.type)
+            $('.lang_list').addClass('langOn');
         })
-        .focusin(function() {
-            $langList.addClass('langOn');
-        });
+       
         $('.lang_list.langOn').removeClass('langOn');
 
+
+        // focusin 발생 후 click이벤트가 발생되어  focusin이벤트가 발생되어 클릭 시에 열고닫히는현상이 실행된다.
         $langList.find('li:last-child').focusout(function() {
             $(this).parent().removeClass('langOn');
         });
@@ -175,7 +179,7 @@ $(document).ready(function() {
         */
 
 
-    } // navVarEND()
+    } // navMenuEND()
 
 
     /* search_pop form */
@@ -187,11 +191,12 @@ $(document).ready(function() {
     var $search = $('.search');
     var $searchClose = $('.search_popup_close');
 
-    $search.on('click', function(){
-        alert('click')
+    $search.on('click', 'a', function() {
+        console.log('click')
         $searchPopup.animate({opacity : 1}, 400).css({display: 'block'});
+        return false;
     });
-    $searchClose.on('click', function(){
+    $searchClose.on('click', function() {
         $searchPopup.animate({opacity: 0}, 400).css({display: 'none'});;
     })
 

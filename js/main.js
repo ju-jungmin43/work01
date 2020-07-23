@@ -13,14 +13,16 @@ $(document).ready(function(){
     /* main_philosophy */
     philoGallery();
     /* main_sellers */
-    sellersSlide();
+    sellersGallery();
     /* main_products */
-    productsSlide();
-    
+    productsGallery();
+    /* main_board */
+    boardGallery();
     $(window).on('resize', function() {
         fullHeight();
     }).trigger('resize');
 
+    /* index.html 전체적인 페이지 효과 */
     function fullHeight(){
         var wH = $(window).height();
         var containerH = $('.container').css('padding-top').replace(/[^-\d\.]/g, '');
@@ -32,8 +34,9 @@ $(document).ready(function(){
         var mainPhilosophyTop = $('.main_philosophy').offset().top;
         $('html, body').animate({scrollTop: mainPhilosophyTop}, 'slow');
     });
-
-
+    
+    var addScroll = 0;
+    var wTop = $(window).scrollTop(); // 0
     $(window).on('scroll', function() {
         var windowTop = parseInt($(window).scrollTop());
         var windowH = parseInt($(window).innerHeight());
@@ -41,20 +44,98 @@ $(document).ready(function(){
             var sectionTop = parseInt($(this).offset().top);
             var sectionH = parseInt($(this).innerHeight());
             // sectionTop >= 0 초기화할때 바로 mainOn해주기위해서!
-            if((sectionTop >= 0) && (sectionTop + (sectionH)/3) < (windowTop + windowH)) {
-                $(this).addClass('mainOn');
+            if((sectionTop >= 0) && (sectionTop + (sectionH)/4) < (windowTop + windowH)) {
+                // $(this).addClass('mainOn');
             }
-        })
+            $(this).addClass('mainOn');
+        });
+        // philosophy .philo_logo 스크롤 시에 transform: translate(20% -> 60%) 1024이하면 stop
+        var $philoLogo = $('.philo_logo');
+        var philoTop = $('.main_philosophy').offset().top;
+        var philoH = $('.main_philosophy').innerHeight();
+        if(wW > 1023) {
+            if(((windowTop + windowH) > philoTop) && (windowTop < (philoTop + philoH))) {
+                if(wTop < windowTop) {
+                    // console.log('down')
+                    addScroll -= 1.3;
+                    $philoLogo.css({transform: 'translateX('+ addScroll +'%)'})
+                } else {
+                    // console.log('up')
+                    addScroll += 1.3;
+                    $philoLogo.css({transform: 'translateX('+ addScroll +'%)'})
+                }
+                wTop = windowTop;
+            } else {
+                $philoLogo.css({transform: 'translateX(-40%)'})
+            }
+        }
+
     }).trigger('scroll');
-
-
-
-    /* main_board */
-    
-
 }); // END
 
 
+/* sub5.html */
+function boardGallery() {
+    function boardNewsGallery() {
+        var $boardNews = $('.board_content_news');
+        var $boardNewsLi = $boardNews.find('li');
+        var boardNewsLiTotal = $boardNewsLi.length;
+        var timer = 0;
+        var curIndex = 0;
+        
+        function newsAuto() {
+            timer = setInterval(newsSlide, 6000);
+        }
+        newsAuto();
+        function newsSlide() {
+            // curIndex = startIndex;
+            if(curIndex < (boardNewsLiTotal-1)) { // 0 ~ 9
+                curIndex++;
+            } else {
+                curIndex = 0;
+            }
+            $boardNewsLi.removeClass('boardOn').eq(curIndex).addClass('boardOn');
+        };
+        newsSlide();
+        $boardNewsLi.hover(function() {
+            console.log('mouseenter');
+            clearInterval(timer);
+        }, function() {
+            console.log('mouseleave');
+            newsAuto();
+        })
+    }
+    boardNewsGallery();
+    function boardPrGallery() {
+        var $boardPr = $('.board_content_pr');
+        var $boardPrLi = $boardPr.find('li');
+        var boardPrLiTotal = $boardPrLi.length;
+        var timer = 0;
+        var curIndex = 0;
+        function prAuto() {
+            timer = setInterval(prSlide, 6000);
+        }
+        prAuto();
+        
+        function prSlide() {
+            if(curIndex < boardPrLiTotal-1) {
+                curIndex++;
+            } else {
+                curIndex = 0;
+            }
+            $boardPrLi.removeClass('boardOn').eq(curIndex).addClass('boardOn');
+        }
+        prSlide();
+        $boardPrLi.hover(function() {
+            console.log('prMouseenter');
+            clearInterval(timer);
+        }, function() {
+            console.log('prMouseleave');
+            prAuto();
+        });
+    }
+    boardPrGallery();
+} // boardGallery END();
 
 /* main_visual */
 function keyvisualGallery() {
@@ -79,8 +160,8 @@ function keyvisualGallery() {
         
         $('.visual_content_cell > .inner > *.visualTxt').removeClass('visualTxt');
         $visualSlide.eq(nextSlide).find($visualContentCellTxt).each(function(i) {
-            $(this).delay(i * 160).queue(function() {
-                $(this).addClass('visualTxt').dequeue();  
+            $(this).stop(true,false).delay(i * 160).queue(function() {
+                $(this).addClass('visualTxt').dequeue();
             });
         });
         //currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
@@ -118,7 +199,6 @@ function philoGallery() {
             }
         }]
     });
-
     var $philoContent = $('.philo_slide_content');
     var $philoContentCell = $philoContent.find('.philo_content_cell');
     var $philoContentCellTxt = $philoContentCell.children();
@@ -133,8 +213,8 @@ function philoGallery() {
     }).on('beforeChange', function(event, slick, currentSlide, nextSlide) {
         $('.philo_content_cell > *.philoTxt').removeClass('philoTxt');
         $philoContent.find($philoContentCellTxt).each(function(i) {
-           $(this).delay(i * 160).queue(function() {
-                $(this).addClass('philoTxt').dequeue();
+           $(this).stop(true, false).delay(i * 160).queue(function() {
+                $(this).addClass('philoTxt');
             })
        })
     })
@@ -145,19 +225,18 @@ function philoGallery() {
         speed: 800,
         infinite: true,
         asNavFor: '.philo_slide_long, .philo_slide_content'
-    })
-    
-    $philoContentCellTxt.addClass('philoTxt')
+    });
+    $philoContentCellTxt.addClass('philoTxt');
 } // philoGallery () END
 
 
 /* main_sellers */
-function sellersSlide() {
+function sellersGallery() {
     var $bestSellers = $('.main_sellers');
     var $sellersImg = $('.sellers_img_item');
     var $sellersCont = $('.sellers_cell_txt');
     var $sellersBtn = $bestSellers.find('.comm_nav_arrow');
-    
+    var timer = 0;
     var currentIdx = 0;
     var total = $sellersImg.length;
     
@@ -171,8 +250,8 @@ function sellersSlide() {
         
         $sellersCont.children().removeClass('sellers');
         $sellersCont.eq(index).children().each(function(i){
-            $(this).delay(i * 200).queue(function(){
-                $(this).addClass('sellers').stop(true, false);
+            $(this).stop(true, false).delay(i * 200).queue(function(){
+                $(this).addClass('sellers').dequeue();
             })
         });
         
@@ -199,7 +278,7 @@ function sellersSlide() {
             gotoSlide(nextIdx);
         }, 6500);
     };
-    
+    sellersAutoSlide();
     function sellersStopSlide() {
         clearInterval(timer)
     }
@@ -208,16 +287,16 @@ function sellersSlide() {
         mouseleave : sellersAutoSlide
     });
     
-} // sellersSlide() END
+} // sellersGallery() END
 
 
 /* main_products */
-function productsSlide() {
+function productsGallery() {
     var $proSlide = $('.products_slide');
     var $proSlideList = $proSlide.find('.products_slide_list');
     var proSlideListW;
     var $proBtn = $('.products_nav');
-
+    var timer = 0;
     var speed = 800;
     
     $(window).on('resize', function(){
@@ -268,4 +347,4 @@ function productsSlide() {
             'mouseleave' : proAutoSlide
         })
         
-} // produtsSlide() END   
+} // productsGallery() END   

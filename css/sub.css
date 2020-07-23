@@ -5,6 +5,8 @@
     03_products
     04_community
     05_shop
+
+    + sub responsive
 -------------------------------------------------------------------*/
 .container { background-color: #f6f6f6; }
 /*-------------------------------------------------------------------
@@ -254,6 +256,7 @@ input[type="textarea"].opinion_textarea:focus { border: 2px solid #c0c79c; }
 /*-------------------------------------------------------------------
     05_shop
 -------------------------------------------------------------------*/
+html, body { height: 100%; overflow-x: hidden; }
 .shop_container { padding-bottom: 170px; }
 /* font-size */
 .shop_body h3 { font-size: 27px; font-weight: 300; color: #222; padding-bottom: 15px; }
@@ -261,11 +264,16 @@ input[type="textarea"].opinion_textarea:focus { border: 2px solid #c0c79c; }
 .shop_body p { font-size: 15px; font-weight: 400; color: #666; line-height: 1.7em; }
 .shop_body p br { display: none; }
 
-.shop_gallery_wrap { position: relative; top: 0; left: 0; }
-.shop_gallery { position: relative; top: 0; left: 0; width: 100%; overflow: hidden; }
-.shop_gallery .shop_slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-.shop_gallery .shop_slide li { float: left; }
-.shop_gallery img { display: block; max-width: 100%; height: auto; }
+.shop_gallery { position: relative; width: 100%; overflow: hidden; }
+.shop_gallery .shop_slide { width: auto; height: auto; }
+.shop_gallery .shop_slide li { display: block; width: 101%; height: auto; position: absolute; top: 0; left: 0; }
+.shop_slide li img { display: block; width: auto; height: auto; max-width: 100%; }
+/* .shop_slide li:nth-child(1) { background-image: url('../images/sub/05_shop/shop_cafe_01.jpg') }
+.shop_slide li:nth-child(2) { background-image: url('../images/sub/05_shop/shop_cafe_02.jpg') }
+.shop_slide li:nth-child(3) { background-image: url('../images/sub/05_shop/shop_cafe_03.jpg') }
+.shop_slide li:nth-child(4) { background-image: url('../images/sub/05_shop/shop_cafe_04.jpg') }
+.shop_slide li:nth-child(5) { background-image: url('../images/sub/05_shop/shop_cafe_05.jpg') }
+.shop_slide li:nth-child(6) { background-image: url('../images/sub/05_shop/shop_cafe_06.jpg') } */
 .shop_nav_arrow > a { position: absolute; top: 50%; display: table; width: 62px; height: 62px; border-radius: 50%; margin-top: -31px; background-color: #e3e3e3; color: #222; transition: all 0.3s; -webkit-transition: all 0.3s; -ms-transition: all 0.3s; -moz-transition: all 0.3s; }
 .shop_nav_arrow > a i { display: table-cell; text-align: center; vertical-align: middle; }
 .shop_nav_arrow > a:hover { background-color: #c0c79c; color: #fff; }

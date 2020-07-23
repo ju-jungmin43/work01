@@ -128,10 +128,6 @@ footer
     
 }
 
-@media (max-width: 1200px){
-    /* main_board */
-    .board_content_pr .board_list li a { width: 45%; }
-} /* (max-width: 1200px) */
 
 
 @media (max-width: 1023px){
@@ -203,7 +199,7 @@ footer
     .philo_inner { margin: 0; }
     .comm_nav { width: 120px; }
     .main_philosophy .main_head { padding-bottom: 64px; }
-    .philo_logo { top: 148px; right: 0; width: 90%; left: auto; right: 0; }
+    .philo_logo { top: 148px; right: 0; width: 90%; left: auto; right: 0; -webkit-transform: translateX(0); -moz-transform: translateX(0); -o-transform: translateX(0); transform: translateX(0); }
     .philo_logo img { display: block; width: 100%; max-width: 100%; height: 100%; }
     .philo_gallery { padding: 356px 0 0; }
     .philo_content_wrap { margin-left: 0; }
@@ -229,7 +225,6 @@ footer
     
     /* main_board */
     .board_content_news .board_title { padding-right: 6%; }
-    .board_content_pr .board_title { padding: 0 6%; }
     
 } /* (max-width: 1023px) */
 
@@ -267,6 +262,7 @@ footer
     .main_visual .visual_slide_03 p,
     .main_visual .visual_slide_03 .square_more { color: #222; }
     
+
     /* main_philosophy */
 
 }
@@ -358,11 +354,11 @@ footer
     
     /* main_info */
     .board_content { padding: 9px 0 37px; }
+    .board_content .board_list li { width: 100%; }
     .main_board .board_title { float: none; font-size: 16px; }
     .board_content_pr .board_list { padding: 0 6%; }
-    .board_content .board_list li a { width: 70%; }
-    .board_list::before { width: 20px; height: 20px; line-height: 22px; font-size: 10px; bottom: -50%; }
-    .board_content_news .board_list::before { right: -10%; }
+    .board_content .board_list li { width: 70%; }
+    .board_list::before { width: 20px; height: 20px; line-height: 22px; font-size: 10px; bottom: -85%; }
 
     /* main_recommend */
     .recommend_nav { display: none; }
@@ -419,17 +415,15 @@ footer
     .board_list li a { font-size: 12px; }
     
     /* main_info */
+    
+    /* main_board */
     .main_board .board_title { font-size: 15px; }
     .board_list li a { font-size: 12px; }
-
-    /* main_board */
     .board_inner { padding: 0 20px; margin: 0; }
-    .board_inner::before { display: block; content: ''; width: 100%; height: 1px; background-color: #ddd; position: absolute; top: 50%; left: 0; }
+    .board_inner::before { display: block; content: ''; width: 100%; height: 1px; background-color: #ddd; position: absolute; top: 50%; left: 0; z-index: 1; }
     .board_content { float: none; width: 100%; }
-    .board_content .board_title { font-size: 15px; }
     .board_content_pr .board_title { padding: 0; }
     .board_content_pr .board_list { padding: 0; }
-    .board_content_news .board_content_cell { width: 100%; }
     .board_content .board_list::before { right: 25px; }
     .board_content_news::before { display: none; }
     

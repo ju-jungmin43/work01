@@ -21,7 +21,6 @@
     <meta name="masapplication-TileImage" content="images/favicon/cropped-favicon-270x270.jpg" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/common.css" />
-    <!-- <link rel="stylesheet" href="css/main.css" /> -->
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="css/sub.css" />
     <link rel="stylesheet" href="css/fonts/font.css" />
@@ -57,24 +56,22 @@
             <div class="sub_body shop_body">
                 <div class="inner">
                     <div class="shop_cafe">
-                        <div class="shop_gallery_wrap">
-                            <div class="shop_gallery">
-                                <ul class="shop_slide">
-                                    <li class="shop_slide_item"><img src="images/sub/05_shop/shop_cafe_01.jpg" alt="shop_cafe_01"></li> 
-                                    <li class="shop_slide_item"><img src="images/sub/05_shop/shop_cafe_02.jpg" alt="shop_cafe_02"></li> 
-                                    <li class="shop_slide_item"><img src="images/sub/05_shop/shop_cafe_03.jpg" alt="shop_cafe_03"></li> 
-                                    <li class="shop_slide_item"><img src="images/sub/05_shop/shop_cafe_04.jpg" alt="shop_cafe_04"></li> 
-                                    <li class="shop_slide_item"><img src="images/sub/05_shop/shop_cafe_05.jpg" alt="shop_cafe_05"></li> 
-                                    <li class="shop_slide_item"><img src="images/sub/05_shop/shop_cafe_06.jpg" alt="shop_cafe_06"></li> 
-                                </ul>
-                            </div><!-- shop_gallery -->
+                        <div class="shop_gallery">
+                            <ul class="shop_slide">
+                                <li class="shop_slide_item"><img src="images/sub/05_shop/shop_cafe_01.jpg" alt="shop_cafe_01"></li> 
+                                <li class="shop_slide_item"><img src="images/sub/05_shop/shop_cafe_02.jpg" alt="shop_cafe_02"></li> 
+                                <li class="shop_slide_item"><img src="images/sub/05_shop/shop_cafe_03.jpg" alt="shop_cafe_03"></li> 
+                                <li class="shop_slide_item"><img src="images/sub/05_shop/shop_cafe_04.jpg" alt="shop_cafe_04"></li> 
+                                <li class="shop_slide_item"><img src="images/sub/05_shop/shop_cafe_05.jpg" alt="shop_cafe_05"></li> 
+                                <li class="shop_slide_item"><img src="images/sub/05_shop/shop_cafe_06.jpg" alt="shop_cafe_06"></li>
+                            </ul>
                             <div class="shop_nav">
                                 <div class="shop_nav_arrow">
                                     <a class="shop_nav_prev" href="javascript:void(0)"><i class="fas fa-long-arrow-alt-left"></i></a>
                                     <a class="shop_nav_next" href="javascript:void(0)"><i class="fas fa-long-arrow-alt-right"></i></a>
                                 </div>
                             </div>
-                        </div>
+                        </div><!-- shop_gallery -->
                         <div class="shop_cafe_content">
                             <h3>DISCOVERY CAFÉ</h3>
                             <p>Different from the regular cosmetics store, Lanbelle Discovery Café offers a chance to try out Lanbelle products while enjoying a cozy and confortable ambience. We deliver proper information about prodcuts and also offer a chance to take our free classes that take place every month.</p>
@@ -89,7 +86,7 @@
                                 Gyeonggi-do, South Korea
                             </p>
                         </div>
-                        <div class="shop_map"></div>
+                        <div id="map" class="shop_map"></div>
                     </div>
                 </div>
             </div>
@@ -99,16 +96,16 @@
     <footer data-include="include/footer.html"></footer>
 </div>
 <script src="js/sub.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=844546fceb2a96b7d420358b7b2e9c68"></script>
 <script>
-// $(function(){
-//     console.log('hello')
-//     $(window).resize(function(){
-//         var slideH = $('.shop_slide_item').height();
-//         $('.shop_gallery').css('height', slideH)
-//     });
-//     $(window).trigger('resize');
-//     console.log($('.shop_slide').html())
-// })
+    // var mapContainer = document.getElementById('map');
+    // var mapOption = {
+    //     center: new kakao.maps.LatLng(37.402166, 127.110395), // 지도의 중심좌표(위도, 경도)
+    //     level: 3 // 지도의 레벨
+    // };
+    // var map = new kakao.maps.Map(mapContainer, mapOption); // 지도생성 및 객체 리턴
+
+    // var imageSrc = 
 </script>
 </body>
 </html>
