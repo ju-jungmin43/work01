@@ -1,11 +1,11 @@
 // // 공통으로 쓰일 변수 const
 // var currentIdx; // 현재 인덱스
 // var total; // slide 총 수
-var timer = ''; // setInterval 
+var timer = 0; // setInterval 
 var speed = 0;
 // var wW; // window.width()
 
-$(document).ready(function(){
+$(document).ready(function() {
     console.log('main.js');
     
     /* main_visual */
@@ -18,9 +18,13 @@ $(document).ready(function(){
     productsGallery();
     /* main_board */
     boardGallery();
+    /* main_recommend */
+    recommenGallery();
     $(window).on('resize', function() {
         fullHeight();
     }).trigger('resize');
+    
+
 
     /* index.html 전체적인 페이지 효과 */
     function fullHeight(){
@@ -35,42 +39,75 @@ $(document).ready(function(){
         $('html, body').animate({scrollTop: mainPhilosophyTop}, 'slow');
     });
     
-    var addScroll = 0;
+    var logoScroll = 0;
+    var squareScroll = 0;
+
+    var $philoLogo = $('.philo_logo');
+    var philoTop = $('.main_philosophy').offset().top;
+    var philoH = $('.main_philosophy').innerHeight();
+    var $philoSlideSquare = $('.philo_slide_square');
     var wTop = $(window).scrollTop(); // 0
+
     $(window).on('scroll', function() {
-        var windowTop = parseInt($(window).scrollTop());
-        var windowH = parseInt($(window).innerHeight());
-        $('.section').each(function() {
-            var sectionTop = parseInt($(this).offset().top);
-            var sectionH = parseInt($(this).innerHeight());
+        var windowTop = Math.floor($(window).scrollTop());
+        var windowH = Math.floor($(window).innerHeight());
+        
+        $('.main_message, .main_meeting').each(function() {
+            var sectionTop = Math.floor($(this).offset().top);
+            var sectionH = Math.floor($(this).innerHeight());
             // sectionTop >= 0 초기화할때 바로 mainOn해주기위해서!
-            if((sectionTop >= 0) && (sectionTop + (sectionH)/4) < (windowTop + windowH)) {
-                // $(this).addClass('mainOn');
+            if((sectionTop >= 0) && (sectionTop + (sectionH)/3) < (windowTop + windowH)) {
+                $(this).find('.ceo_img').addClass('messageOn');
+                $(this).find('.ceo_sign').delay(700).queue(function() {
+                    $(this).addClass('messageOn').dequeue();
+                });
+                $(this).find('.meeting_list').addClass('meetingOn');
             }
-            $(this).addClass('mainOn');
+
+
+            
         });
         // philosophy .philo_logo 스크롤 시에 transform: translate(20% -> 60%) 1024이하면 stop
-        var $philoLogo = $('.philo_logo');
-        var philoTop = $('.main_philosophy').offset().top;
-        var philoH = $('.main_philosophy').innerHeight();
+        // 1280 : transform: translateY(-55%) / transform: translateY(-43%);
+
+        // if(wW > 1023) {
+        //     // if($('.philo_slide_content'))
+        //     if(wTop < windowTop) {
+        //         // console.log('down');
+        //         // console.log(squareScroll)
+        //         squareScroll++;
+        //     } else {
+        //         squareScroll--;
+        //         // console.log('up');
+        //         // console.log(squareScroll)
+        //     }
+        //     // wTop = windowTop;
+        //     $philoSlideSquare.css({transform: 'translateY(calc(+ ' + (squareScroll) + '%))'});
+        // } else {
+        //     squareScroll = 0;
+        //     // $philoSlideSquare.css({transform: 'translateY(-55%)'});
+        // }
+        
+
         if(wW > 1023) {
+            // 1024일때
             if(((windowTop + windowH) > philoTop) && (windowTop < (philoTop + philoH))) {
                 if(wTop < windowTop) {
-                    // console.log('down')
-                    addScroll -= 1.3;
-                    $philoLogo.css({transform: 'translateX('+ addScroll +'%)'})
+                    logoScroll--;
                 } else {
-                    // console.log('up')
-                    addScroll += 1.3;
-                    $philoLogo.css({transform: 'translateX('+ addScroll +'%)'})
+                    logoScroll++;
                 }
+                $philoLogo.css({transform: 'translateX('+ logoScroll +'%)'})
                 wTop = windowTop;
             } else {
-                $philoLogo.css({transform: 'translateX(-40%)'})
+                squareScroll = 0;
             }
+        } else {
+            // 1023 일때
+            $philoLogo.css({transform: 'translateX(0%)'})
         }
-
     }).trigger('scroll');
+
 }); // END
 
 
@@ -80,15 +117,14 @@ function boardGallery() {
         var $boardNews = $('.board_content_news');
         var $boardNewsLi = $boardNews.find('li');
         var boardNewsLiTotal = $boardNewsLi.length;
-        var timer = 0;
+        timer = 0;
         var curIndex = 0;
-        
+        $boardNewsLi.eq(curIndex).addClass('boardOn');
         function newsAuto() {
-            timer = setInterval(newsSlide, 6000);
+            timer = setInterval(newsSlide, 4000);
         }
         newsAuto();
         function newsSlide() {
-            // curIndex = startIndex;
             if(curIndex < (boardNewsLiTotal-1)) { // 0 ~ 9
                 curIndex++;
             } else {
@@ -96,12 +132,9 @@ function boardGallery() {
             }
             $boardNewsLi.removeClass('boardOn').eq(curIndex).addClass('boardOn');
         };
-        newsSlide();
         $boardNewsLi.hover(function() {
-            console.log('mouseenter');
             clearInterval(timer);
         }, function() {
-            console.log('mouseleave');
             newsAuto();
         })
     }
@@ -110,10 +143,11 @@ function boardGallery() {
         var $boardPr = $('.board_content_pr');
         var $boardPrLi = $boardPr.find('li');
         var boardPrLiTotal = $boardPrLi.length;
-        var timer = 0;
+        timer = 0;
         var curIndex = 0;
+        $boardPrLi.eq(0).addClass('boardOn');
         function prAuto() {
-            timer = setInterval(prSlide, 6000);
+            timer = setInterval(prSlide, 4000);
         }
         prAuto();
         
@@ -125,12 +159,9 @@ function boardGallery() {
             }
             $boardPrLi.removeClass('boardOn').eq(curIndex).addClass('boardOn');
         }
-        prSlide();
         $boardPrLi.hover(function() {
-            console.log('prMouseenter');
             clearInterval(timer);
         }, function() {
-            console.log('prMouseleave');
             prAuto();
         });
     }
@@ -236,7 +267,7 @@ function sellersGallery() {
     var $sellersImg = $('.sellers_img_item');
     var $sellersCont = $('.sellers_cell_txt');
     var $sellersBtn = $bestSellers.find('.comm_nav_arrow');
-    var timer = 0;
+    timer  = 0;
     var currentIdx = 0;
     var total = $sellersImg.length;
     
@@ -250,9 +281,9 @@ function sellersGallery() {
         
         $sellersCont.children().removeClass('sellers');
         $sellersCont.eq(index).children().each(function(i){
-            $(this).stop(true, false).delay(i * 200).queue(function(){
+            $(this).stop(true).delay(i * 200).queue(function(){
                 $(this).addClass('sellers').dequeue();
-            })
+            });
         });
         
         currentIdx = index;
@@ -261,7 +292,7 @@ function sellersGallery() {
     
     var nextIdx;
     var prevIdx;
-    $sellersBtn.on('click', 'a', function(){
+    $sellersBtn.off().on('click', 'a', function(){
         nextIdx = (currentIdx + 1) % total;
         prevIdx = (currentIdx + (total - 1)) % total;
         if($(this).hasClass('comm_prev')) {
@@ -280,7 +311,7 @@ function sellersGallery() {
     };
     sellersAutoSlide();
     function sellersStopSlide() {
-        clearInterval(timer)
+        clearInterval(timer);
     }
     $bestSellers.on({
         mouseenter : sellersStopSlide,
@@ -296,11 +327,11 @@ function productsGallery() {
     var $proSlideList = $proSlide.find('.products_slide_list');
     var proSlideListW;
     var $proBtn = $('.products_nav');
-    var timer = 0;
+    timer = 0;
     var speed = 800;
     
     $(window).on('resize', function(){
-        proSlideListW = Math.floor($('.products_slide_list').width()); // resize 필요
+        proSlideListW = Math.floor($('.products_slide_list').width());
     }).trigger('resize');
 
     $proBtn.on('click', 'a', function() {
@@ -310,7 +341,6 @@ function productsGallery() {
             proPrevSlide();
         }
     });
-    
     function proNextSlide() {
         $proSlide.animate({left: -proSlideListW + 'px'}, speed, function() {
             $(this).append($(this).find('.products_slide_list').first());
@@ -321,7 +351,7 @@ function productsGallery() {
     function proPrevSlide() {
         $proSlide.css({left: -proSlideListW + 'px'});
         $proSlide.prepend($('.products_slide_list').last());
-        $proSlide.stop().animate({left: 0 }, speed);
+        $proSlide.stop().animate({left: 0}, speed);
         
         // jQuery를 사용해서 disabled 속성 변경 및 상태가져오기 (disabled, readonly 찾아보기!)
         // HTML form 작성방법, jQuery로 제어하는 방법
@@ -337,6 +367,7 @@ function productsGallery() {
                 proNextSlide();
             }, 5000);
         }
+        proAutoSlide();
 
         function proStopSlide() {
             clearInterval(timer);
@@ -348,3 +379,37 @@ function productsGallery() {
         })
         
 } // productsGallery() END   
+
+/* main_recommend */
+function recommenGallery() {
+    var $recommSlide = $('.recommend_slide');
+    var $recommSlideLi = $recommSlide.find('.recommend_slide_list');
+    var $recommBtn = $('.recommend_nav .comm_nav_arrow');
+    var recommSlideLiW;
+    var recommSlideShow = 0;
+    var curIndex = 0;
+    
+    $(window).on('resize', function() {
+        recommSlideLiW = Math.floor($recommSlideLi.innerWidth());
+        if(wW > 767) {
+            recommSlideShow = 1;
+        } else {
+            recommSlideShow = 2;
+        }
+        $recommSlide.css({left: (-recommSlideLiW * curIndex) + 'px'})
+    }).trigger('resize');
+
+    
+    $recommBtn.on('click', 'a', function() {
+        if($(this).hasClass('comm_next')) {
+            if(curIndex < recommSlideShow) {
+                curIndex++;
+            }
+        } else {
+            if(curIndex > 0) {
+                curIndex--;
+            }
+        }
+        $recommSlide.animate({left: ((-recommSlideLiW) * curIndex) + 'px'}, 600);
+    });
+}

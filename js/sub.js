@@ -11,9 +11,9 @@ $(document).ready(function() {
     shopGallery();
 
     /* sub4.html */
-    // $('.form_kit_wrap').addClass('formOn');
-    $('.form_academy_wrap').addClass('formOn');
-    $('.form_kit_btn').addClass('formTitle').find('a').addClass('formTitle');
+    $('.form_kit_wrap').addClass('formOn');
+    // $('.form_academy_wrap').addClass('formOn');
+    $('.form_kit_btn').find('a').addClass('formTitle');
 
     $('.form_btn').on('click', 'a', function() {
         var commuFormTop = $('.community_form_title').offset().top - $('#header').height();
@@ -22,33 +22,44 @@ $(document).ready(function() {
             $('.form_kit_wrap').addClass('formOn');
             $('.form_academy_wrap').removeClass('formOn');
         } else {
-            $('.form_kit_wrap').removeClass('formOn');
             $('.form_academy_wrap').addClass('formOn');
+            $('.form_kit_wrap').removeClass('formOn')
         }
-        $('.form_btn a.formTitle').removeClass('formTitle');
-        $('.form_btn.formTitle').removeClass('formTitle')
+        $('.form_btn').find('a').removeClass('formTitle');
         $(this).addClass('formTitle');
-        $(this).parent().addClass('formTitle');
-
+        
+        
+        // reset
         $('input').val('');
+        $('input[type="radio"]').prop('checked', false);
+        $('input[type="checkbox"]').prop('checked', false);
+        $('.requiredOk').removeClass('requiredOk')
+        // .required_box_apply 초기화
+        if($('.formOn .required_box_apply').css('display') === 'block') {
+            $('.required_box_apply').css({display: 'none'})
+        }
+       
         return false;
     })
 
 // form_kit_wrap, form_academy_wrap 공통 변수
-var $requiredBox = $('.formOn .required_box');
+var $requiredBox = $('.required_box');
 var flag = false;
-
+var mobileNum = '';
     // form_kit_wrap name, mobile, e-mail 확인
    function checkForm(user, regex) {
         if(user.val() === '' || !regex.test(user.val())) {
             user.next($requiredBox).addClass('requiredOk')
             user.focus();
-            console.log(user.next())
             return false;
         } else {
+            mobileNum = $('.formOn .user_mobile').val().replace(regex,'$1-$2-$3');
+            $('.formOn .user_mobile').val(mobileNum);
             user.next($requiredBox).removeClass('requiredOk');
+            return false;
         }
     }
+ 
     // form_kit_wrap 주소 확인
     function checkAddress(addr,regex) {
         for(var i = 0; i < addr.length; i++) {
@@ -66,33 +77,36 @@ var flag = false;
     // checkbox 체크 확인
     function checkedBox(userCheck) {
         if(!$(userCheck).prop('checked')) {
-            $('.required_check').find($requiredBox).addClass('requiredOk');
-            return false;
+            $(userCheck).parent().find($requiredBox).addClass('requiredOk');
         } else {
-            $('.required_check').find($requiredBox).removeClass('requiredOk');
+            $(userCheck).parent().find($requiredBox).removeClass('requiredOk');
         }
+        return false;
     }
     // submit button.required_box_apply 체크 확인
     function submitCheck(requiredBoxApply) {
         if($('.formOn .required_box').not('.required_box_apply').hasClass('requiredOk')) {
             $(requiredBoxApply).css({display: 'block'});
-            return false;
         } else {
             $(requiredBoxApply).css({display: 'none'});
         }
+        return false;
     }
 
 
         $('#apply_post01').click(function() {
+            
             console.log('#01')
             // name[required]
             var regexName = /^[가-힣]+$/; // ㄱㄴㄷ.. , 띄어쓰기 불가능.
             var $userName01 = $('#name01');
            
             // mobile[required]
-            var regexMobile = /^[0-9]{2,3}[0-9]{3,4}[0-9]{4}$/; // 0000000000 만 받는다.
-            // var replaceMobile = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/; // 000-000-0000 만 받는다.
+            // var regexMobile = /^[0-9]{2,3}[0-9]{3,4}[0-9]{4}$/; // 0000000000 만 받는다.
+            // var regexMobile = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/; // 000-000-0000 만 받는다.
+            // var regexMobile = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/; // 하이픈안됨
             // var regexMobile = /^[0-9]+$/; // 숫자만 가능
+            var regexMobile = /(^02.{0}|^01.{1}|[0-9]{3}?)-?([0-9]+)-?([0-9]{4})/; // 하이픈해도되고 안해됨
             var $userMobile01 = $('#mobile');
 
             // email[required]
@@ -126,13 +140,10 @@ var flag = false;
             }
             submitCheck('#required01');
             
-            return false;
         });
         
         
         $('#apply_post02').on('click', function() {
-
-
             console.log('#02')
             // [Academy]정규표현식
             // name[required]
@@ -140,7 +151,7 @@ var flag = false;
             var regexName = /^[가-힣]+$/; 
             // mobile[required]
             var $userMobile02 = $('#mobile02')
-            var regexMobile = /^[0-9]{2,3}[0-9]{3,4}[0-9]{4}$/;
+            var regexMobile = /(^02.{0}|^01.{1}|[0-9]{3}?)-?([0-9]+)-?([0-9]{4})/;
             // email
             var $userEmail02 = $('#email02');
             // date[required]
@@ -150,42 +161,42 @@ var flag = false;
             var $userAge = $('input[name="age"]');
             // text[required]
             var $userOpinion = $('#opinion');
-            // var regexOpinion = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|~!@\#$%<>^&*\()-=+_\s]+$/;
+            var regexOpinion = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|[~!@#$%^&*()_+|<>?:{}]+$/;
             // 한글 숫자 띄어쓰기
-            var regexOpinion = /^[0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣a-zA-Z\s]+$/;
             // agree[required]
             // apply 총확인
 
 
-            // textarea 엔터가 적용안됨.regexOpinion 특수문자 포함시키기
-           
 
             if(!flag) {
                 checkForm($userOpinion, regexOpinion);
-                // var str = $('input[type="textarea"]').val();
-                // str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
-                // $('input[type="textarea"]').html(str);
-                // flag = false;
+                flag = false;
             }
             if(!flag) {
-                checkForm($userMobile02,regexMobile)
+                checkForm($userMobile02,regexMobile);
+                flag = false;
             }
             if(!flag) {
-                checkForm($userName02,regexName)
+                checkForm($userName02,regexName);
+                flag = false;
             }
             if(!flag) {
                 checkedBox('#allcheck02');
                 flag = false;
             }
-            // radio
-            // if(!$userAge.is(':checked')) {
-            //     $userAge.parents().find($requiredBox).addClass('requiredOk');
-            //     return false;
-            // } else {
-            //     $userAge.parents().find($requiredBox).removeClass('requiredOk');
-            // }
-            submitCheck('#required02');
-            return false;
+            if(!flag) {
+                // radio
+                if(!$userAge.is(':checked')) {
+                    $userAge.closest('fieldset').next($requiredBox).addClass('requiredOk');
+                } else {
+                    console.log('check')
+                    $userAge.closest('fieldset').next($requiredBox).removeClass('requiredOk');
+                }
+            }
+            if(!flag) {
+                submitCheck('#required02');
+                flag = false;
+            }
         });
 
 
@@ -317,8 +328,8 @@ function shopGallery() {
     $shopNavArrow.find('.shop_nav_prev').click(shopPrevSlide)
 
     function shopSetImg() {
-        shopSlideH = parseInt($shopSlideLi.height());
-        shopSlideW = parseInt($shopSlideLi.width());
+        shopSlideH = Math.floor($shopSlideLi.height());
+        shopSlideW = Math.floor($shopSlideLi.width());
         $shopSlide.css({height: shopSlideH});
         for(var i = 0; i < shopSlideTotal; i++) {
             if(i === curIndx) {
@@ -329,7 +340,7 @@ function shopGallery() {
         }
     }
     function shopAuto() {
-        shopInterval = setInterval(shopNextSlide, 4500);
+        shopInterval = setInterval(shopNextSlide, 6500);
     }
     shopAuto();
 

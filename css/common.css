@@ -193,4 +193,4 @@ button[name="search_icon"] { border: none; background-color: transparent; positi
         transform: translateY(-10%);
     }
 }
-.scroll_down > a { animation: scrollDown 0.5s ease infinite alternate; }
+.scroll_down > a { -webkit-animation: scrollDown 0.5s ease infinite alternate; animation: scrollDown 0.5s ease infinite alternate; }

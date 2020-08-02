@@ -21,8 +21,8 @@ $(document).ready(function() {
         wW = $window.width();
         wH = $window.height();
         navMenu();
-    });
-    
+    }).trigger('resize');
+
 
     $scrollTop.on('click', function(){
         $('html, body').stop().animate({scrollTop : 0}, 'slow');
@@ -47,11 +47,10 @@ $(document).ready(function() {
             $scrollTop.removeClass('scrollTopHide');
         }
 
-    }).trigger('scroll');;
+    }).trigger('scroll');
     
         
 
-    
     function navMenu() {
         var $mainMenu = $('.main_menu');
         var $mainMenuList = $mainMenu.find('.main_menu_list');
@@ -73,8 +72,6 @@ $(document).ready(function() {
         
         if(wW > 1023) {
             // PcMenu
-            console.log('pc')
-            
             // PcMenu event init
             $mainMenu.find('a').off('click');
             $mainMenuList.off('mouseenter focusin mouseleave');
@@ -100,8 +97,6 @@ $(document).ready(function() {
 
         } else {
             // MobileMenu
-            console.log('mobile');
-
             // MobileMenu event init
             $navMoBtn.off('click');
             $mainMenu.find('a').off('click');

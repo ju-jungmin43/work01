@@ -347,7 +347,7 @@ footer
     .info_list .info_content .info_content_cell b { font-size: 19px; }
 
     /* main_reocommend */
-    .recommend_slide { width: 150%; }
+    .recommend_slide { width: 200%; }
     .recommend_content_cell { padding: 6%; }
     .main_recommend .recommend_content_cell h3 { font-size: 15px; }
     .recommend_content_cell p { height: 3em; }

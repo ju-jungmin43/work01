@@ -173,8 +173,8 @@
 .community_form_inner { max-width: 792px; margin: auto; padding: 108px 0 170px; }
 .community_form_title { background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 .community_form_title li a.formTitle { color: #c0c79c; }
-.community_form_title li.formTitle:after { width: 100%; }
-.community_form_title li:after { display: block; content: ''; width: 0%; height: 3px; background-color: #c0c79c; position: absolute; bottom: 0; }
+.community_form_title li a.formTitle:after { width: 100%; }
+.community_form_title li a:after { display: block; content: ''; width: 0%; height: 3px; background-color: #c0c79c; position: absolute; bottom: 0; }
 .community_form h3 { font-size: 24px; text-align: center; padding-bottom: 52px; }
 .community_form span { font-size: 14px; font-weight: 500; line-height: 1.7em; color: #666; }
 .community_form strong:first-child { color: #222; }
@@ -248,8 +248,8 @@ fieldset > label { margin-right: 25px; position: relative; top: 0; left: 0; colo
 
 input[name="age"] { visibility: hidden; opacity: 0; position: absolute; top: 0; left: 0; margin: 0; }
 input[name="age"]:checked + .radio_img { background-position: -156px -1px; }
-input[type="textarea"].opinion_textarea { width: 100%; height: 170px; border: 2px solid #ccc; border-radius: 5px; resize: none; padding: 10px; font-size: 15px; color: #666; font-family: 'Gotham', sans-serif; }
-input[type="textarea"].opinion_textarea:focus { border: 2px solid #c0c79c; }
+.opinion_textarea { width: 100%; height: 170px; border: 2px solid #ccc; border-radius: 5px; resize: none; padding: 10px; font-size: 15px; color: #666; font-family: 'Gotham', sans-serif; }
+.opinion_textarea:focus { border: 2px solid #c0c79c; }
 
 .formOn { display: block; }
 
@@ -268,12 +268,6 @@ html, body { height: 100%; overflow-x: hidden; }
 .shop_gallery .shop_slide { width: auto; height: auto; }
 .shop_gallery .shop_slide li { display: block; width: 101%; height: auto; position: absolute; top: 0; left: 0; }
 .shop_slide li img { display: block; width: auto; height: auto; max-width: 100%; }
-/* .shop_slide li:nth-child(1) { background-image: url('../images/sub/05_shop/shop_cafe_01.jpg') }
-.shop_slide li:nth-child(2) { background-image: url('../images/sub/05_shop/shop_cafe_02.jpg') }
-.shop_slide li:nth-child(3) { background-image: url('../images/sub/05_shop/shop_cafe_03.jpg') }
-.shop_slide li:nth-child(4) { background-image: url('../images/sub/05_shop/shop_cafe_04.jpg') }
-.shop_slide li:nth-child(5) { background-image: url('../images/sub/05_shop/shop_cafe_05.jpg') }
-.shop_slide li:nth-child(6) { background-image: url('../images/sub/05_shop/shop_cafe_06.jpg') } */
 .shop_nav_arrow > a { position: absolute; top: 50%; display: table; width: 62px; height: 62px; border-radius: 50%; margin-top: -31px; background-color: #e3e3e3; color: #222; transition: all 0.3s; -webkit-transition: all 0.3s; -ms-transition: all 0.3s; -moz-transition: all 0.3s; }
 .shop_nav_arrow > a i { display: table-cell; text-align: center; vertical-align: middle; }
 .shop_nav_arrow > a:hover { background-color: #c0c79c; color: #fff; }
@@ -457,7 +451,7 @@ html, body { height: 100%; overflow-x: hidden; }
     fieldset > label { margin-right: 3%; };
     .form_btn a { font-size: 13px; }
     .form_column input { font-size: 13px; }
-    input[type="textarea"].opinion_textarea { font-size: 13px; }
+    .opinion_textarea { font-size: 13px; }
     .form_facebook { padding: 3% 4%; margin-bottom: 5%; }
     .community_form_inner { padding: 10% 0 16%; }
     .form_section .form_row { padding: 2% 0 3%; }
@@ -536,7 +530,7 @@ html, body { height: 100%; overflow-x: hidden; }
     .community_form h3 { font-size: 18px; }
     .community_form span { font-size: 12px; }
     .form_column input { font-size: 12px; }
-    input[type="textarea"].opinion_textarea { font-size: 12px; }
+    .opinion_textarea { font-size: 12px; }
     label, legend { font-size: 12px; padding-bottom: 10px; }
     .check_btn { font-size: 12px; }
     .form_column input { height: 40px; }
