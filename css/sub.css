@@ -5,10 +5,13 @@
     03_products
     04_community
     05_shop
-
     + sub responsive
 -------------------------------------------------------------------*/
+
+
 .container { background-color: #f6f6f6; }
+
+
 /*-------------------------------------------------------------------
     01_philosophy
 -------------------------------------------------------------------*/
@@ -40,10 +43,10 @@
 .philo_section_03 { background-image: url('../images/sub/01_philosohy/philo_03.jpg'); }
 .philo_section_03 h3 { color: #222; }
 .philo_section_03 p { color: #666; }
+
 /* philo_section philo_section_04 */
 .philo_section_04 { background-image: url('../images/sub/01_philosohy/philo_04.jpg'); }
 .philo_section_04 .philo_content .philo_content_cell { top: 35%; }
-
 
 /* philo_nav */
 .philo_nav { position: fixed; top: 45%; right: 35px; }
@@ -232,13 +235,11 @@ input[type="checkbox"]:checked + label .checkbox_img { background-position: -44p
 .check_btn_address { float: left; background-color: #c0c79c; border: 2px solid #c0c79c; color: #fff; }
 .check_btn_address:hover { color: #c0c79c; background-color: #fff; }
 
-
 .apply_btn { margin-top: 15px; }
 button.apply_post { margin: auto; display: block; width: 174px; border-radius: 5px; background-color: transparent; border: 2px solid #ccc; padding: 14px 0; transition: all 0.3s; -webkit-transition: all 0.3s; -ms-transition: all 0.3s; -moz-transition: all 0.3s; cursor: pointer; }
 button.apply_post span { font-weight: bold; color: #222; }
 button.apply_post:hover { background-color: #c0c79c; border: 2px solid #c0c79c; }
 button.apply_post:hover span { color: #fff; }
-
 
 /* form_academy_wrap */
 .form_wrap { display: none; }
@@ -253,6 +254,21 @@ input[name="age"]:checked + .radio_img { background-position: -156px -1px; }
 
 .formOn { display: block; }
 
+/* datePicker */
+.ui-datepicker .ui-datepicker-title { font-family: 'Gotham', 'NotoSansKR', sans-serif;}
+.ui-datepicker-calendar thead { background-color: #f6f6f6; border-bottom: 1px solid #ddd; }
+.ui-datepicker-week-end:first-child { color: #fd4c4c; }
+.ui-datepicker-week-end:last-child { color: #0068b6; }
+/* 날짜선택 */
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover { background: #ccc; color: #222; }
+/* 오늘날짜 */
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight { background: #c0c79c; color: #222; }
+/* 날짜 hover */
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover { background: #eee; }
+.ui-icon-circle-triangle-w { background-position: -96px 0; }
+.ui-icon-circle-triangle-e { background-position: -32px 0; }
+
+
 /*-------------------------------------------------------------------
     05_shop
 -------------------------------------------------------------------*/
@@ -263,11 +279,12 @@ html, body { height: 100%; overflow-x: hidden; }
 .shop_body b { font-size: 24px; font-weight: 600; color: #222; letter-spacing: 0.5em; position: relative; }
 .shop_body p { font-size: 15px; font-weight: 400; color: #666; line-height: 1.7em; }
 .shop_body p br { display: none; }
-
+.shop_cafe { position: relative; }
 .shop_gallery { position: relative; width: 100%; overflow: hidden; }
 .shop_gallery .shop_slide { width: auto; height: auto; }
-.shop_gallery .shop_slide li { display: block; width: 101%; height: auto; position: absolute; top: 0; left: 0; }
-.shop_slide li img { display: block; width: auto; height: auto; max-width: 100%; }
+.shop_gallery .shop_slide li { display: block; width: 100%; height: auto; position: absolute; top: 0; left: 0; }
+.shop_slide li img { display: block; width: 100%; max-width: 100%; }
+.shop_cafe .shop_nav { position: absolute; width: 100%; top: 40%; }
 .shop_nav_arrow > a { position: absolute; top: 50%; display: table; width: 62px; height: 62px; border-radius: 50%; margin-top: -31px; background-color: #e3e3e3; color: #222; transition: all 0.3s; -webkit-transition: all 0.3s; -ms-transition: all 0.3s; -moz-transition: all 0.3s; }
 .shop_nav_arrow > a i { display: table-cell; text-align: center; vertical-align: middle; }
 .shop_nav_arrow > a:hover { background-color: #c0c79c; color: #fff; }
@@ -278,8 +295,9 @@ html, body { height: 100%; overflow-x: hidden; }
 .shop_direction .shop_direction_content { text-align: center; }
 .shop_direction_content b::before { display: block; content: ''; width: 100%; height: 1px; background-color: #222; position: absolute; bottom: -7px; left: 0; }
 .shop_direction_content p { padding: 40px 0 60px; }
-
 .shop_map { width: 100%; height: 600px; border: 1px solid red; }
+
+
 
 /*-------------------------------------------------------------------
     ** responsive
@@ -547,7 +565,7 @@ html, body { height: 100%; overflow-x: hidden; }
     .shop_body b { font-size: 18px; }
     .shop_body p { font-size: 12px; line-height: 1.5em; }
     .shop_body p br { display: inline; }
-    
+    .shop_cafe .shop_nav { top: auto; }
     .shop_nav .shop_nav_arrow { width: 80px; height: 40px; position: absolute; bottom: 0; right: 0; }
     .shop_nav .shop_nav_arrow::before { display: block; content: ''; position: relative; top: 14px; left: 50%; z-index: 1; width: 1px; height: 12px; background-color: #bbb; }
     .shop_nav_arrow > a { border-radius: 0; margin: 0; top: auto; bottom: 0; }

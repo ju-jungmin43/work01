@@ -12,12 +12,11 @@ $(document).ready(function() {
 
     /* sub4.html */
     $('.form_kit_wrap').addClass('formOn');
-    // $('.form_academy_wrap').addClass('formOn');
     $('.form_kit_btn').find('a').addClass('formTitle');
 
     $('.form_btn').on('click', 'a', function() {
         var commuFormTop = $('.community_form_title').offset().top - $('#header').height();
-        // $('html, body').animate({scrollTop : commuFormTop}, 'slow'); 
+        $('html, body').animate({scrollTop : commuFormTop}, 'slow'); 
         if($(this).parent().hasClass('form_kit_btn')) {
             $('.form_kit_wrap').addClass('formOn');
             $('.form_academy_wrap').removeClass('formOn');
@@ -46,7 +45,7 @@ $(document).ready(function() {
 var $requiredBox = $('.required_box');
 var flag = false;
 var mobileNum = '';
-    // form_kit_wrap name, mobile, e-mail 확인
+    // name, mobile, e-mail, date 확인
    function checkForm(user, regex) {
         if(user.val() === '' || !regex.test(user.val())) {
             user.next($requiredBox).addClass('requiredOk')
@@ -155,7 +154,8 @@ var mobileNum = '';
             // email
             var $userEmail02 = $('#email02');
             // date[required]
-            var $userDate = $('#date02');
+            var $userDate = $('#datepicker');
+            var regexDate = /^[0-9 \-]+$/;
             // var regex = // 숫자만
             // age[required]
             var $userAge = $('input[name="age"]');
@@ -170,6 +170,10 @@ var mobileNum = '';
 
             if(!flag) {
                 checkForm($userOpinion, regexOpinion);
+                flag = false;
+            }
+            if(!flag) {
+                checkForm($userDate, regexDate);
                 flag = false;
             }
             if(!flag) {
@@ -314,6 +318,7 @@ function shopGallery() {
     var shopSlideW; // 이미지 넓이
     var shopSlideH; // 이미지 높이
     var shopInterval;
+    var speed = 600;
     var $shopNavArrow = $('.shop_nav_arrow');
     $shopNavArrow.on({
         mouseenter: function() {
@@ -340,12 +345,12 @@ function shopGallery() {
         }
     }
     function shopAuto() {
-        shopInterval = setInterval(shopNextSlide, 6500);
+        shopInterval = setInterval(shopNextSlide, 7500);
     }
     shopAuto();
 
     function shopNextSlide() {
-        $shopSlideLi.eq(curIndx).stop().animate({left: -shopSlideW}, function() {
+        $shopSlideLi.eq(curIndx).stop(true).animate({left: -shopSlideW}, speed, function() {
             // 안해주면 한바퀴 돈 후, 왼쪽에서 오른쪽으로 이미지가 이동한다.(-에서 0로)
             $(this).css({left: shopSlideW});
         });
@@ -355,16 +360,16 @@ function shopGallery() {
         } else {
             curIndx = 0;
         }
-        $shopSlideLi.eq(curIndx).stop().animate({left: 0});
+        $shopSlideLi.eq(curIndx).stop().animate({left: 0}, speed);
     }
     function shopPrevSlide() {
-        $shopSlideLi.eq(curIndx).stop().animate({left: shopSlideW});
+        $shopSlideLi.eq(curIndx).stop().animate({left: shopSlideW}, speed);
         if(curIndx === 0) {
             curIndx = (shopSlideTotal-1);
         } else {
             curIndx--;
         }
-        $shopSlideLi.eq(curIndx).css({left: -shopSlideW}).stop().animate({left: 0});
+        $shopSlideLi.eq(curIndx).css({left: -shopSlideW}).stop(true).animate({left: 0}, speed)
     }
 
     $(window).resize(function() {

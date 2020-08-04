@@ -69,14 +69,12 @@ $(document).ready(function() {
             $mainMenuList.find('ul').css({display: 'none'});
         }
         
-        
         if(wW > 1023) {
             // PcMenu
             // PcMenu event init
             $mainMenu.find('a').off('click');
             $mainMenuList.off('mouseenter focusin mouseleave');
             navInit('visible');
-            
             
             $mainMenuList.on({
                 'mouseenter focusin': function() {
@@ -107,13 +105,11 @@ $(document).ready(function() {
                 navInit('hidden');
             });
 
-
             $navMoBtn.on('click', 'a', function() {
                 $navMoMenu.css({ right: 0, visibility: 'visible'});
                 $navMoClose.css({ left: '-50px', visibility: 'visible'});
                 $navMoDim.css({display: 'block'}).animate({opacity: 1}, 600)
             });
-            
 
             $mainMenu.find('a').on('click', function() {
                 var _mainMenuNext = $(this).next();

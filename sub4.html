@@ -19,6 +19,7 @@
     <link rel="icon" href="images/favicon/cropped-favicon-192x192.jpg" sizes="192x192" />
     <link rel="apple-touch-icon-precomposed" href="images/favicon/cropped-favicon-180x180.jpg" />
     <meta name="masapplication-TileImage" content="images/favicon/cropped-favicon-270x270.jpg" />
+    <link rel="stylesheet" href="css/jquery-ui.css" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/common.css" />
     <!-- <link rel="stylesheet" href="css/main.css" /> -->
@@ -109,7 +110,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="community_body_form inner">
                         <div class="community_form">
                             <ul class="community_form_title cf">
@@ -206,8 +206,8 @@
                                                 <input type="email" id="email02" class="user_email" />
                                             </div>
                                             <div class="form_column">
-                                                <label for="date02">When do you want to come?</label>
-                                                <input type="text" id="date02" class="user_date" value="" />
+                                                <label for="datepicker">When do you want to come?</label>
+                                                <input type="text" id="datepicker" class="user_date" value="" readonly />
                                                 <p class="required_box">The field is required.</p>
                                             </div>
                                         </div><!-- form_row -->
@@ -273,11 +273,79 @@
             </div>
         </div>
     </div><!-- #container container community_container -->
-    <footer data-include="include/footer.html"></footer>
+
+    <!-- <footer data-include="include/footer.html"></footer> -->
+
+    <footer id="footer">
+        <div class="wrap">
+            <div class="inner">
+                <div class="footer_head cf">
+                    <ul class="footer_sns cf">
+                        <li>
+                            <a href="" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="footer_menu">
+                        <a href="#" target="_blank">MOU/B2B/OEM</a>
+                    </div>
+                </div>
+                <div class="footer_body">
+                    <div class="footer_info">
+                        <p>
+                            <span>TAMLATAMANU Inc.</span>
+                            <span>Business Licence : 828-81-00407</span>
+                        </p>
+                        <p>
+                            <span>Address : 517-4, A-Samwhan Hipex Bldg. Sampyeong-dong, Bundang-Gu,
+                                Seongnam-Si, Gyeonggi-Do, 13493, South Korea</span>
+                        </p>
+                        <p>
+                            <span>Personal Info Manager : Park Ai Ran(Lanny park)</span>
+                            <span>Contact :<a href="tel:82-31-705-6715">82.31.705.6715</a>
+                            </span>
+                            <span>Mail Us :
+                                <a href="mailto:realskincare@lanbelle.com">realskincare@lanbelle.com</a>
+                            </span>
+                        </p>
+                        <p>
+                            <span>© 2017 LNABELLE.ALL RIGHTS RESERVED.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll_top">
+            <i class="fas fa-long-arrow-alt-up" style="color: #fff;"></i>
+            <span>TOP</span>
+        </div>
+    </footer>
+
 </div>
 <script src="js/sub.js"></script>
+<script src="js/plugin/jquery-ui.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+
+    // datePicker
+    $(function() {
+        $('#datepicker').datepicker({
+            dateFormat: 'yy-mm-dd', // form에 입력
+            showMonthAfterYear: true, // 년 뒤에 월 표시
+            monthNames: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+            dayNamesMin: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+            constrainInput: false,
+            yearSuffix: '.', // yy + '.'
+            minDate: 0 // not prevMonth
+        })
+    });
+    // DAUM map
     function daumPostCode() {
         new daum.Postcode({
             oncomplete: function(data) {
