@@ -272,7 +272,7 @@ input[name="age"]:checked + .radio_img { background-position: -156px -1px; }
 /*-------------------------------------------------------------------
     05_shop
 -------------------------------------------------------------------*/
-html, body { height: 100%; overflow-x: hidden; }
+
 .shop_container { padding-bottom: 170px; }
 /* font-size */
 .shop_body h3 { font-size: 27px; font-weight: 300; color: #222; padding-bottom: 15px; }
