@@ -1,9 +1,43 @@
 // const
 var wW;
 var wH;
-
 $(document).ready(function() {
+    var url = location.href;
+    var urlPara = url.split('/');
+    var splitPara;
+    var i;
+    for(i = 0; i < urlPara.length; i++) {
+        splitPara = urlPara[urlPara.length-1];
+    }
+    $.each($('.mo_menu_list'), function() {
+        if(splitPara === $(this).attr('href')) {
+            $(this).addClass('navOn');
+            console.log('OOOOOOO',$(this));
+            return false;
+        }
+    })
+    function navOn() {
+        var returnNow = false;
+        $.each($('.sub_menu > li > a'), function() {
+            console.log('eaeach')
+            if(splitPara === $(this).attr('href')) {
+                console.log('if')
+                $(this).addClass('navOn');
+                returnNow = true;
+                return false;
+            }
+        });
+        if(returnNow) {
+            console.log(returnNow)
+            return false;
+        }
+        console.log('eachENDNEND')
+    }
+    navOn();
+    //https://javafactory.tistory.com/1427
+    //https://stackoverflow.com/questions/4868931/breaking-parent-function-of-jquery-each-function
     console.log('common.js');
+    
     var $header = $('#header');
     var $document = $(document);
     var $window = $(window);
@@ -61,35 +95,49 @@ $(document).ready(function() {
         var $langSelect = $('.lang_select');
         var $langList = $langSelect.next('.lang_list');
 
+        var flag = false;
         
         function navInit(moMenu) {
             $navMoMenu.css({ right: '-240px', visibility: moMenu});
             $navMoClose.css({left: '0', visibility: 'hidden'})
             $navMoDim.css({display: 'none'});
             $mainMenuList.find('ul').css({display: 'none'});
+            $langList.removeClass('langOn')
+
+            $mainMenuList.find('a').blur();
+
         }
         
         if(wW > 1023) {
             // PcMenu
             // PcMenu event init
-            $mainMenu.find('a').off('click');
-            $mainMenuList.off('mouseenter focusin mouseleave');
+            $mainMenu.find('a').off();
             navInit('visible');
-            
-            $mainMenuList.on({
-                'mouseenter focusin': function() {
+
+            $mainMenuList.off().on({
+                'mouseenter': function(e) {
+                    flag = true;
                     $(this).find('> ul').css({display: 'block'});
-                    $(this).find('> a').addClass('navFocus');
+                    // a:focus 대신 .navOn { color: /* focus color */ } 해준 이유.
+                    // focusin에 click event 같이 걸림.
+                    // $(this).find('> a').addClass('navOn');
                 },
                 'mouseleave': function() {
+                    flag = false;
                     $(this).find('> ul').css({display: 'none'});
-                    $mainMenuList.find('> a').removeClass('navFocus');
+                    // $mainMenuList.find('> a').removeClass('navOn');
+                },
+                'focusin': function(e) {
+                    if(flag) {
+                        e.target.blur();
+                    }
+                    $(this).find('> ul').css({display: 'block'});
                 }
+                //[Focus Styles Only on Tab Not Click]https://www.darrenlester.com/blog/focus-only-on-tab
             });
             
-            
             $mainMenuList.find('ul').find('li:last-child').focusout(function() {
-                $('.mo_menu_list').removeClass('navFocus');
+                // $('.mo_menu_list').removeClass('navOn');
                 $(this).parent().css({display: 'none'});
             });
 
@@ -97,21 +145,19 @@ $(document).ready(function() {
             // MobileMenu
             // MobileMenu event init
             $navMoBtn.off('click');
-            $mainMenu.find('a').off('click');
-            $mainMenuList.off('mouseenter focusin mouseleave');
-            $('.nav_mo_close, .nav_mo_dim').off('click'); 
-
-            $('.nav_mo_close, .nav_mo_dim').on('click', function() {
+            $mainMenuList.off();
+            
+            $('.nav_mo_close, .nav_mo_dim').off().on('click', function() {
                 navInit('hidden');
             });
 
-            $navMoBtn.on('click', 'a', function() {
+            $navMoBtn.off().on('click', 'a', function(e) {
+                console.log(e.type)
                 $navMoMenu.css({ right: 0, visibility: 'visible'});
                 $navMoClose.css({ left: '-50px', visibility: 'visible'});
                 $navMoDim.css({display: 'block'}).animate({opacity: 1}, 600)
             });
-
-            $mainMenu.find('a').on('click', function() {
+            $mainMenu.find('a').off().on('click', function() {
                 var _mainMenuNext = $(this).next();
                 if(_mainMenuNext.is('ul') && (_mainMenuNext.is(':visible'))) {
                     // console.log('up')
@@ -126,33 +172,26 @@ $(document).ready(function() {
                 _mainMenuNext.find('li:last-child').focusout(function() {
                     $(this).closest('ul').slideUp();
                 });
-
                 return false;
             });
             $('.lang_list.langOn').removeClass('langOn');
         } // else end
 
-        // var flag = false;
         $langSelect.off().on('mousedown', 'a', function(e) {
-            console.log(e.type)
-            var flag = false;
+            flag = false;
             if(!flag) {
                 if(!$langList.hasClass('langOn')){
                     $(this).find('i').addClass('langOn');
                     $(this).parent().next('ul').addClass('langOn');
-                    console.log('열린다')
                     return false;
                 } else {
                     $('.lang_select').find('i').removeClass('langOn');
                     $('.lang_list.langOn').removeClass('langOn');
-                    console.log('닫힌다')
                 }
-                return false;
             }
-        }).on('focusin', function(e) {
-            console.log(e.type)
+        }).on('focusin', function() {
             $('.lang_list').addClass('langOn');
-        })
+        });
        
         $('.lang_list.langOn').removeClass('langOn');
 
