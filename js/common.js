@@ -1,6 +1,12 @@
 // const
 var wW;
 var wH;
+
+/*-------------------------------------------------------------------
+    header
+    footer
+-------------------------------------------------------------------*/
+
 $(document).ready(function() {
     var url = location.href;
     var urlPara = url.split('/');
@@ -9,31 +15,50 @@ $(document).ready(function() {
     for(i = 0; i < urlPara.length; i++) {
         splitPara = urlPara[urlPara.length-1];
     }
-    $.each($('.mo_menu_list'), function() {
-        if(splitPara === $(this).attr('href')) {
-            $(this).addClass('navOn');
-            console.log('OOOOOOO',$(this));
-            return false;
-        }
-    })
     function navOn() {
         var returnNow = false;
-        $.each($('.sub_menu > li > a'), function() {
-            console.log('eaeach')
+        $.each($('.mo_menu_list'), function() {
+            console.log('mo_menu_list')
             if(splitPara === $(this).attr('href')) {
-                console.log('if')
                 $(this).addClass('navOn');
+                $(this).siblings('ul').find('a').each(function() {
+                    console.log('sub_menu')
+                    if(splitPara === $(this).attr('href')) {
+                        $(this).addClass('navOn');
+                    }
+                });
                 returnNow = true;
                 return false;
             }
         });
-        if(returnNow) {
-            console.log(returnNow)
-            return false;
-        }
-        console.log('eachENDNEND')
+        // $.each($('.mo_menu_list'), function() {
+        //     console.log('mo_menu_list')
+        //     if(splitPara === $(this).attr('href')) {
+        //         $(this).addClass('navOn');
+        //         return false;
+        //     }
+        // });
+        // $.each($('.sub_menu > li > a'), function() {
+        //     console.log('sub_menu')
+        //     if(splitPara === $(this).attr('href')) {
+        //         $(this).addClass('navOn');
+        //         return false;
+        //     }
+        // });
+        // if(returnNow) { 
+        //     return false; 
+        // }
     }
     navOn();
+    // $('.sub_menu > li > a').each(function() {
+    //     console.log('each START');
+    //     if(splitPara === $(this).attr('href')) {
+    //         $(this).addClass('navOn');
+    //         console.log('navOn');
+    //         return false;
+    //     }
+    //     console.log('each END')
+    // })
     //https://javafactory.tistory.com/1427
     //https://stackoverflow.com/questions/4868931/breaking-parent-function-of-jquery-each-function
     console.log('common.js');
@@ -104,14 +129,13 @@ $(document).ready(function() {
             $mainMenuList.find('ul').css({display: 'none'});
             $langList.removeClass('langOn')
 
-            $mainMenuList.find('a').blur();
 
         }
         
         if(wW > 1023) {
             // PcMenu
             // PcMenu event init
-            $mainMenu.find('a').off();
+            $mainMenu.find('a').off('click');
             navInit('visible');
 
             $mainMenuList.off().on({
@@ -145,34 +169,38 @@ $(document).ready(function() {
             // MobileMenu
             // MobileMenu event init
             $navMoBtn.off('click');
-            $mainMenuList.off();
+            $mainMenuList.off('mouseenter mouseleave focusin');
             
             $('.nav_mo_close, .nav_mo_dim').off().on('click', function() {
                 navInit('hidden');
             });
 
-            $navMoBtn.off().on('click', 'a', function(e) {
-                console.log(e.type)
+            $navMoBtn.off().on('click', 'a', function() {
                 $navMoMenu.css({ right: 0, visibility: 'visible'});
                 $navMoClose.css({ left: '-50px', visibility: 'visible'});
                 $navMoDim.css({display: 'block'}).animate({opacity: 1}, 600)
             });
+
             $mainMenu.find('a').off().on('click', function() {
+                var returnNow = false;
                 var _mainMenuNext = $(this).next();
                 if(_mainMenuNext.is('ul') && (_mainMenuNext.is(':visible'))) {
                     // console.log('up')
                     _mainMenuNext.slideUp();
+                    returnNow = true;
                 }
                 if(_mainMenuNext.is('ul') && !(_mainMenuNext.is(':visible'))) {
                     // console.log('down');
                     $mainMenu.find('ul').not(_mainMenuNext.parentsUntil('.main_menu')).slideUp();
                     _mainMenuNext.slideDown();
+                    returnNow = true; // true해주면 슬라이드안됨
                 }
+                if(returnNow) { return false; }
 
                 _mainMenuNext.find('li:last-child').focusout(function() {
                     $(this).closest('ul').slideUp();
                 });
-                return false;
+           
             });
             $('.lang_list.langOn').removeClass('langOn');
         } // else end

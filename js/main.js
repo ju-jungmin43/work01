@@ -1,9 +1,20 @@
-// // 공통으로 쓰일 변수 const
-// var currentIdx; // 현재 인덱스
-// var total; // slide 총 수
+
+/*-------------------------------------------------------------------
+    container
+    main_visual
+    main_philosophy
+    main_message
+    main_sellers
+    main_products
+    main_academy
+    main_meeting
+    main_info
+    main_recommend
+    main_board
+-------------------------------------------------------------------*/
+// const
 var timer = 0; // setInterval 
 var speed = 0;
-// var wW; // window.width()
 
 $(document).ready(function() {
     console.log('main.js');
@@ -191,7 +202,7 @@ function keyvisualGallery() {
         
         $('.visual_content_cell > .inner > *.visualTxt').removeClass('visualTxt');
         $visualSlide.eq(nextSlide).find($visualContentCellTxt).each(function(i) {
-            $(this).stop(true,false).delay(i * 160).queue(function() {
+            $(this).stop(true).delay(i * 160).queue(function() {
                 $(this).addClass('visualTxt').dequeue();
             });
         });
@@ -233,22 +244,24 @@ function philoGallery() {
     var $philoContent = $('.philo_slide_content');
     var $philoContentCell = $philoContent.find('.philo_content_cell');
     var $philoContentCellTxt = $philoContentCell.children();
-
     $('.philo_slide_content').slick({
         draggable: false,
         fade: true,
         arrows: false,
         speed: 800,
-        infinite: true,
+        // infinite: true,
         asNavFor: '.philo_slide_long, .philo_slide_square'
-    }).on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+    }).on('afterChange', function(event, slick, currentSlide) {
         $('.philo_content_cell > *.philoTxt').removeClass('philoTxt');
-        $philoContent.find($philoContentCellTxt).each(function(i) {
-           $(this).stop(true, false).delay(i * 160).queue(function() {
+        var stopAdd = false;
+        $('.slick-current').find($philoContentCellTxt).each(function(i) {
+            $(this).delay(i * 160).queue(function() {
                 $(this).addClass('philoTxt');
-            })
-       })
-    })
+                stopAdd = true;
+            });
+        });
+        if(stopAdd) { return false; }
+    });
 
     $('.philo_slide_square').slick({
         draggable: false,
