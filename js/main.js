@@ -17,8 +17,7 @@ var timer = 0; // setInterval
 var speed = 0;
 
 $(document).ready(function() {
-    console.log('main.js');
-    
+
     /* main_visual */
     keyvisualGallery();
     /* main_philosophy */
@@ -51,7 +50,6 @@ $(document).ready(function() {
     });
     
     var logoScroll = 0;
-    var squareScroll = 0;
 
     var $philoLogo = $('.philo_logo');
     var philoTop = $('.main_philosophy').offset().top;
@@ -69,36 +67,12 @@ $(document).ready(function() {
             // sectionTop >= 0 초기화할때 바로 mainOn해주기위해서!
             if((sectionTop >= 0) && (sectionTop + (sectionH)/3) < (windowTop + windowH)) {
                 $(this).find('.ceo_img').addClass('messageOn');
-                $(this).find('.ceo_sign').delay(700).queue(function() {
+                $(this).find('.ceo_sign').stop(true).delay(700).queue(function() {
                     $(this).addClass('messageOn').dequeue();
                 });
                 $(this).find('.meeting_list').addClass('meetingOn');
             }
-
-
-            
         });
-        // philosophy .philo_logo 스크롤 시에 transform: translate(20% -> 60%) 1024이하면 stop
-        // 1280 : transform: translateY(-55%) / transform: translateY(-43%);
-
-        // if(wW > 1023) {
-        //     // if($('.philo_slide_content'))
-        //     if(wTop < windowTop) {
-        //         // console.log('down');
-        //         // console.log(squareScroll)
-        //         squareScroll++;
-        //     } else {
-        //         squareScroll--;
-        //         // console.log('up');
-        //         // console.log(squareScroll)
-        //     }
-        //     // wTop = windowTop;
-        //     $philoSlideSquare.css({transform: 'translateY(calc(+ ' + (squareScroll) + '%))'});
-        // } else {
-        //     squareScroll = 0;
-        //     // $philoSlideSquare.css({transform: 'translateY(-55%)'});
-        // }
-        
 
         if(wW > 1023) {
             // 1024일때
@@ -188,7 +162,7 @@ function keyvisualGallery() {
     
     $('.visual_gallery').slick({
         fade: true,
-        speed: 2500,
+        speed: 2300,
         arrows: true,
         prevArrow: $('#visualPrev'),
         nextArrow: $('#visualNext'),
@@ -202,8 +176,10 @@ function keyvisualGallery() {
         
         $('.visual_content_cell > .inner > *.visualTxt').removeClass('visualTxt');
         $visualSlide.eq(nextSlide).find($visualContentCellTxt).each(function(i) {
+            // 순서대로 addClass 안됨.
+            // $(this).stop(true).delay(i * 160).addClass('visualTxt');
             $(this).stop(true).delay(i * 160).queue(function() {
-                $(this).addClass('visualTxt').dequeue();
+                $(this).addClass('visualTxt');
             });
         });
         //currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
@@ -253,14 +229,11 @@ function philoGallery() {
         asNavFor: '.philo_slide_long, .philo_slide_square'
     }).on('afterChange', function(event, slick, currentSlide) {
         $('.philo_content_cell > *.philoTxt').removeClass('philoTxt');
-        var stopAdd = false;
         $('.slick-current').find($philoContentCellTxt).each(function(i) {
-            $(this).delay(i * 160).queue(function() {
+            $(this).stop(true).delay(i * 160).queue(function() {
                 $(this).addClass('philoTxt');
-                stopAdd = true;
             });
         });
-        if(stopAdd) { return false; }
     });
 
     $('.philo_slide_square').slick({
@@ -270,7 +243,7 @@ function philoGallery() {
         infinite: true,
         asNavFor: '.philo_slide_long, .philo_slide_content'
     });
-    $philoContentCellTxt.addClass('philoTxt');
+    $philoContentCell.eq(0).children().addClass('philoTxt');
 } // philoGallery () END
 
 
@@ -298,7 +271,7 @@ function sellersGallery() {
                 $(this).addClass('sellers').dequeue();
             });
         });
-        
+
         currentIdx = index;
         //[참고::delay after addClass in each loop] https://stackoverflow.com/questions/40450246/jquery-delay-after-addclass-in-each-loop
     }

@@ -130,11 +130,11 @@ a { font-family: 'Gotham', sans-serif; color: #222; font-weight: 400; text-decor
 .search_form::after { display: block; content: ''; width: 0; height: 3px; background-color: #999; position: absolute; bottom: 0;  -webkit-transition: all 0.4s; -moz-transition: all 0.4s; -o-transition: all 0.4s; transition: all 0.4s; }
 .search_form::before { width: 100%; }
 .search_form::after { left: 50%; right: 50%; background-color: #222; }
-.search_form.active::after { width: 100%; left: 0; right: 0; }
+.search_form.formOn::after { width: 100%; left: 0; right: 0; }
 
 .search_content { font-size: 26px; }
 .search_form label { position: absolute; top: 0; left: 0; color: #999; font-weight: 500; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; -o-transition: all 0.3s; transition: all 0.3s; }
-.search_form label.active { font-size: 18px; color: #222; top: -30px; }
+.search_form label.formOn { font-size: 18px; color: #222; top: -30px; }
 .search_form input.search_content { position: relative; width: 100%; height: 100%; color: #222; background-color: transparent; border: none; padding-right: 45px; }
 button[name="search_icon"] { border: none; background-color: transparent; position: absolute; top: 0; right: 0; width: auto; height: 100%; font-size: 30px; color: #999; cursor: pointer; -webkit-transition: color 0.3s; -moz-transition: color 0.3s; -o-transition: color 0.3s; transition: color 0.3s; }
 
